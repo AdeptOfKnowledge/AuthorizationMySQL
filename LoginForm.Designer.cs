@@ -139,6 +139,7 @@
             this.SignIn.TabIndex = 6;
             this.SignIn.Text = "Sign in";
             this.SignIn.UseVisualStyleBackColor = false;
+            this.SignIn.Click += new System.EventHandler(this.SignIn_Click);
             // 
             // LoginForm
             // 
