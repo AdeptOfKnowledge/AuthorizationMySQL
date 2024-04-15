@@ -59,5 +59,12 @@ namespace Authorization
             if (table.Rows.Count > 0) MessageBox.Show("Yes");
             else MessageBox.Show("No");
         }
+
+        private void RegistrationButton_Click(object sender, EventArgs e)
+        {
+            RegForm f = new RegForm();
+            f.Show();
+            this.Hide();
+        }
     }
 }
