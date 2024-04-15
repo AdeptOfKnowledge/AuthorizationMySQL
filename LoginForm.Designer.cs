@@ -33,9 +33,10 @@
             this.Exit = new System.Windows.Forms.Button();
             this.Password = new System.Windows.Forms.TextBox();
             this.Login = new System.Windows.Forms.TextBox();
+            this.SignIn = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.SignIn = new System.Windows.Forms.Button();
+            this.RegistrationButton = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -45,6 +46,7 @@
             // 
             this.AuthorizationText.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.AuthorizationText.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.AuthorizationText.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.AuthorizationText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AuthorizationText.Font = new System.Drawing.Font("Times New Roman", 26.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.AuthorizationText.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -105,6 +107,22 @@
             this.Login.Size = new System.Drawing.Size(215, 32);
             this.Login.TabIndex = 6;
             // 
+            // SignIn
+            // 
+            this.SignIn.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.SignIn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SignIn.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.SignIn.FlatAppearance.BorderSize = 0;
+            this.SignIn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.SignIn.Font = new System.Drawing.Font("Times New Roman", 14.75F);
+            this.SignIn.Location = new System.Drawing.Point(80, 280);
+            this.SignIn.Name = "SignIn";
+            this.SignIn.Size = new System.Drawing.Size(80, 32);
+            this.SignIn.TabIndex = 6;
+            this.SignIn.Text = "Sign in";
+            this.SignIn.UseVisualStyleBackColor = false;
+            this.SignIn.Click += new System.EventHandler(this.SignIn_Click);
+            // 
             // pictureBox2
             // 
             this.pictureBox2.Image = global::Authorization.Properties.Resources._3d_lock;
@@ -125,21 +143,18 @@
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
-            // SignIn
+            // RegistrationButton
             // 
-            this.SignIn.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.SignIn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SignIn.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
-            this.SignIn.FlatAppearance.BorderSize = 0;
-            this.SignIn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.SignIn.Font = new System.Drawing.Font("Times New Roman", 14.75F);
-            this.SignIn.Location = new System.Drawing.Point(80, 280);
-            this.SignIn.Name = "SignIn";
-            this.SignIn.Size = new System.Drawing.Size(75, 32);
-            this.SignIn.TabIndex = 6;
-            this.SignIn.Text = "Sign in";
-            this.SignIn.UseVisualStyleBackColor = false;
-            this.SignIn.Click += new System.EventHandler(this.SignIn_Click);
+            this.RegistrationButton.AutoSize = true;
+            this.RegistrationButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.RegistrationButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RegistrationButton.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.RegistrationButton.Location = new System.Drawing.Point(124, 224);
+            this.RegistrationButton.Name = "RegistrationButton";
+            this.RegistrationButton.Size = new System.Drawing.Size(107, 22);
+            this.RegistrationButton.TabIndex = 9;
+            this.RegistrationButton.Text = "Registration";
+            this.RegistrationButton.Click += new System.EventHandler(this.RegistrationButton_Click);
             // 
             // LoginForm
             // 
@@ -147,6 +162,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(334, 361);
+            this.Controls.Add(this.RegistrationButton);
             this.Controls.Add(this.SignIn);
             this.Controls.Add(this.Password);
             this.Controls.Add(this.pictureBox2);
@@ -175,6 +191,7 @@
         private System.Windows.Forms.TextBox Login;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button SignIn;
+        private System.Windows.Forms.Label RegistrationButton;
     }
 }
 
