@@ -107,6 +107,7 @@
             this.SignIn.TabIndex = 11;
             this.SignIn.Text = "Registration";
             this.SignIn.UseVisualStyleBackColor = false;
+            this.SignIn.Click += new System.EventHandler(this.SignIn_Click);
             // 
             // SurnameField
             // 

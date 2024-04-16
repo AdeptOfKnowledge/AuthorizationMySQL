@@ -118,5 +118,14 @@ namespace Authorization
         {
             if (RetPassField.Text == "") { RetPassField.Text = "Повторите пароль"; RetPassField.ForeColor = Color.Gray; }
         }
+
+        private void SignIn_Click(object sender, EventArgs e)
+        {
+            if (NameField.Text == "Введите имя" || SurnameField.Text == "Введите фамилию" || LoginField.Text == "Введите ваш логин" || PasswordField.Text == "Введите пароль" || RetPassField.Text == "Повторите пароль")
+            { MessageBox.Show("Заполните все поля"); return; }
+
+            if (PasswordField.Text != RetPassField.Text)
+            { MessageBox.Show("Пароли не совпадают"); return; }
+        }
     }
 }

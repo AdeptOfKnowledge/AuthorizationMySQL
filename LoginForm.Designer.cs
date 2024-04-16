@@ -34,12 +34,14 @@
             this.Password = new System.Windows.Forms.TextBox();
             this.Login = new System.Windows.Forms.TextBox();
             this.SignIn = new System.Windows.Forms.Button();
+            this.RegistrationButton = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.RegistrationButton = new System.Windows.Forms.Label();
+            this.PassShow = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PassShow)).BeginInit();
             this.SuspendLayout();
             // 
             // AuthorizationText
@@ -93,19 +95,20 @@
             // Password
             // 
             this.Password.Font = new System.Drawing.Font("Times New Roman", 16.25F);
-            this.Password.Location = new System.Drawing.Point(80, 180);
+            this.Password.Location = new System.Drawing.Point(78, 180);
             this.Password.Name = "Password";
-            this.Password.Size = new System.Drawing.Size(215, 32);
+            this.Password.Size = new System.Drawing.Size(216, 32);
             this.Password.TabIndex = 8;
             this.Password.UseSystemPasswordChar = true;
             // 
             // Login
             // 
             this.Login.Font = new System.Drawing.Font("Times New Roman", 16.25F);
-            this.Login.Location = new System.Drawing.Point(80, 140);
+            this.Login.Location = new System.Drawing.Point(78, 140);
             this.Login.Name = "Login";
-            this.Login.Size = new System.Drawing.Size(215, 32);
+            this.Login.Size = new System.Drawing.Size(216, 32);
             this.Login.TabIndex = 6;
+            this.Login.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             // 
             // SignIn
             // 
@@ -123,26 +126,6 @@
             this.SignIn.UseVisualStyleBackColor = false;
             this.SignIn.Click += new System.EventHandler(this.SignIn_Click);
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::Authorization.Properties.Resources._3d_lock;
-            this.pictureBox2.Location = new System.Drawing.Point(40, 180);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 7;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Authorization.Properties.Resources.programmer;
-            this.pictureBox1.Location = new System.Drawing.Point(40, 140);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            // 
             // RegistrationButton
             // 
             this.RegistrationButton.AutoSize = true;
@@ -156,12 +139,45 @@
             this.RegistrationButton.Text = "Registration";
             this.RegistrationButton.Click += new System.EventHandler(this.RegistrationButton_Click);
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Authorization.Properties.Resources._3d_lock;
+            this.pictureBox2.Location = new System.Drawing.Point(38, 180);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 7;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Authorization.Properties.Resources.programmer;
+            this.pictureBox1.Location = new System.Drawing.Point(38, 140);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
+            // 
+            // PassShow
+            // 
+            this.PassShow.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PassShow.Image = global::Authorization.Properties.Resources.view_gray;
+            this.PassShow.Location = new System.Drawing.Point(296, 180);
+            this.PassShow.Name = "PassShow";
+            this.PassShow.Size = new System.Drawing.Size(32, 32);
+            this.PassShow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PassShow.TabIndex = 10;
+            this.PassShow.TabStop = false;
+            this.PassShow.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PassShow_MouseClick);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(334, 361);
+            this.Controls.Add(this.PassShow);
             this.Controls.Add(this.RegistrationButton);
             this.Controls.Add(this.SignIn);
             this.Controls.Add(this.Password);
@@ -176,6 +192,7 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PassShow)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -192,6 +209,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button SignIn;
         private System.Windows.Forms.Label RegistrationButton;
+        private System.Windows.Forms.PictureBox PassShow;
     }
 }
 
