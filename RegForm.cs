@@ -20,8 +20,8 @@ namespace Authorization
             NameField.ForeColor = Color.Gray; NameField.Text = "Введите имя";
             SurnameField.ForeColor = Color.Gray; SurnameField.Text = "Введите фамилию";
             LoginField.ForeColor = Color.Gray; LoginField.Text = "Введите ваш логин";
-            PasswordField.ForeColor = Color.Gray; PasswordField.Text = "Введите пароль";
-            RetPassField.ForeColor = Color.Gray; RetPassField.Text = "Повторите пароль";
+            PasswordField.ForeColor = Color.Gray; PasswordField.Text = "Введите пароль"; PasswordField.UseSystemPasswordChar = false;
+            RetPassField.ForeColor = Color.Gray; RetPassField.Text = "Повторите пароль"; RetPassField.UseSystemPasswordChar = false;
         }
 
         private void Exit_Click(object sender, EventArgs e)
@@ -101,22 +101,22 @@ namespace Authorization
 
         private void PasswordField_Enter(object sender, EventArgs e)
         {
-            if (PasswordField.Text == "Введите пароль") { PasswordField.Text = ""; PasswordField.ForeColor = Color.Black; }
+            if (PasswordField.Text == "Введите пароль") { PasswordField.Text = ""; PasswordField.ForeColor = Color.Black; PasswordField.UseSystemPasswordChar = true; }
         }
 
         private void PasswordField_Leave(object sender, EventArgs e)
         {
-            if (PasswordField.Text == "") { PasswordField.Text = "Введите пароль"; PasswordField.ForeColor = Color.Gray; }
+            if (PasswordField.Text == "") { PasswordField.Text = "Введите пароль"; PasswordField.ForeColor = Color.Gray; PasswordField.UseSystemPasswordChar = false; }
         }
 
         private void RetPassField_Enter(object sender, EventArgs e)
         {
-            if (RetPassField.Text == "Повторите пароль") { RetPassField.Text = ""; RetPassField.ForeColor = Color.Black; }
+            if (RetPassField.Text == "Повторите пароль") { RetPassField.Text = ""; RetPassField.ForeColor = Color.Black; RetPassField.UseSystemPasswordChar = true; }
         }
 
         private void RetPassField_Leave(object sender, EventArgs e)
         {
-            if (RetPassField.Text == "") { RetPassField.Text = "Повторите пароль"; RetPassField.ForeColor = Color.Gray; }
+            if (RetPassField.Text == "") { RetPassField.Text = "Повторите пароль"; RetPassField.ForeColor = Color.Gray; RetPassField.UseSystemPasswordChar = false; }
         }
 
         private void SignIn_Click(object sender, EventArgs e)

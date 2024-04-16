@@ -101,7 +101,7 @@
     <None Include="images\3d-lock.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\view.png" />
+    <Content Include="images\view_gray.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
