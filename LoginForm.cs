@@ -14,7 +14,7 @@ namespace Authorization
 {
     public partial class LoginForm : Form
     {
-        Point NP;
+        Point NP; bool Eye = false;
 
         public LoginForm()
         {
@@ -65,6 +65,24 @@ namespace Authorization
             RegForm f = new RegForm();
             f.Show();
             this.Hide();
+        }
+
+        private void PassShow_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                if (Password.UseSystemPasswordChar == true) { Password.UseSystemPasswordChar = false; Eye = true; }
+                if (Eye == false) Password.UseSystemPasswordChar = true;
+                Eye = false;
+            }
+        }
+
+        private void Login_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar)) // Запрещаем ввод символов, отличных от букв, цифр и управляющих символов
+            {
+                e.Handled = true;                
+            }
         }
     }
 }
