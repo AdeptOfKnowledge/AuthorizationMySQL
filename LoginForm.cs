@@ -56,8 +56,15 @@ namespace Authorization
             adapter.SelectCommand = command;
             adapter.Fill(table);
 
-            if (table.Rows.Count > 0) MessageBox.Show("Yes");
-            else MessageBox.Show("No");
+            if (table.Rows.Count > 0)
+            {                
+                PortalForm portal = new PortalForm();
+                portal.userLogin = UserLogin;
+                portal.Show();
+                this.Hide();
+            }
+
+            else MessageBox.Show("Такого пользователя не существует");
         }
 
         private void RegistrationButton_Click(object sender, EventArgs e)

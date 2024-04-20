@@ -26,6 +26,7 @@ namespace Authorization
             LoginField.ForeColor = Color.Gray; LoginField.Text = "Введите ваш логин";
             PasswordField.ForeColor = Color.Gray; PasswordField.Text = "Введите пароль"; PasswordField.UseSystemPasswordChar = false;
             RetPassField.ForeColor = Color.Gray; RetPassField.Text = "Повторите пароль"; RetPassField.UseSystemPasswordChar = false;
+            label1.Select();
         }
 
         private void Exit_Click(object sender, EventArgs e)
