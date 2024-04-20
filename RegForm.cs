@@ -146,7 +146,10 @@ namespace Authorization
             if (command.ExecuteNonQuery() == 1) MessageBox.Show("Учетная запись создана успешно");
             else MessageBox.Show("Ошибка создания учетной записи");
                         
-            db.CloseConnection();   
+            db.CloseConnection();
+            this.Close();
+            RegForm form = new RegForm();
+            form.Show();
         }
 
         public Boolean isUserExists()
