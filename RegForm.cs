@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Relational;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Authorization
 {
@@ -98,7 +102,7 @@ namespace Authorization
                 e.Handled = true;
             }
         }
-
+        
         private void PasswordField_Enter(object sender, EventArgs e)
         {
             if (PasswordField.Text == "Введите пароль") { PasswordField.Text = ""; PasswordField.ForeColor = Color.Black; PasswordField.UseSystemPasswordChar = true; }
@@ -118,14 +122,53 @@ namespace Authorization
         {
             if (RetPassField.Text == "") { RetPassField.Text = "Повторите пароль"; RetPassField.ForeColor = Color.Gray; RetPassField.UseSystemPasswordChar = false; }
         }
-
-        private void SignIn_Click(object sender, EventArgs e)
+        
+        private void Registration_Click(object sender, EventArgs e)
         {
             if (NameField.Text == "Введите имя" || SurnameField.Text == "Введите фамилию" || LoginField.Text == "Введите ваш логин" || PasswordField.Text == "Введите пароль" || RetPassField.Text == "Повторите пароль")
             { MessageBox.Show("Заполните все поля"); return; }
 
             if (PasswordField.Text != RetPassField.Text)
             { MessageBox.Show("Пароли не совпадают"); return; }
+
+            if (isUserExists()) return;
+
+            DataBase db = new DataBase();
+            MySqlCommand command = new MySqlCommand("INSERT INTO users (`login`, `pass`, `name`, `surname`) VALUES (@login, @pass, @name, @surname)", db.GetConnection());
+            command.Parameters.Add("@login", MySqlDbType.VarChar).Value = LoginField.Text;
+            command.Parameters.Add("@pass", MySqlDbType.VarChar).Value = PasswordField.Text;
+            command.Parameters.Add("@name", MySqlDbType.VarChar).Value = NameField.Text;
+            command.Parameters.Add("@surname", MySqlDbType.VarChar).Value = SurnameField.Text;
+
+            db.OpenConnection();
+
+            if (command.ExecuteNonQuery() == 1) MessageBox.Show("Учетная запись создана успешно");
+            else MessageBox.Show("Ошибка создания учетной записи");
+                        
+            db.CloseConnection();   
+        }
+
+        public Boolean isUserExists()
+        {
+            DataBase db = new DataBase();
+            DataTable table = new DataTable();
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+
+            MySqlCommand command = new MySqlCommand("SELECT * from users WHERE login = @UL", db.GetConnection());
+            command.Parameters.Add("@UL", MySqlDbType.VarChar).Value = LoginField.Text;            
+
+            adapter.SelectCommand = command;
+            adapter.Fill(table);
+
+            if (table.Rows.Count > 0)
+            {
+                MessageBox.Show("Такой логин уже существует, введите иной логин");
+                LoginField.Select();
+                //LoginField.SelectionStart = 0;
+                //LoginField.SelectionLength = LoginField.Text.Length;
+                return true;                
+            }
+            else return false;            
         }
     }
 }
