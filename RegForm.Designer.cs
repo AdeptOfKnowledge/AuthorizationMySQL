@@ -31,7 +31,7 @@
             this.RegistrationText = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Exit = new System.Windows.Forms.Button();
-            this.SignIn = new System.Windows.Forms.Button();
+            this.Registration = new System.Windows.Forms.Button();
             this.SurnameField = new System.Windows.Forms.TextBox();
             this.NameField = new System.Windows.Forms.TextBox();
             this.LoginField = new System.Windows.Forms.TextBox();
@@ -70,7 +70,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(334, 100);
-            this.panel1.TabIndex = 9;
+            this.panel1.TabIndex = 8;
             // 
             // Exit
             // 
@@ -87,27 +87,27 @@
             this.Exit.Margin = new System.Windows.Forms.Padding(1);
             this.Exit.Name = "Exit";
             this.Exit.Size = new System.Drawing.Size(32, 34);
-            this.Exit.TabIndex = 3;
+            this.Exit.TabIndex = 6;
             this.Exit.Text = "x";
             this.Exit.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.Exit.UseVisualStyleBackColor = false;
             this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
-            // SignIn
+            // Registration
             // 
-            this.SignIn.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.SignIn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SignIn.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
-            this.SignIn.FlatAppearance.BorderSize = 0;
-            this.SignIn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.SignIn.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SignIn.Location = new System.Drawing.Point(208, 329);
-            this.SignIn.Name = "SignIn";
-            this.SignIn.Size = new System.Drawing.Size(107, 32);
-            this.SignIn.TabIndex = 11;
-            this.SignIn.Text = "Registration";
-            this.SignIn.UseVisualStyleBackColor = false;
-            this.SignIn.Click += new System.EventHandler(this.SignIn_Click);
+            this.Registration.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.Registration.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Registration.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.Registration.FlatAppearance.BorderSize = 0;
+            this.Registration.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Registration.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Registration.Location = new System.Drawing.Point(208, 329);
+            this.Registration.Name = "Registration";
+            this.Registration.Size = new System.Drawing.Size(107, 32);
+            this.Registration.TabIndex = 5;
+            this.Registration.Text = "Registration";
+            this.Registration.UseVisualStyleBackColor = false;
+            this.Registration.Click += new System.EventHandler(this.Registration_Click);
             // 
             // SurnameField
             // 
@@ -115,7 +115,7 @@
             this.SurnameField.Location = new System.Drawing.Point(94, 161);
             this.SurnameField.Name = "SurnameField";
             this.SurnameField.Size = new System.Drawing.Size(221, 29);
-            this.SurnameField.TabIndex = 14;
+            this.SurnameField.TabIndex = 1;
             this.SurnameField.Enter += new System.EventHandler(this.SurnameField_Enter);
             this.SurnameField.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SurnameField_KeyPress);
             this.SurnameField.Leave += new System.EventHandler(this.SurnameField_Leave);
@@ -126,7 +126,7 @@
             this.NameField.Location = new System.Drawing.Point(94, 122);
             this.NameField.Name = "NameField";
             this.NameField.Size = new System.Drawing.Size(221, 29);
-            this.NameField.TabIndex = 12;
+            this.NameField.TabIndex = 0;
             this.NameField.Enter += new System.EventHandler(this.NameField_Enter);
             this.NameField.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NameField_KeyPress);
             this.NameField.Leave += new System.EventHandler(this.NameField_Leave);
@@ -137,7 +137,7 @@
             this.LoginField.Location = new System.Drawing.Point(94, 200);
             this.LoginField.Name = "LoginField";
             this.LoginField.Size = new System.Drawing.Size(221, 29);
-            this.LoginField.TabIndex = 12;
+            this.LoginField.TabIndex = 2;
             this.LoginField.Enter += new System.EventHandler(this.LoginField_Enter);
             this.LoginField.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LoginField_KeyPress);
             this.LoginField.Leave += new System.EventHandler(this.LoginField_Leave);
@@ -148,7 +148,7 @@
             this.PasswordField.Location = new System.Drawing.Point(94, 239);
             this.PasswordField.Name = "PasswordField";
             this.PasswordField.Size = new System.Drawing.Size(221, 29);
-            this.PasswordField.TabIndex = 14;
+            this.PasswordField.TabIndex = 3;
             this.PasswordField.Enter += new System.EventHandler(this.PasswordField_Enter);
             this.PasswordField.Leave += new System.EventHandler(this.PasswordField_Leave);
             // 
@@ -158,7 +158,7 @@
             this.RetPassField.Location = new System.Drawing.Point(94, 278);
             this.RetPassField.Name = "RetPassField";
             this.RetPassField.Size = new System.Drawing.Size(221, 29);
-            this.RetPassField.TabIndex = 14;
+            this.RetPassField.TabIndex = 4;
             this.RetPassField.Enter += new System.EventHandler(this.RetPassField_Enter);
             this.RetPassField.Leave += new System.EventHandler(this.RetPassField_Leave);
             // 
@@ -224,7 +224,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.SignIn);
+            this.Controls.Add(this.Registration);
             this.Controls.Add(this.RetPassField);
             this.Controls.Add(this.PasswordField);
             this.Controls.Add(this.SurnameField);
@@ -245,7 +245,7 @@
         private System.Windows.Forms.Label RegistrationText;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button Exit;
-        private System.Windows.Forms.Button SignIn;
+        private System.Windows.Forms.Button Registration;
         private System.Windows.Forms.TextBox SurnameField;
         private System.Windows.Forms.TextBox NameField;
         private System.Windows.Forms.TextBox LoginField;
