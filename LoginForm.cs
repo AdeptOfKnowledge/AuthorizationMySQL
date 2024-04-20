@@ -64,7 +64,7 @@ namespace Authorization
                 this.Hide();
             }
 
-            else MessageBox.Show("Такого пользователя не существует");
+            else MessageBox.Show("Имя пользователя или пароль не совпадают");
         }
 
         private void RegistrationButton_Click(object sender, EventArgs e)
