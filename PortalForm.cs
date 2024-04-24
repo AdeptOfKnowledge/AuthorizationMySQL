@@ -35,5 +35,13 @@ namespace Authorization
             f.Show();
             this.Close();
         }
+
+        private void AdminPanel_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            AdminForm af = new AdminForm();
+            af.adminLogin = userLogin;
+            af.Show();
+        }
     }
 }

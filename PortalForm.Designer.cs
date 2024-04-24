@@ -36,7 +36,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.NickName = new System.Windows.Forms.TextBox();
-            this.Logout = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -47,12 +46,15 @@
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.AdminPanel = new System.Windows.Forms.PictureBox();
+            this.Logout = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Logout)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AdminPanel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Logout)).BeginInit();
             this.SuspendLayout();
             // 
             // AuthorizationText
@@ -161,21 +163,9 @@
             this.NickName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.NickName.Location = new System.Drawing.Point(542, 118);
             this.NickName.Name = "NickName";
-            this.NickName.Size = new System.Drawing.Size(208, 22);
+            this.NickName.Size = new System.Drawing.Size(178, 22);
             this.NickName.TabIndex = 14;
             this.NickName.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // Logout
-            // 
-            this.Logout.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Logout.Image = global::Authorization.Properties.Resources.logout;
-            this.Logout.Location = new System.Drawing.Point(756, 116);
-            this.Logout.Name = "Logout";
-            this.Logout.Size = new System.Drawing.Size(25, 25);
-            this.Logout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Logout.TabIndex = 15;
-            this.Logout.TabStop = false;
-            this.Logout.Click += new System.EventHandler(this.Logout_Click);
             // 
             // groupBox2
             // 
@@ -297,6 +287,30 @@
             this.textBox1.Size = new System.Drawing.Size(451, 22);
             this.textBox1.TabIndex = 0;
             // 
+            // AdminPanel
+            // 
+            this.AdminPanel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AdminPanel.Image = global::Authorization.Properties.Resources.admin_panel;
+            this.AdminPanel.Location = new System.Drawing.Point(756, 114);
+            this.AdminPanel.Name = "AdminPanel";
+            this.AdminPanel.Size = new System.Drawing.Size(25, 26);
+            this.AdminPanel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.AdminPanel.TabIndex = 15;
+            this.AdminPanel.TabStop = false;
+            this.AdminPanel.Click += new System.EventHandler(this.AdminPanel_Click);
+            // 
+            // Logout
+            // 
+            this.Logout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Logout.Image = global::Authorization.Properties.Resources.logout;
+            this.Logout.Location = new System.Drawing.Point(725, 115);
+            this.Logout.Name = "Logout";
+            this.Logout.Size = new System.Drawing.Size(25, 25);
+            this.Logout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Logout.TabIndex = 15;
+            this.Logout.TabStop = false;
+            this.Logout.Click += new System.EventHandler(this.Logout_Click);
+            // 
             // PortalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -304,6 +318,7 @@
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.AdminPanel);
             this.Controls.Add(this.Logout);
             this.Controls.Add(this.NickName);
             this.Controls.Add(this.groupBox3);
@@ -318,13 +333,14 @@
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Logout)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AdminPanel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Logout)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -351,5 +367,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.PictureBox AdminPanel;
     }
 }
