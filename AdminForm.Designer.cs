@@ -88,7 +88,7 @@
             this.adminName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.adminName.Cursor = System.Windows.Forms.Cursors.Hand;
             this.adminName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.adminName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.adminName.ForeColor = System.Drawing.Color.Teal;
             this.adminName.Location = new System.Drawing.Point(542, 118);
             this.adminName.Name = "adminName";
             this.adminName.Size = new System.Drawing.Size(178, 22);
@@ -234,7 +234,7 @@
             this.loginField.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.loginField.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loginField.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.loginField.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.loginField.ForeColor = System.Drawing.Color.Teal;
             this.loginField.Location = new System.Drawing.Point(71, 150);
             this.loginField.Name = "loginField";
             this.loginField.Size = new System.Drawing.Size(131, 22);

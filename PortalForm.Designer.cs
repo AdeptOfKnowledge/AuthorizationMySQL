@@ -160,7 +160,7 @@
             this.NickName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.NickName.Cursor = System.Windows.Forms.Cursors.Hand;
             this.NickName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NickName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.NickName.ForeColor = System.Drawing.Color.Teal;
             this.NickName.Location = new System.Drawing.Point(542, 118);
             this.NickName.Name = "NickName";
             this.NickName.Size = new System.Drawing.Size(178, 22);

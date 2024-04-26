@@ -265,6 +265,7 @@ namespace Authorization
                 AdminButton.Checked = true; AdminButton.Enabled = false; but = true;
                 superAdminButton.BackColor = Color.FromArgb(255, 153, 180, 209);
                 superAdminButton.Enabled = true; superAdminButton.Checked = false; sbut = false;
+                AdminBehindBox.Enabled = true;
             }
             if (statusField.Text == "1")
             {
