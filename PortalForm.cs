@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace Authorization
     {
         public string userLogin;
         bool adminPanel;
+        Point NP;
 
         public PortalForm()
         {
@@ -27,13 +29,13 @@ namespace Authorization
 
             DataBase db = new DataBase();
             DataTable table = new DataTable();
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-            MySqlCommand command = new MySqlCommand("SELECT a.permissions " +
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            SqlCommand command = new SqlCommand("SELECT a.permissions " +
                                                     "from users u " +
                                                     "LEFT JOIN admins a on a.user_login = u.login " +
                                                     "WHERE login = @UL", db.GetConnection());
 
-            command.Parameters.Add("@UL", MySqlDbType.VarChar).Value = userLogin;
+            command.Parameters.Add("@UL", SqlDbType.NVarChar).Value = userLogin;
             adapter.SelectCommand = command;
             adapter.Fill(table);
 
@@ -62,6 +64,20 @@ namespace Authorization
             af.admPanel = adminPanel;
             af.adminLogin = userLogin;
             af.Show();
+        }
+
+        private void AuthorizationText_MouseDown(object sender, MouseEventArgs e)
+        {
+            NP = new Point(e.X, e.Y);
+        }
+
+        private void AuthorizationText_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                this.Left += e.X - NP.X;
+                this.Top += e.Y - NP.Y;
+            }
         }
     }
 }

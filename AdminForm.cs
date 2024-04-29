@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,8 @@ namespace Authorization
     {
         Point NP; bool but = false, sbut = false;
         public bool admPanel = true;
-        public string adminLogin, id, status;        
+        public string adminLogin, id, status;
+        int lastID;
 
         public AdminForm()
         {
@@ -30,10 +32,10 @@ namespace Authorization
             adminName.Text = adminLogin;
 
             DataBase db = new DataBase();
-            MySqlCommand command = new MySqlCommand("SELECT login from users", db.GetConnection());
+            SqlCommand command = new SqlCommand("SELECT login from users", db.GetConnection());
 
             db.OpenConnection(); //Открываем соединение
-            MySqlDataReader read = command.ExecuteReader(); //Считываем и извлекаем данные
+            SqlDataReader read = command.ExecuteReader(); //Считываем и извлекаем данные
             while (read.Read()) //Читаем пока есть данные
             {
                 Users.Items.Add(read.GetValue(0).ToString()); //Добавляем данные в лист итем
@@ -146,14 +148,14 @@ namespace Authorization
 
                 DataBase db = new DataBase();
                 DataTable table = new DataTable();
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                SqlDataAdapter adapter = new SqlDataAdapter();
 
-                MySqlCommand command = new MySqlCommand("SELECT u.name as name, u.surname surname, a.permissions adm " +
-                                                        "from users u " +
-                                                        "LEFT JOIN admins a on a.user_login = u.login " +
-                                                        "where u.login = @UL ", db.GetConnection());
+                SqlCommand command = new SqlCommand("SELECT u.name as name, u.surname surname, a.permissions adm " +
+                                                    "from users u " +
+                                                    "LEFT JOIN admins a on a.user_login = u.login " +
+                                                    "where u.login = @UL ", db.GetConnection());
 
-                command.Parameters.Add("@UL", MySqlDbType.VarChar).Value = loginField.Text;
+                command.Parameters.Add("@UL", SqlDbType.NVarChar).Value = loginField.Text;
 
                 adapter.SelectCommand = command;
                 adapter.Fill(table);
@@ -219,10 +221,10 @@ namespace Authorization
             {
                 DataBase db = new DataBase();
                 DataTable table = new DataTable();
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                MySqlCommand command = new MySqlCommand("SELECT id from users WHERE login = @UL", db.GetConnection());
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                SqlCommand command = new SqlCommand("SELECT id from users WHERE login = @UL", db.GetConnection());
 
-                command.Parameters.Add("@UL", MySqlDbType.VarChar).Value = loginField.Text;
+                command.Parameters.Add("@UL", SqlDbType.NVarChar).Value = loginField.Text;
                 adapter.SelectCommand = command;
                 adapter.Fill(table);
                 id = table.Rows[0]["id"].ToString();
@@ -233,13 +235,13 @@ namespace Authorization
         {
             DataBase db = new DataBase();
             DataTable table = new DataTable();
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-            MySqlCommand command = new MySqlCommand("SELECT a.permissions " +
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            SqlCommand command = new SqlCommand("SELECT a.permissions " +
                                                     "from users u " +
                                                     "LEFT JOIN admins a on a.user_login = u.login " +
                                                     "WHERE login = @UL", db.GetConnection());
 
-            command.Parameters.Add("@UL", MySqlDbType.VarChar).Value = loginField.Text;
+            command.Parameters.Add("@UL", SqlDbType.NVarChar).Value = loginField.Text;
             adapter.SelectCommand = command;
             adapter.Fill(table);
             statusField.Text = table.Rows[0]["permissions"].ToString();
@@ -284,13 +286,15 @@ namespace Authorization
             if (loginField.Text != "" || loginField.Text == "user")
             {
                 CheckUserID();
+                CheckID();
 
                 DataBase db = new DataBase();
-                MySqlCommand command = new MySqlCommand("INSERT INTO admins (user_id, user_login, permissions)" +
-                                                        "VALUES (@ID, @UL, 0) ", db.GetConnection());
+                SqlCommand command = new SqlCommand("INSERT INTO admins (id, user_id, user_login, permissions)" +
+                                                        "VALUES (@id, @uID, @UL, 0) ", db.GetConnection());
 
-                command.Parameters.Add("@UL", MySqlDbType.VarChar).Value = loginField.Text;
-                command.Parameters.Add("@ID", MySqlDbType.VarChar).Value = id;
+                command.Parameters.Add("@id", SqlDbType.NVarChar).Value = lastID + 1;
+                command.Parameters.Add("@uID", SqlDbType.NVarChar).Value = id;
+                command.Parameters.Add("@UL", SqlDbType.NVarChar).Value = loginField.Text;                
 
                 db.OpenConnection();
                 command.ExecuteReader();
@@ -300,6 +304,20 @@ namespace Authorization
             }
         }
 
+        private int CheckID()
+        {
+            DataBase db = new DataBase();
+            DataTable table = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            SqlCommand command = new SqlCommand("SELECT id from admins " +
+                                               "ORDER BY id DESC", db.GetConnection());
+
+            adapter.SelectCommand = command;
+            adapter.Fill(table);
+            lastID = Convert.ToInt32(table.Rows[0]["id"].ToString());
+            return lastID;
+        }
+
         private void AdminButton_DropAdmin()
         {
             if (superAdminButton.CheckState != CheckState.Indeterminate)
@@ -307,8 +325,8 @@ namespace Authorization
                 if (loginField.Text != "")
                 {
                     DataBase db = new DataBase();
-                    MySqlCommand command = new MySqlCommand("DELETE FROM admins WHERE user_login = @UL", db.GetConnection());
-                    command.Parameters.Add("@UL", MySqlDbType.VarChar).Value = loginField.Text;
+                    SqlCommand command = new SqlCommand("DELETE FROM admins WHERE user_login = @UL", db.GetConnection());
+                    command.Parameters.Add("@UL", SqlDbType.NVarChar).Value = loginField.Text;
 
                     db.OpenConnection();
                     command.ExecuteReader();
@@ -324,21 +342,23 @@ namespace Authorization
             if (loginField.Text != "" && statusField.Text != "superadmin")
             {
                 CheckUserID();
+                CheckID();
 
                 DataBase db = new DataBase();
-                MySqlCommand command = new MySqlCommand();
+                SqlCommand command = new SqlCommand();
                 if (statusField.Text == "user")
                 {
-                    command = new MySqlCommand("INSERT INTO admins (user_id, user_login, permissions)" +
-                                               "VALUES (@ID, @UL, 1) ", db.GetConnection());
+                    command = new SqlCommand("INSERT INTO admins (id, user_id, user_login, permissions)" +
+                                               "VALUES (@id, @uID, @UL, 1) ", db.GetConnection());
                 }
                 if (statusField.Text == "admin")
                 {
-                    command = new MySqlCommand("UPDATE admins SET permissions = REPLACE(permissions, 0, 1) " +
+                    command = new SqlCommand("UPDATE admins SET permissions = REPLACE(permissions, 0, 1) " +
                                                "where user_login = @UL ", db.GetConnection());
                 }
-                command.Parameters.Add("@UL", MySqlDbType.VarChar).Value = loginField.Text;
-                command.Parameters.Add("@ID", MySqlDbType.VarChar).Value = id;
+                command.Parameters.Add("@id", SqlDbType.NVarChar).Value = lastID + 1;
+                command.Parameters.Add("@uID", SqlDbType.NVarChar).Value = id;
+                command.Parameters.Add("@UL", SqlDbType.NVarChar).Value = loginField.Text;                
 
                 db.OpenConnection();
                 command.ExecuteReader();
@@ -355,9 +375,9 @@ namespace Authorization
                 if (loginField.Text != "")
                 {
                     DataBase db = new DataBase();
-                    MySqlCommand command = new MySqlCommand("UPDATE admins SET permissions = REPLACE(permissions, 1, 0) " +
+                    SqlCommand command = new SqlCommand("UPDATE admins SET permissions = REPLACE(permissions, 1, 0) " +
                                                             "where user_login = @UL ", db.GetConnection());
-                    command.Parameters.Add("@UL", MySqlDbType.VarChar).Value = loginField.Text;
+                    command.Parameters.Add("@UL", SqlDbType.NVarChar).Value = loginField.Text;
 
                     db.OpenConnection();
                     command.ExecuteReader();
@@ -376,8 +396,8 @@ namespace Authorization
             if (loginField.Text != "")
             {
                 DataBase db = new DataBase();
-                MySqlCommand command = new MySqlCommand("DELETE FROM users WHERE login = @UL", db.GetConnection());
-                command.Parameters.Add("@UL", MySqlDbType.VarChar).Value = loginField.Text;
+                SqlCommand command = new SqlCommand("DELETE FROM users WHERE login = @UL", db.GetConnection());
+                command.Parameters.Add("@UL", SqlDbType.NVarChar).Value = loginField.Text;
 
                 db.OpenConnection();
                 command.ExecuteReader();

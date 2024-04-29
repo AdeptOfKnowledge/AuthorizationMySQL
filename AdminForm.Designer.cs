@@ -30,6 +30,7 @@
         {
             this.UserSearching = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.Search_Button = new System.Windows.Forms.PictureBox();
             this.adminName = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.superAdminButton = new System.Windows.Forms.CheckBox();
@@ -50,13 +51,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.AuthorizationText = new System.Windows.Forms.Label();
             this.Users = new System.Windows.Forms.ListBox();
-            this.Search_Button = new System.Windows.Forms.PictureBox();
             this.Logout = new System.Windows.Forms.PictureBox();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Search_Button)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Search_Button)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Logout)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,6 +81,20 @@
             this.groupBox4.TabIndex = 23;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Search user:";
+            // 
+            // Search_Button
+            // 
+            this.Search_Button.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.Search_Button.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Search_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Search_Button.Image = global::Authorization.Properties.Resources.right_arrow_1;
+            this.Search_Button.Location = new System.Drawing.Point(184, 15);
+            this.Search_Button.Name = "Search_Button";
+            this.Search_Button.Size = new System.Drawing.Size(22, 22);
+            this.Search_Button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Search_Button.TabIndex = 24;
+            this.Search_Button.TabStop = false;
+            this.Search_Button.Click += new System.EventHandler(this.Search_Button_Click);
             // 
             // adminName
             // 
@@ -371,20 +385,6 @@
             this.Users.TabIndex = 15;
             this.Users.SelectedIndexChanged += new System.EventHandler(this.Users_SelectedIndexChanged);
             // 
-            // Search_Button
-            // 
-            this.Search_Button.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.Search_Button.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Search_Button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Search_Button.Image = global::Authorization.Properties.Resources.right_arrow_1;
-            this.Search_Button.Location = new System.Drawing.Point(184, 15);
-            this.Search_Button.Name = "Search_Button";
-            this.Search_Button.Size = new System.Drawing.Size(22, 22);
-            this.Search_Button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Search_Button.TabIndex = 24;
-            this.Search_Button.TabStop = false;
-            this.Search_Button.Click += new System.EventHandler(this.Search_Button_Click);
-            // 
             // Logout
             // 
             this.Logout.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -417,12 +417,12 @@
             this.Load += new System.EventHandler(this.AdminForm_Load);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Search_Button)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Search_Button)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Logout)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

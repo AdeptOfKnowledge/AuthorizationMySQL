@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,9 @@ namespace Authorization
 {
     class DataBase
     {
-        MySqlConnection connection = new MySqlConnection("server = localhost; port = 3306; username = root; password = root; database = savinan");
+
+        SqlConnection connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Programming\\C_sharp\\AuthorizationDB\\savinan.mdf;Integrated Security=True");
+        //MySqlConnection connection = new MySqlConnection("server = localhost; port = 3306; username = root; password = root; database = savinan");
 
         /* string connectionString = @"Data Source= NCMBW832\SQLEXPRESS; Initial Catalog = kk_start; Integrated Security = SSPI; Connect Timeout = 15;" +
          "Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False"; // строка подключения
@@ -28,7 +31,7 @@ namespace Authorization
                 connection.Close();
         }
 
-        public MySqlConnection GetConnection()
+        public SqlConnection GetConnection()
         {
             return connection;
         }

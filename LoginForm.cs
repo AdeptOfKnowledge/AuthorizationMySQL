@@ -47,17 +47,17 @@ namespace Authorization
 
             DataBase db = new DataBase();
             DataTable table = new DataTable();
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            SqlDataAdapter adapter = new SqlDataAdapter();
 
-            MySqlCommand command = new MySqlCommand("SELECT * from users WHERE login = @UL AND pass = @UP", db.GetConnection());
-            command.Parameters.Add("@UL", MySqlDbType.VarChar).Value = UserLogin;
-            command.Parameters.Add("@UP", MySqlDbType.VarChar).Value = UserPass;
+            SqlCommand command = new SqlCommand("SELECT * from users WHERE login = @UL AND pass = @UP", db.GetConnection());
+            command.Parameters.Add("@UL", SqlDbType.NVarChar).Value = UserLogin;
+            command.Parameters.Add("@UP", SqlDbType.NVarChar).Value = UserPass;
 
             adapter.SelectCommand = command;
             adapter.Fill(table);
 
             if (table.Rows.Count > 0)
-            {                
+            {
                 PortalForm portal = new PortalForm();
                 portal.userLogin = UserLogin;
                 portal.Show();
@@ -88,7 +88,7 @@ namespace Authorization
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar)) // Запрещаем ввод символов, отличных от букв, цифр и управляющих символов
             {
-                e.Handled = true;                
+                e.Handled = true;
             }
         }
     }

@@ -71,6 +71,8 @@
             this.AuthorizationText.TabIndex = 0;
             this.AuthorizationText.Text = "You are welcome!";
             this.AuthorizationText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.AuthorizationText.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AuthorizationText_MouseDown);
+            this.AuthorizationText.MouseMove += new System.Windows.Forms.MouseEventHandler(this.AuthorizationText_MouseMove);
             // 
             // panel1
             // 

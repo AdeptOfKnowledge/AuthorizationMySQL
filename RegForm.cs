@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,7 @@ namespace Authorization
     public partial class RegForm : Form
     {
         Point NP;
+        int lastID;
 
         public RegForm()
         {
@@ -133,13 +135,15 @@ namespace Authorization
             { MessageBox.Show("Пароли не совпадают"); return; }
 
             if (isUserExists()) return;
+            CheckID();
 
             DataBase db = new DataBase();
-            MySqlCommand command = new MySqlCommand("INSERT INTO users (`login`, `pass`, `name`, `surname`) VALUES (@login, @pass, @name, @surname)", db.GetConnection());
-            command.Parameters.Add("@login", MySqlDbType.VarChar).Value = LoginField.Text;
-            command.Parameters.Add("@pass", MySqlDbType.VarChar).Value = PasswordField.Text;
-            command.Parameters.Add("@name", MySqlDbType.VarChar).Value = NameField.Text;
-            command.Parameters.Add("@surname", MySqlDbType.VarChar).Value = SurnameField.Text;
+            SqlCommand command = new SqlCommand("INSERT INTO users (id, name, surname, login, pass) VALUES (@id, @name, @surname, @login, @pass)", db.GetConnection());
+            command.Parameters.Add("@id", SqlDbType.NVarChar).Value = lastID + 1;
+            command.Parameters.Add("@login", SqlDbType.NVarChar).Value = LoginField.Text;
+            command.Parameters.Add("@pass", SqlDbType.NVarChar).Value = PasswordField.Text;
+            command.Parameters.Add("@name", SqlDbType.NVarChar).Value = NameField.Text;
+            command.Parameters.Add("@surname", SqlDbType.NVarChar).Value = SurnameField.Text;
 
             db.OpenConnection();
 
@@ -156,10 +160,10 @@ namespace Authorization
         {
             DataBase db = new DataBase();
             DataTable table = new DataTable();
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            SqlDataAdapter adapter = new SqlDataAdapter();
 
-            MySqlCommand command = new MySqlCommand("SELECT * from users WHERE login = @UL", db.GetConnection());
-            command.Parameters.Add("@UL", MySqlDbType.VarChar).Value = LoginField.Text;            
+            SqlCommand command = new SqlCommand("SELECT * from users WHERE login = @UL", db.GetConnection());
+            command.Parameters.Add("@UL", SqlDbType.NVarChar).Value = LoginField.Text;            
 
             adapter.SelectCommand = command;
             adapter.Fill(table);
@@ -173,6 +177,20 @@ namespace Authorization
                 return true;                
             }
             else return false;            
+        }
+
+        private int CheckID()
+        {
+            DataBase db = new DataBase();
+            DataTable table = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            SqlCommand command = new SqlCommand("SELECT id from users " +
+                                               "ORDER BY id DESC", db.GetConnection());
+
+            adapter.SelectCommand = command;
+            adapter.Fill(table);
+            lastID = Convert.ToInt32(table.Rows[0]["id"].ToString());
+            return lastID;
         }
     }
 }
