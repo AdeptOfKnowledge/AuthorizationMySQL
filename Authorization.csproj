@@ -136,12 +136,12 @@
     <None Include="images\3d-lock.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="savinan.mdf">
+    <Content Include="alexsav.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="savinan_log.ldf">
+    <Content Include="alexsav_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>savinan.mdf</DependentUpon>
+      <DependentUpon>alexsav.mdf</DependentUpon>
     </Content>
     <None Include="Resources\right-arrow_1.png" />
     <None Include="Resources\admin-panel.png" />
