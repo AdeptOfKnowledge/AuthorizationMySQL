@@ -42,16 +42,13 @@ namespace Authorization
 
         private void SignIn_Click(object sender, EventArgs e)
         {
-            string UserLogin = Login.Text;
-            string UserPass = Password.Text;
-
             DataBase db = new DataBase();
             DataTable table = new DataTable();
             SqlDataAdapter adapter = new SqlDataAdapter();
 
             SqlCommand command = new SqlCommand("SELECT * from users WHERE login = @UL AND pass = @UP", db.GetConnection());
-            command.Parameters.Add("@UL", SqlDbType.NVarChar).Value = UserLogin;
-            command.Parameters.Add("@UP", SqlDbType.NVarChar).Value = UserPass;
+            command.Parameters.Add("@UL", SqlDbType.NVarChar).Value = Login.Text;
+            command.Parameters.Add("@UP", SqlDbType.NVarChar).Value = PassHash.PWhash(Password.Text);
 
             adapter.SelectCommand = command;
             adapter.Fill(table);
@@ -59,7 +56,7 @@ namespace Authorization
             if (table.Rows.Count > 0)
             {
                 PortalForm portal = new PortalForm();
-                portal.userLogin = UserLogin;
+                portal.userLogin = Login.Text;
                 portal.Show();
                 this.Hide();
             }

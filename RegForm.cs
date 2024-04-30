@@ -141,7 +141,7 @@ namespace Authorization
             SqlCommand command = new SqlCommand("INSERT INTO users (id, name, surname, login, pass) VALUES (@id, @name, @surname, @login, @pass)", db.GetConnection());
             command.Parameters.Add("@id", SqlDbType.NVarChar).Value = lastID + 1;
             command.Parameters.Add("@login", SqlDbType.NVarChar).Value = LoginField.Text;
-            command.Parameters.Add("@pass", SqlDbType.NVarChar).Value = PasswordField.Text;
+            command.Parameters.Add("@pass", SqlDbType.NVarChar).Value = PassHash.PWhash(PasswordField.Text);
             command.Parameters.Add("@name", SqlDbType.NVarChar).Value = NameField.Text;
             command.Parameters.Add("@surname", SqlDbType.NVarChar).Value = SurnameField.Text;
 
