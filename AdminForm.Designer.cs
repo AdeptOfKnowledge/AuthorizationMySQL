@@ -35,7 +35,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.superAdminButton = new System.Windows.Forms.CheckBox();
             this.AdminButton = new System.Windows.Forms.CheckBox();
-            this.superAdminBehindBox = new System.Windows.Forms.TextBox();
             this.DelUsrButton = new System.Windows.Forms.Button();
             this.AdminBehindBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -52,6 +51,8 @@
             this.AuthorizationText = new System.Windows.Forms.Label();
             this.Users = new System.Windows.Forms.ListBox();
             this.Logout = new System.Windows.Forms.PictureBox();
+            this.RenameUsrButton = new System.Windows.Forms.Button();
+            this.superAdminBehindBox = new System.Windows.Forms.TextBox();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Search_Button)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -112,6 +113,7 @@
             // groupBox2
             // 
             this.groupBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.groupBox2.Controls.Add(this.RenameUsrButton);
             this.groupBox2.Controls.Add(this.superAdminButton);
             this.groupBox2.Controls.Add(this.AdminButton);
             this.groupBox2.Controls.Add(this.superAdminBehindBox);
@@ -134,7 +136,7 @@
             this.superAdminButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.superAdminButton.Font = new System.Drawing.Font("Times New Roman", 14.25F);
             this.superAdminButton.ForeColor = System.Drawing.Color.DarkOrchid;
-            this.superAdminButton.Location = new System.Drawing.Point(50, 119);
+            this.superAdminButton.Location = new System.Drawing.Point(50, 91);
             this.superAdminButton.Name = "superAdminButton";
             this.superAdminButton.Size = new System.Drawing.Size(107, 32);
             this.superAdminButton.TabIndex = 24;
@@ -152,7 +154,7 @@
             this.AdminButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.AdminButton.Font = new System.Drawing.Font("Times New Roman", 14.25F);
             this.AdminButton.ForeColor = System.Drawing.Color.Blue;
-            this.AdminButton.Location = new System.Drawing.Point(50, 52);
+            this.AdminButton.Location = new System.Drawing.Point(50, 42);
             this.AdminButton.Name = "AdminButton";
             this.AdminButton.Size = new System.Drawing.Size(107, 32);
             this.AdminButton.TabIndex = 24;
@@ -161,21 +163,6 @@
             this.AdminButton.ThreeState = true;
             this.AdminButton.UseVisualStyleBackColor = false;
             this.AdminButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.AdminButton_MouseClick);
-            // 
-            // superAdminBehindBox
-            // 
-            this.superAdminBehindBox.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.superAdminBehindBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.superAdminBehindBox.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.superAdminBehindBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.superAdminBehindBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.superAdminBehindBox.Location = new System.Drawing.Point(50, 119);
-            this.superAdminBehindBox.Multiline = true;
-            this.superAdminBehindBox.Name = "superAdminBehindBox";
-            this.superAdminBehindBox.Size = new System.Drawing.Size(107, 32);
-            this.superAdminBehindBox.TabIndex = 25;
-            this.superAdminBehindBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.superAdminBehindBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.superAdminBehindBox_MouseClick);
             // 
             // DelUsrButton
             // 
@@ -397,6 +384,38 @@
             this.Logout.TabStop = false;
             this.Logout.Click += new System.EventHandler(this.Logout_Click);
             // 
+            // RenameUsrButton
+            // 
+            this.RenameUsrButton.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.RenameUsrButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.RenameUsrButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.RenameUsrButton.FlatAppearance.BorderSize = 0;
+            this.RenameUsrButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.RenameUsrButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RenameUsrButton.ForeColor = System.Drawing.Color.DarkRed;
+            this.RenameUsrButton.Location = new System.Drawing.Point(50, 142);
+            this.RenameUsrButton.Name = "RenameUsrButton";
+            this.RenameUsrButton.Size = new System.Drawing.Size(107, 32);
+            this.RenameUsrButton.TabIndex = 26;
+            this.RenameUsrButton.Text = "Rename user";
+            this.RenameUsrButton.UseVisualStyleBackColor = false;
+            this.RenameUsrButton.Click += new System.EventHandler(this.RenameUsrButton_Click);
+            // 
+            // superAdminBehindBox
+            // 
+            this.superAdminBehindBox.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.superAdminBehindBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.superAdminBehindBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.superAdminBehindBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.superAdminBehindBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.superAdminBehindBox.Location = new System.Drawing.Point(50, 91);
+            this.superAdminBehindBox.Multiline = true;
+            this.superAdminBehindBox.Name = "superAdminBehindBox";
+            this.superAdminBehindBox.Size = new System.Drawing.Size(107, 32);
+            this.superAdminBehindBox.TabIndex = 25;
+            this.superAdminBehindBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.superAdminBehindBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.superAdminBehindBox_MouseClick);
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -445,7 +464,6 @@
         private System.Windows.Forms.CheckBox AdminButton;
         private System.Windows.Forms.TextBox AdminBehindBox;
         private System.Windows.Forms.CheckBox superAdminButton;
-        private System.Windows.Forms.TextBox superAdminBehindBox;
         private System.Windows.Forms.Label surnameLabel;
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Label statusLabel;
@@ -455,5 +473,7 @@
         private System.Windows.Forms.TextBox surnameField;
         private System.Windows.Forms.TextBox nameField;
         private System.Windows.Forms.PictureBox Search_Button;
+        private System.Windows.Forms.Button RenameUsrButton;
+        private System.Windows.Forms.TextBox superAdminBehindBox;
     }
 }

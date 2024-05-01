@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using Mysqlx.Crud;
 using MySqlX.XDevAPI.Relational;
+using stdole;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -103,6 +104,7 @@ namespace Authorization
                 }
             }
         }
+
         private void superAdminButton_MouseClick(object sender, MouseEventArgs e)
         {
             if (loginField.Text != "")
@@ -170,8 +172,21 @@ namespace Authorization
 
         private void Search_Button_Click(object sender, EventArgs e)
         {
+            Searching();
+        }
+
+        private void UserSearching_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Searching();
+            }
+        }
+
+        private void Searching()
+        {
             Users.Items.Clear();
-            AdminForm_Load(this, EventArgs.Empty);
+            AdminForm_Load(this, EventArgs.Empty);            
 
             if (UserSearching.Text != "")
             {
@@ -186,34 +201,11 @@ namespace Authorization
                 if (temp.Items.Count > 0)
                 {
                     Users.Items.AddRange(temp.Items);
-                }
-            }
-        }
-
-        private void UserSearching_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                Users.Items.Clear();
-                AdminForm_Load(this, EventArgs.Empty);
-
-                if (UserSearching.Text != "")
-                {
-                    ListBox temp = new ListBox();
-
-                    for (int i = 0; i < Users.Items.Count; i++)
-                    {
-                        string compare = Convert.ToString(Users.Items[i]);
-                        if (compare.IndexOf(UserSearching.Text) >= 0) temp.Items.Add(compare);
-                    }
-                    Users.Items.Clear();
-                    if (temp.Items.Count > 0)
-                    {
-                        Users.Items.AddRange(temp.Items);
-                    }
                 }                
             }
+            if (loginField.Text != "") Users.SelectedItem = loginField.Text;
         }
+
         private void CheckUserID()
         {
             if (loginField.Text != "")
@@ -333,6 +325,41 @@ namespace Authorization
 
                     StatusCheck();
                 }
+            }
+        }
+
+        private void RenameUsrButton_Click(object sender, EventArgs e)
+        {
+            if (loginField.Text != "")
+            {
+                string newLogin;
+                RenameLogin rl = new RenameLogin();
+                rl.UN = loginField.Text;
+                this.Hide();
+                if (rl.ShowDialog() == DialogResult.OK)
+                {
+                    newLogin = rl.UN;
+                    this.Show();
+                }
+                else { this.Show(); return; }    
+
+                DataBase db = new DataBase();
+                SqlCommand command = new SqlCommand();
+                
+                command = new SqlCommand("UPDATE users SET login = @NuL WHERE login = @UL", db.GetConnection());
+
+                command.Parameters.Add("@UL", SqlDbType.NVarChar).Value = loginField.Text;
+                command.Parameters.Add("@NuL", SqlDbType.NVarChar).Value = newLogin;                
+
+                db.OpenConnection();
+                command.ExecuteReader();
+                db.CloseConnection(); //Закрываем соединение                 
+
+                loginField.Text = newLogin;
+                Users.Items.Clear();
+                AdminForm_Load(this, EventArgs.Empty);
+                Users.SelectedItem = newLogin;                                
+                StatusCheck();                
             }
         }
 
