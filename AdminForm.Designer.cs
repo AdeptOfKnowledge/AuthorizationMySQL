@@ -33,8 +33,10 @@
             this.Search_Button = new System.Windows.Forms.PictureBox();
             this.adminName = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.RenameUsrButton = new System.Windows.Forms.Button();
             this.superAdminButton = new System.Windows.Forms.CheckBox();
             this.AdminButton = new System.Windows.Forms.CheckBox();
+            this.superAdminBehindBox = new System.Windows.Forms.TextBox();
             this.DelUsrButton = new System.Windows.Forms.Button();
             this.AdminBehindBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -51,8 +53,6 @@
             this.AuthorizationText = new System.Windows.Forms.Label();
             this.Users = new System.Windows.Forms.ListBox();
             this.Logout = new System.Windows.Forms.PictureBox();
-            this.RenameUsrButton = new System.Windows.Forms.Button();
-            this.superAdminBehindBox = new System.Windows.Forms.TextBox();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Search_Button)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -128,6 +128,23 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Assign permissions";
             // 
+            // RenameUsrButton
+            // 
+            this.RenameUsrButton.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.RenameUsrButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.RenameUsrButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.RenameUsrButton.FlatAppearance.BorderSize = 0;
+            this.RenameUsrButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.RenameUsrButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RenameUsrButton.ForeColor = System.Drawing.Color.DarkRed;
+            this.RenameUsrButton.Location = new System.Drawing.Point(50, 142);
+            this.RenameUsrButton.Name = "RenameUsrButton";
+            this.RenameUsrButton.Size = new System.Drawing.Size(107, 32);
+            this.RenameUsrButton.TabIndex = 26;
+            this.RenameUsrButton.Text = "Rename user";
+            this.RenameUsrButton.UseVisualStyleBackColor = false;
+            this.RenameUsrButton.Click += new System.EventHandler(this.RenameUsrButton_Click);
+            // 
             // superAdminButton
             // 
             this.superAdminButton.Appearance = System.Windows.Forms.Appearance.Button;
@@ -164,6 +181,21 @@
             this.AdminButton.UseVisualStyleBackColor = false;
             this.AdminButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.AdminButton_MouseClick);
             // 
+            // superAdminBehindBox
+            // 
+            this.superAdminBehindBox.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.superAdminBehindBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.superAdminBehindBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.superAdminBehindBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.superAdminBehindBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.superAdminBehindBox.Location = new System.Drawing.Point(50, 91);
+            this.superAdminBehindBox.Multiline = true;
+            this.superAdminBehindBox.Name = "superAdminBehindBox";
+            this.superAdminBehindBox.Size = new System.Drawing.Size(107, 32);
+            this.superAdminBehindBox.TabIndex = 25;
+            this.superAdminBehindBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.superAdminBehindBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.superAdminBehindBox_MouseClick);
+            // 
             // DelUsrButton
             // 
             this.DelUsrButton.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -188,7 +220,7 @@
             this.AdminBehindBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AdminBehindBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.AdminBehindBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.AdminBehindBox.Location = new System.Drawing.Point(50, 52);
+            this.AdminBehindBox.Location = new System.Drawing.Point(50, 42);
             this.AdminBehindBox.Multiline = true;
             this.AdminBehindBox.Name = "AdminBehindBox";
             this.AdminBehindBox.Size = new System.Drawing.Size(107, 32);
@@ -383,38 +415,6 @@
             this.Logout.TabIndex = 22;
             this.Logout.TabStop = false;
             this.Logout.Click += new System.EventHandler(this.Logout_Click);
-            // 
-            // RenameUsrButton
-            // 
-            this.RenameUsrButton.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.RenameUsrButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.RenameUsrButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
-            this.RenameUsrButton.FlatAppearance.BorderSize = 0;
-            this.RenameUsrButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.RenameUsrButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.RenameUsrButton.ForeColor = System.Drawing.Color.DarkRed;
-            this.RenameUsrButton.Location = new System.Drawing.Point(50, 142);
-            this.RenameUsrButton.Name = "RenameUsrButton";
-            this.RenameUsrButton.Size = new System.Drawing.Size(107, 32);
-            this.RenameUsrButton.TabIndex = 26;
-            this.RenameUsrButton.Text = "Rename user";
-            this.RenameUsrButton.UseVisualStyleBackColor = false;
-            this.RenameUsrButton.Click += new System.EventHandler(this.RenameUsrButton_Click);
-            // 
-            // superAdminBehindBox
-            // 
-            this.superAdminBehindBox.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.superAdminBehindBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.superAdminBehindBox.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.superAdminBehindBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.superAdminBehindBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.superAdminBehindBox.Location = new System.Drawing.Point(50, 91);
-            this.superAdminBehindBox.Multiline = true;
-            this.superAdminBehindBox.Name = "superAdminBehindBox";
-            this.superAdminBehindBox.Size = new System.Drawing.Size(107, 32);
-            this.superAdminBehindBox.TabIndex = 25;
-            this.superAdminBehindBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.superAdminBehindBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.superAdminBehindBox_MouseClick);
             // 
             // AdminForm
             // 

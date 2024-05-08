@@ -139,6 +139,7 @@
             this.NewLogin.TabIndex = 24;
             this.NewLogin.Enter += new System.EventHandler(this.NewLogin_Enter);
             this.NewLogin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NewLogin_KeyPress);
+            this.NewLogin.KeyUp += new System.Windows.Forms.KeyEventHandler(this.NewLogin_KeyUp);
             this.NewLogin.Leave += new System.EventHandler(this.NewLogin_Leave);
             // 
             // RenameLogin

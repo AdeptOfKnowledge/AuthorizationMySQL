@@ -38,6 +38,7 @@
             this.PassShow = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.Tests_button = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PassShow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -95,7 +96,7 @@
             // Password
             // 
             this.Password.Font = new System.Drawing.Font("Times New Roman", 16.25F);
-            this.Password.Location = new System.Drawing.Point(78, 180);
+            this.Password.Location = new System.Drawing.Point(72, 180);
             this.Password.Name = "Password";
             this.Password.Size = new System.Drawing.Size(216, 32);
             this.Password.TabIndex = 1;
@@ -104,7 +105,7 @@
             // Login
             // 
             this.Login.Font = new System.Drawing.Font("Times New Roman", 16.25F);
-            this.Login.Location = new System.Drawing.Point(78, 140);
+            this.Login.Location = new System.Drawing.Point(72, 140);
             this.Login.Name = "Login";
             this.Login.Size = new System.Drawing.Size(216, 32);
             this.Login.TabIndex = 0;
@@ -118,7 +119,7 @@
             this.SignIn.FlatAppearance.BorderSize = 0;
             this.SignIn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.SignIn.Font = new System.Drawing.Font("Times New Roman", 14.75F);
-            this.SignIn.Location = new System.Drawing.Point(80, 280);
+            this.SignIn.Location = new System.Drawing.Point(72, 280);
             this.SignIn.Name = "SignIn";
             this.SignIn.Size = new System.Drawing.Size(80, 32);
             this.SignIn.TabIndex = 3;
@@ -143,7 +144,7 @@
             // 
             this.PassShow.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PassShow.Image = global::Authorization.Properties.Resources.view_gray;
-            this.PassShow.Location = new System.Drawing.Point(296, 180);
+            this.PassShow.Location = new System.Drawing.Point(292, 180);
             this.PassShow.Name = "PassShow";
             this.PassShow.Size = new System.Drawing.Size(32, 32);
             this.PassShow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -154,7 +155,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::Authorization.Properties.Resources._3d_lock;
-            this.pictureBox2.Location = new System.Drawing.Point(38, 180);
+            this.pictureBox2.Location = new System.Drawing.Point(32, 180);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(32, 32);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -164,12 +165,28 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Authorization.Properties.Resources.programmer;
-            this.pictureBox1.Location = new System.Drawing.Point(38, 140);
+            this.pictureBox1.Location = new System.Drawing.Point(32, 140);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(32, 32);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
+            // 
+            // Tests_button
+            // 
+            this.Tests_button.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.Tests_button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Tests_button.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.Tests_button.FlatAppearance.BorderSize = 0;
+            this.Tests_button.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Tests_button.Font = new System.Drawing.Font("Times New Roman", 14.75F);
+            this.Tests_button.Location = new System.Drawing.Point(208, 280);
+            this.Tests_button.Name = "Tests_button";
+            this.Tests_button.Size = new System.Drawing.Size(80, 32);
+            this.Tests_button.TabIndex = 11;
+            this.Tests_button.Text = "Tests";
+            this.Tests_button.UseVisualStyleBackColor = false;
+            this.Tests_button.Click += new System.EventHandler(this.Tests_button_Click);
             // 
             // LoginForm
             // 
@@ -177,6 +194,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(334, 361);
+            this.Controls.Add(this.Tests_button);
             this.Controls.Add(this.PassShow);
             this.Controls.Add(this.RegistrationButton);
             this.Controls.Add(this.SignIn);
@@ -189,6 +207,7 @@
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoginForm";
+            this.Load += new System.EventHandler(this.LoginForm_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PassShow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -210,6 +229,7 @@
         private System.Windows.Forms.Button SignIn;
         private System.Windows.Forms.Label RegistrationButton;
         private System.Windows.Forms.PictureBox PassShow;
+        private System.Windows.Forms.Button Tests_button;
     }
 }
 

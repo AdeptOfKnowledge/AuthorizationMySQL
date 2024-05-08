@@ -21,6 +21,12 @@ namespace Authorization
             InitializeComponent();
         }
 
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            //DataBase db = new DataBase();
+            //db.CheckConnection();
+        }
+
         private void Exit_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -87,6 +93,13 @@ namespace Authorization
             {
                 e.Handled = true;
             }
+        }
+
+        private void Tests_button_Click(object sender, EventArgs e)
+        {
+            TestingForm tf = new TestingForm();
+            tf.Show();
+            this.Hide();
         }
     }
 }

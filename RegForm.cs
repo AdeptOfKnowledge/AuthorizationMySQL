@@ -95,15 +95,48 @@ namespace Authorization
         {
             if (LoginField.Text == "") { LoginField.Text = "Введите ваш логин"; LoginField.ForeColor = Color.Gray; }
         }
-
+        
         private void LoginField_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && !char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar)) // Запрещаем ввод символов, отличных от букв, цифр и управляющих символов
+            if (char.IsSeparator(e.KeyChar) && LoginField.Text.Length == 0)         // блок пробела, если введен первым символом
             {
                 e.Handled = true;
+                return;
+            }
+
+            if (!char.IsLetter(e.KeyChar) && !char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsSeparator(e.KeyChar)) // Запрещаем ввод символов,
+            {                                                                                                                         // отличных от букв, цифр,
+                e.Handled = true;                                                                                                     // управляющих символов, пробелов
+            }
+
+            LoginField.Text = LoginField.Text.TrimStart(new Char[] { ' ' });        // удаление пробела, если стоит перед словом            
+        }
+
+        private void LoginField_KeyUp(object sender, KeyEventArgs e)    //Разрешает добавление нижнего подчеркивания
+        {
+            if (ModifierKeys == Keys.Shift)         //проверка нажатой кнопки;
+            {
+                if (e.KeyCode == Keys.OemMinus)     //проверка нажатой кнопки;
+                {
+                    {                        
+                        LoginField.SelectedText = "_";
+                    }
+                }
+            }
+
+            LoginField.Text = LoginField.Text.TrimStart(new Char[] { ' ' });    // удаление пробела, если стоит перед словом
+            if (LoginField.Text.Contains("  "))                                 // удаление двойных пробелов
+            {
+                int a = 0;
+                for (int i = 0; i < LoginField.TextLength; i++)
+                {
+                    if (a == 0) a = LoginField.Text.IndexOf("  ", 0) + 1;
+                    LoginField.Text = LoginField.Text.Replace("  ", " ");       // заменяет два пробела - одним
+                    LoginField.SelectionStart = a;                              // установка курсора в конце замененных пробелов
+                }
             }
         }
-        
+
         private void PasswordField_Enter(object sender, EventArgs e)
         {
             if (PasswordField.Text == "Введите пароль") { PasswordField.Text = ""; PasswordField.ForeColor = Color.Black; PasswordField.UseSystemPasswordChar = true; }
@@ -126,6 +159,7 @@ namespace Authorization
         
         private void Registration_Click(object sender, EventArgs e)
         {
+            LoginField.Text = LoginField.Text.TrimEnd(new Char[] { ' ' });        // удаление пробелов, если стоит после логина
             if (NameField.Text == "Введите имя" || SurnameField.Text == "Введите фамилию" || LoginField.Text == "Введите ваш логин" || PasswordField.Text == "Введите пароль" || RetPassField.Text == "Повторите пароль")
             { MessageBox.Show("Заполните все поля"); return; }
 
@@ -133,7 +167,7 @@ namespace Authorization
             { MessageBox.Show("Пароли не совпадают"); return; }
 
             if (isUserExists()) return;
-            CheckID();
+            CheckLastUserID();
 
             DataBase db = new DataBase();
             SqlCommand command = new SqlCommand("INSERT INTO users (id, name, surname, login, pass) VALUES (@id, @name, @surname, @login, @pass)", db.GetConnection());
@@ -177,7 +211,7 @@ namespace Authorization
             else return false;            
         }
 
-        private int CheckID()
+        private int CheckLastUserID()
         {
             DataBase db = new DataBase();
             DataTable table = new DataTable();

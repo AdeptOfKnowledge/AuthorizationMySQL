@@ -140,6 +140,7 @@
             this.LoginField.TabIndex = 2;
             this.LoginField.Enter += new System.EventHandler(this.LoginField_Enter);
             this.LoginField.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LoginField_KeyPress);
+            this.LoginField.KeyUp += new System.Windows.Forms.KeyEventHandler(this.LoginField_KeyUp);
             this.LoginField.Leave += new System.EventHandler(this.LoginField_Leave);
             // 
             // PasswordField

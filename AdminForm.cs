@@ -38,7 +38,7 @@ namespace Authorization
             SqlDataReader read = command.ExecuteReader(); //Считываем и извлекаем данные
             while (read.Read()) //Читаем пока есть данные
             {
-                Users.Items.Add(read.GetValue(0).ToString()); //Добавляем данные в лист итем
+                Users.Items.Add(read.GetValue(0).ToString()); //Добавляем данные в лист аитем
             }
             db.CloseConnection(); //Закрываем соединение 
             Permissions();
@@ -276,8 +276,7 @@ namespace Authorization
         {
             if (loginField.Text != "" || loginField.Text == "user")
             {
-                CheckUserID();
-                CheckID();
+                CheckUserID(); CheckLastID();
 
                 DataBase db = new DataBase();
                 SqlCommand command = new SqlCommand("INSERT INTO admins (id, user_id, user_login, permissions)" +
@@ -295,7 +294,7 @@ namespace Authorization
             }
         }
 
-        private int CheckID()
+        private int CheckLastID()
         {
             DataBase db = new DataBase();
             DataTable table = new DataTable();
@@ -367,8 +366,7 @@ namespace Authorization
         {
             if (loginField.Text != "" && statusField.Text != "superadmin")
             {
-                CheckUserID();
-                CheckID();
+                CheckUserID(); CheckLastID();
 
                 DataBase db = new DataBase();
                 SqlCommand command = new SqlCommand();
