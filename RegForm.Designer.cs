@@ -151,6 +151,7 @@
             this.PasswordField.Size = new System.Drawing.Size(221, 29);
             this.PasswordField.TabIndex = 3;
             this.PasswordField.Enter += new System.EventHandler(this.PasswordField_Enter);
+            this.PasswordField.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PasswordField_KeyPress);
             this.PasswordField.Leave += new System.EventHandler(this.PasswordField_Leave);
             // 
             // RetPassField
@@ -161,6 +162,7 @@
             this.RetPassField.Size = new System.Drawing.Size(221, 29);
             this.RetPassField.TabIndex = 4;
             this.RetPassField.Enter += new System.EventHandler(this.RetPassField_Enter);
+            this.RetPassField.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RetPassField_KeyPress);
             this.RetPassField.Leave += new System.EventHandler(this.RetPassField_Leave);
             // 
             // label1

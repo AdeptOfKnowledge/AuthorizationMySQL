@@ -51,6 +51,13 @@ namespace Authorization
                 AdminButton.BackColor = Color.LightGray; superAdminButton.BackColor = Color.LightGray;
                 superAdminButton.Enabled = false; superAdminBehindBox.Enabled = false;
                 AdminButton.Enabled = false; AdminBehindBox.Enabled = false;
+                if (statusField.Text == "superadmin")
+                { DelUsrButton.Enabled = false; RenameUsrButton.Enabled = false; DelUsrButton.BackColor = Color.FromArgb(255, 215, 228, 242); RenameUsrButton.BackColor = Color.FromArgb(255, 215, 228, 242); }
+                else 
+                { 
+                    DelUsrButton.Enabled = true;  DelUsrButton.BackColor = Color.FromArgb(255, 153, 180, 209);
+                    RenameUsrButton.Enabled = true; RenameUsrButton.BackColor = Color.FromArgb(255, 153, 180, 209); 
+                }            
             }
         }
 

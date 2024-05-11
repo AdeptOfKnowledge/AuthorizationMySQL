@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySqlX.XDevAPI.Relational;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,7 +17,7 @@ namespace Authorization
     public partial class TestingForm : Form
     {
         Point NP; Timer tm;
-        int lastID, lastAdmID, userID, test = 0;
+        int lastID, lastAdmID, userID, enterID, test = 0;
         string login, version;        
 
         public TestingForm()
@@ -357,6 +358,7 @@ namespace Authorization
             }
         }
 
+
         private void removeUser()
         {
             for (int i = 1; i < 25; i++) PBDelUser.Value = i;
@@ -481,8 +483,207 @@ namespace Authorization
         private void ChangeTypeButton_Click(object sender, EventArgs e)
         {
             if (CrossLabel.ForeColor == Color.IndianRed)
-            { CrossLabel.ForeColor = Color.Green; CrossLabel.Text = "Модульное"; GBModulTest.Visible = true; StartTestButton.Visible = false; }
-            else { CrossLabel.ForeColor = Color.IndianRed; CrossLabel.Text = "Сквозное"; GBModulTest.Visible = false; StartTestButton.Visible = true; }
+            { 
+                CrossLabel.ForeColor = Color.Green; CrossLabel.Text = "Модульное"; GBModulTest.Visible = true; GB_TextSpelling.Visible = false; GB_HashTest.Visible = false; StartTestButton.Visible = false;
+                FindInfoButton.Enabled = false; infoID_label.ForeColor = Color.Gray; lastUID_label.ForeColor = Color.Gray; lastAID_label.ForeColor = Color.Gray;
+                IDUsrLabel.ForeColor = Color.Gray; NameUsrLabel.ForeColor = Color.Gray; SurnameUsrLabel.ForeColor = Color.Gray; StatusUsrLabel.ForeColor = Color.Gray;
+            }
+            else 
+            { 
+                CrossLabel.ForeColor = Color.IndianRed; CrossLabel.Text = "Сквозное"; GBModulTest.Visible = false; StartTestButton.Visible = true; 
+                Users.Items.Clear(); TB_lastUserID.Clear(); TB_lastAdmID.Clear(); TB_login.Clear(); IDField.Clear(); nameField.Clear(); surnameField.Clear(); statusField.Clear(); TB_insertID.Clear();
+            }
         }
-    }
+
+        private void IDStartButton_Click(object sender, EventArgs e)                //ПЕРВЫЙ ТЕСТ - корректность модулей ID
+        {
+            GB_IDtest.Visible = true; GB_TextSpelling.Visible = false; GB_HashTest.Visible = false; TB_Spelling.Clear();
+            FindInfoButton.Enabled = true; infoID_label.ForeColor = Color.Black; lastUID_label.ForeColor = Color.Black; lastAID_label.ForeColor = Color.Black; FindInfoButton.ForeColor = Color.Black;
+            IDUsrLabel.ForeColor = Color.Black; NameUsrLabel.ForeColor = Color.Black; SurnameUsrLabel.ForeColor = Color.Black; StatusUsrLabel.ForeColor = Color.Black;
+            Users.Items.Clear(); TB_lastUserID.Clear(); TB_lastAdmID.Clear(); TB_login.Clear(); IDField.Clear(); nameField.Clear(); surnameField.Clear(); statusField.Clear(); TB_insertID.Clear();
+            CheckLastUserID(); TB_lastUserID.Text = lastID.ToString();
+            CheckLastAdminID(); TB_lastAdmID.Text = lastAdmID.ToString();
+            UsersList();
+        }
+
+        private void FindInfoButton_Click(object sender, EventArgs e)
+        {            
+            if (TB_insertID.Text != null && TB_insertID.Text != "" && TB_insertID.Text != "0" && Convert.ToInt32(TB_insertID.Text) <= lastID)
+            {
+                enterID = Int32.Parse(TB_insertID.Text);
+                DataBase db = new DataBase();
+                DataTable table = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                SqlCommand command = new SqlCommand("SELECT login from users WHERE id = @ID", db.GetConnection());
+
+                command.Parameters.Add("@ID", SqlDbType.NVarChar).Value = enterID;
+                adapter.SelectCommand = command;
+                adapter.Fill(table);
+                TB_login.ForeColor = Color.DarkOrchid;
+                TB_login.Text = table.Rows[0]["login"].ToString();
+            }
+            else { TB_login.ForeColor = Color.Red; TB_login.Text = "Пользователя нет!"; }
+        }
+
+        private void TB_insertID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar)) // Запрещаем ввод символов, отличных от цифр (0-9)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void UsersList()
+        {
+            DataBase db = new DataBase();
+            SqlCommand command = new SqlCommand("SELECT login from users", db.GetConnection());
+
+            db.OpenConnection(); //Открываем соединение
+            SqlDataReader read = command.ExecuteReader(); //Считываем и извлекаем данные
+            while (read.Read()) //Читаем пока есть данные
+            {
+                Users.Items.Add(read.GetValue(0).ToString()); //Добавляем данные в лист аитем
+            }
+            db.CloseConnection(); //Закрываем соединение             
+        }
+
+        private void Users_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Users.SelectedItem != null)
+            {
+                DataBase db = new DataBase();
+                DataTable table = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter();
+
+                SqlCommand command = new SqlCommand("SELECT u.id as id, u.name name, u.surname surname, a.permissions adm " +
+                                                    "from users u " +
+                                                    "LEFT JOIN admins a on a.user_login = u.login " +
+                                                    "where u.login = @UL ", db.GetConnection());
+
+                command.Parameters.Add("@UL", SqlDbType.NVarChar).Value = Users.SelectedItem.ToString();
+
+                adapter.SelectCommand = command;
+                adapter.Fill(table);
+
+                IDField.Text = table.Rows[0]["id"].ToString();
+                nameField.Text = table.Rows[0]["name"].ToString();
+                surnameField.Text = table.Rows[0]["surname"].ToString();
+                statusField.Text = table.Rows[0]["adm"].ToString();
+
+                StatusInfo();
+            }
+        }
+
+        private void StatusInfo()
+        {
+            if (statusField.Text == "") { statusField.Text = "user"; statusField.ForeColor = Color.Green; }
+            if (statusField.Text == "0") { statusField.Text = "admin"; statusField.ForeColor = Color.Blue; }
+            if (statusField.Text == "1") { statusField.Text = "superadmin"; statusField.ForeColor = Color.DarkOrchid; }
+        }
+
+        private void SpellingStartButton_Click(object sender, EventArgs e)          //ВТОРОЙ ТЕСТ - корректность модулей ввода разрешенных символов
+        {
+            GB_TextSpelling.Visible = true; GB_HashTest.Visible = false; TB_Spelling.Clear();
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            TB_Spelling.Clear(); TB_Spelling.Select();
+        }
+
+        private void TB_Spelling_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsSeparator(e.KeyChar) && TB_Spelling.Text.Length == 0)         // блок пробела, если введен первым символом
+            {
+                e.Handled = true;
+                return;
+            }
+
+            if (!char.IsLetter(e.KeyChar) && !char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsSeparator(e.KeyChar)) // Запрещаем ввод символов,
+            {                                                                                                                         // отличных от букв, цифр,
+                e.Handled = true;                                                                                                     // управляющих символов, пробелов
+            }
+
+            TB_Spelling.Text = TB_Spelling.Text.TrimStart(new Char[] { ' ' });   // удаление пробела, если стоит перед словом            
+        }
+
+        private void TB_Spelling_KeyUp(object sender, KeyEventArgs e)            // разрешает добавление нижнего подчеркивания
+        {
+            if (ModifierKeys == Keys.Shift)         //проверка нажатой кнопки;
+            {
+                if (e.KeyCode == Keys.OemMinus)     //проверка нажатой кнопки;
+                {
+                    {
+                        TB_Spelling.SelectedText = "_";
+                    }
+                }
+            }
+
+            TB_Spelling.Text = TB_Spelling.Text.TrimStart(new Char[] { ' ' });   // удаление пробела, если стоит перед словом
+            if (TB_Spelling.Text.Contains("  "))                                 // удаление двойных пробелов
+            {
+                int a = 0;
+                for (int i = 0; i < TB_Spelling.TextLength; i++)
+                {
+                    if (a == 0) a = TB_Spelling.Text.IndexOf("  ", 0) + 1;
+                    TB_Spelling.Text = TB_Spelling.Text.Replace("  ", " ");      // заменяет два пробела - одним
+                    TB_Spelling.SelectionStart = a;                              // установка курсора в конце замененных пробелов
+                }
+            }
+
+            if (TB_Spelling.Text.Contains("__"))                                 // удаление двойных подчеркиваний
+            {
+                int a = 0;
+                for (int i = 0; i < TB_Spelling.TextLength; i++)
+                {
+                    if (a == 0) a = TB_Spelling.Text.IndexOf("__", 0) + 1;
+                    TB_Spelling.Text = TB_Spelling.Text.Replace("__", "_");      // заменяет два подчеркивания - одним
+                    TB_Spelling.SelectionStart = a;                              // установка курсора в конце замененных подчеркиваний
+                }
+            }
+
+            if (TB_Spelling.Text.Contains("_ "))                                 // удаление подчеркивания с пробелом
+            {
+                int a = 0;
+                for (int i = 0; i < TB_Spelling.TextLength; i++)
+                {
+                    if (a == 0) a = TB_Spelling.Text.IndexOf("_ ", 0) + 1;
+                    TB_Spelling.Text = TB_Spelling.Text.Replace("_ ", "_");      // заменяет на подчеркивание
+                    TB_Spelling.SelectionStart = a;                              // установка курсора в конце замененных символов
+                }
+            }
+
+            if (TB_Spelling.Text.Contains(" _"))                                 // удаление пробела с подчеркиванием
+            {
+                int a = 0;
+                for (int i = 0; i < TB_Spelling.TextLength; i++)
+                {
+                    if (a == 0) a = TB_Spelling.Text.IndexOf(" _", 0) + 1;
+                    TB_Spelling.Text = TB_Spelling.Text.Replace(" _", "_");      // заменяет на подчеркивание
+                    TB_Spelling.SelectionStart = a;                              // установка курсора в конце замененных символов
+                }
+            }
+        }
+
+        private void HashStartButton_Click(object sender, EventArgs e)          //ТРЕТИЙ ТЕСТ - корректность работы модуля хэш-функции
+        {
+            GB_TextSpelling.Visible = true; GB_HashTest.Visible = true; TB_InsertPass.Clear(); TB_HashOutput.Clear();
+        }
+
+        private void ConvertToHash_Click(object sender, EventArgs e)
+        {
+            TB_InsertPass.Text = TB_InsertPass.Text.TrimEnd(new Char[] { ' ' });        // удаление пробела, если стоит после текста
+            if (TB_InsertPass.Text != "")
+            TB_HashOutput.Text = PassHash.PWhash(TB_InsertPass.Text);
+        }
+
+        private void TB_InsertPass_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsSeparator(e.KeyChar))         // блок пробела, если введен первым символом
+            {
+                e.Handled = true;
+                return;
+            }
+        }
+    }    
 }

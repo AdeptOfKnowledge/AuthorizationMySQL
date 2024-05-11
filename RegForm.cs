@@ -135,6 +135,57 @@ namespace Authorization
                     LoginField.SelectionStart = a;                              // установка курсора в конце замененных пробелов
                 }
             }
+
+            if (LoginField.Text.Contains("__"))                                 // удаление двойных подчеркиваний
+            {
+                int a = 0;
+                for (int i = 0; i < LoginField.TextLength; i++)
+                {
+                    if (a == 0) a = LoginField.Text.IndexOf("__", 0) + 1;
+                    LoginField.Text = LoginField.Text.Replace("__", "_");       // заменяет два подчеркивания - одним
+                    LoginField.SelectionStart = a;                              // установка курсора в конце замененных подчеркиваний
+                }
+            }
+
+            if (LoginField.Text.Contains("_ "))                                 // удаление подчеркивания с пробелом
+            {
+                int a = 0;
+                for (int i = 0; i < LoginField.TextLength; i++)
+                {
+                    if (a == 0) a = LoginField.Text.IndexOf("_ ", 0) + 1;
+                    LoginField.Text = LoginField.Text.Replace("_ ", "_");       // заменяет на подчеркивание
+                    LoginField.SelectionStart = a;                              // установка курсора в конце замененных символов
+                }
+            }
+
+            if (LoginField.Text.Contains(" _"))                                 // удаление пробела с подчеркиванием
+            {
+                int a = 0;
+                for (int i = 0; i < LoginField.TextLength; i++)
+                {
+                    if (a == 0) a = LoginField.Text.IndexOf(" _", 0) + 1;
+                    LoginField.Text = LoginField.Text.Replace(" _", "_");       // заменяет на подчеркивание
+                    LoginField.SelectionStart = a;                              // установка курсора в конце замененных символов
+                }
+            }
+        }
+
+        private void PasswordField_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsSeparator(e.KeyChar))         // блок пробела, если введен первым символом
+            {
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void RetPassField_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsSeparator(e.KeyChar))         // блок пробела, если введен первым символом
+            {
+                e.Handled = true;
+                return;
+            }
         }
 
         private void PasswordField_Enter(object sender, EventArgs e)
