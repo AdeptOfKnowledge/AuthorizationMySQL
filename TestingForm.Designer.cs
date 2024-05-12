@@ -83,14 +83,15 @@
             this.SpellingStartButton = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.GBModulTest = new System.Windows.Forms.GroupBox();
-            this.GB_IDtest = new System.Windows.Forms.GroupBox();
-            this.GB_TextSpelling = new System.Windows.Forms.GroupBox();
             this.GB_HashTest = new System.Windows.Forms.GroupBox();
             this.ConvertToHash = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.TB_HashOutput = new System.Windows.Forms.TextBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.TB_InsertPass = new System.Windows.Forms.TextBox();
+            this.GB_IDtest = new System.Windows.Forms.GroupBox();
+            this.GB_TextSpelling = new System.Windows.Forms.GroupBox();
+            this.ClearButton = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.TB_Spelling = new System.Windows.Forms.TextBox();
             this.statusField = new System.Windows.Forms.TextBox();
@@ -114,7 +115,6 @@
             this.HashStartButton = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.ClearButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TickBD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TickUserCreation)).BeginInit();
@@ -123,9 +123,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.TickDelUser)).BeginInit();
             this.GBCrossTests.SuspendLayout();
             this.GBModulTest.SuspendLayout();
+            this.GB_HashTest.SuspendLayout();
             this.GB_IDtest.SuspendLayout();
             this.GB_TextSpelling.SuspendLayout();
-            this.GB_HashTest.SuspendLayout();
             this.SuspendLayout();
             // 
             // TestingText
@@ -140,7 +140,7 @@
             this.TestingText.Name = "TestingText";
             this.TestingText.Size = new System.Drawing.Size(727, 100);
             this.TestingText.TabIndex = 0;
-            this.TestingText.Text = "Testing the system";
+            this.TestingText.Text = "Тестирование системы";
             this.TestingText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.TestingText.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TestingText_MouseDown);
             this.TestingText.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TestingText_MouseMove);
@@ -771,45 +771,6 @@
             this.GBModulTest.TabIndex = 38;
             this.GBModulTest.TabStop = false;
             // 
-            // GB_IDtest
-            // 
-            this.GB_IDtest.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.GB_IDtest.Controls.Add(this.GB_TextSpelling);
-            this.GB_IDtest.Controls.Add(this.statusField);
-            this.GB_IDtest.Controls.Add(this.StatusUsrLabel);
-            this.GB_IDtest.Controls.Add(this.surnameField);
-            this.GB_IDtest.Controls.Add(this.nameField);
-            this.GB_IDtest.Controls.Add(this.SurnameUsrLabel);
-            this.GB_IDtest.Controls.Add(this.NameUsrLabel);
-            this.GB_IDtest.Controls.Add(this.IDField);
-            this.GB_IDtest.Controls.Add(this.IDUsrLabel);
-            this.GB_IDtest.Controls.Add(this.Users);
-            this.GB_IDtest.Controls.Add(this.TB_insertID);
-            this.GB_IDtest.Controls.Add(this.TB_login);
-            this.GB_IDtest.Controls.Add(this.lastAID_label);
-            this.GB_IDtest.Controls.Add(this.TB_lastUserID);
-            this.GB_IDtest.Controls.Add(this.FindInfoButton);
-            this.GB_IDtest.Controls.Add(this.TB_lastAdmID);
-            this.GB_IDtest.Controls.Add(this.infoID_label);
-            this.GB_IDtest.Controls.Add(this.lastUID_label);
-            this.GB_IDtest.Location = new System.Drawing.Point(285, 0);
-            this.GB_IDtest.Name = "GB_IDtest";
-            this.GB_IDtest.Size = new System.Drawing.Size(418, 284);
-            this.GB_IDtest.TabIndex = 48;
-            this.GB_IDtest.TabStop = false;
-            // 
-            // GB_TextSpelling
-            // 
-            this.GB_TextSpelling.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.GB_TextSpelling.Controls.Add(this.ClearButton);
-            this.GB_TextSpelling.Controls.Add(this.richTextBox1);
-            this.GB_TextSpelling.Controls.Add(this.TB_Spelling);
-            this.GB_TextSpelling.Location = new System.Drawing.Point(0, 0);
-            this.GB_TextSpelling.Name = "GB_TextSpelling";
-            this.GB_TextSpelling.Size = new System.Drawing.Size(418, 284);
-            this.GB_TextSpelling.TabIndex = 61;
-            this.GB_TextSpelling.TabStop = false;
-            // 
             // GB_HashTest
             // 
             this.GB_HashTest.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
@@ -886,6 +847,61 @@
             this.TB_InsertPass.Size = new System.Drawing.Size(345, 27);
             this.TB_InsertPass.TabIndex = 50;
             this.TB_InsertPass.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TB_InsertPass_KeyPress);
+            // 
+            // GB_IDtest
+            // 
+            this.GB_IDtest.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.GB_IDtest.Controls.Add(this.GB_TextSpelling);
+            this.GB_IDtest.Controls.Add(this.statusField);
+            this.GB_IDtest.Controls.Add(this.StatusUsrLabel);
+            this.GB_IDtest.Controls.Add(this.surnameField);
+            this.GB_IDtest.Controls.Add(this.nameField);
+            this.GB_IDtest.Controls.Add(this.SurnameUsrLabel);
+            this.GB_IDtest.Controls.Add(this.NameUsrLabel);
+            this.GB_IDtest.Controls.Add(this.IDField);
+            this.GB_IDtest.Controls.Add(this.IDUsrLabel);
+            this.GB_IDtest.Controls.Add(this.Users);
+            this.GB_IDtest.Controls.Add(this.TB_insertID);
+            this.GB_IDtest.Controls.Add(this.TB_login);
+            this.GB_IDtest.Controls.Add(this.lastAID_label);
+            this.GB_IDtest.Controls.Add(this.TB_lastUserID);
+            this.GB_IDtest.Controls.Add(this.FindInfoButton);
+            this.GB_IDtest.Controls.Add(this.TB_lastAdmID);
+            this.GB_IDtest.Controls.Add(this.infoID_label);
+            this.GB_IDtest.Controls.Add(this.lastUID_label);
+            this.GB_IDtest.Location = new System.Drawing.Point(285, 0);
+            this.GB_IDtest.Name = "GB_IDtest";
+            this.GB_IDtest.Size = new System.Drawing.Size(418, 284);
+            this.GB_IDtest.TabIndex = 48;
+            this.GB_IDtest.TabStop = false;
+            // 
+            // GB_TextSpelling
+            // 
+            this.GB_TextSpelling.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.GB_TextSpelling.Controls.Add(this.ClearButton);
+            this.GB_TextSpelling.Controls.Add(this.richTextBox1);
+            this.GB_TextSpelling.Controls.Add(this.TB_Spelling);
+            this.GB_TextSpelling.Location = new System.Drawing.Point(0, 0);
+            this.GB_TextSpelling.Name = "GB_TextSpelling";
+            this.GB_TextSpelling.Size = new System.Drawing.Size(418, 284);
+            this.GB_TextSpelling.TabIndex = 61;
+            this.GB_TextSpelling.TabStop = false;
+            // 
+            // ClearButton
+            // 
+            this.ClearButton.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ClearButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ClearButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ClearButton.FlatAppearance.BorderSize = 0;
+            this.ClearButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ClearButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ClearButton.Location = new System.Drawing.Point(274, 187);
+            this.ClearButton.Name = "ClearButton";
+            this.ClearButton.Size = new System.Drawing.Size(98, 28);
+            this.ClearButton.TabIndex = 63;
+            this.ClearButton.Text = "Очистить";
+            this.ClearButton.UseVisualStyleBackColor = false;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // richTextBox1
             // 
@@ -1168,22 +1184,6 @@
             this.label8.TabIndex = 38;
             this.label8.Text = "label3";
             // 
-            // ClearButton
-            // 
-            this.ClearButton.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClearButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ClearButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClearButton.FlatAppearance.BorderSize = 0;
-            this.ClearButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.ClearButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ClearButton.Location = new System.Drawing.Point(274, 187);
-            this.ClearButton.Name = "ClearButton";
-            this.ClearButton.Size = new System.Drawing.Size(98, 28);
-            this.ClearButton.TabIndex = 63;
-            this.ClearButton.Text = "Очистить";
-            this.ClearButton.UseVisualStyleBackColor = false;
-            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
-            // 
             // TestingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1236,12 +1236,12 @@
             this.GBCrossTests.ResumeLayout(false);
             this.GBCrossTests.PerformLayout();
             this.GBModulTest.ResumeLayout(false);
+            this.GB_HashTest.ResumeLayout(false);
+            this.GB_HashTest.PerformLayout();
             this.GB_IDtest.ResumeLayout(false);
             this.GB_IDtest.PerformLayout();
             this.GB_TextSpelling.ResumeLayout(false);
             this.GB_TextSpelling.PerformLayout();
-            this.GB_HashTest.ResumeLayout(false);
-            this.GB_HashTest.PerformLayout();
             this.ResumeLayout(false);
 
         }

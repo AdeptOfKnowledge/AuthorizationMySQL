@@ -17,7 +17,7 @@ namespace Authorization
     public partial class TestingForm : Form
     {
         Point NP; Timer tm;
-        int lastID, lastAdmID, userID, enterID, test = 0;
+        int lastID, lastAdmID, userID, enterID, test;
         string login, version;        
 
         public TestingForm()
@@ -32,7 +32,9 @@ namespace Authorization
             OkEditTest.Visible = false; FailedEditTest.Visible = false; TickEditUser.Visible = false; PBEditUser.Value = 0;
             OkCascadeTest.Visible = false; FailedCascadeTest.Visible = false; TickCascade.Visible = false; PBCascade.Value = 0;
             OkDelUserTest.Visible = false; FailedDelUserTest.Visible = false; TickDelUser.Visible = false; PBDelUser.Value = 0; 
-            GBModulTest.Visible = false;
+            GBModulTest.Visible = false; tm?.Stop(); test = 0; BD_label.BorderStyle = BorderStyle.None; UserCrLabel.BorderStyle = BorderStyle.None;
+            EditLabel.BorderStyle = BorderStyle.None; CascadeLabel.BorderStyle = BorderStyle.None; DelUserLabel.BorderStyle = BorderStyle.None;
+            versionField.Clear(); UserField.Clear(); ChangeLoginField.Clear(); CascadeUserField.Clear(); CascadeAdminField.Clear(); DeleteField.Clear();
         }
 
         private void Exit_Click(object sender, EventArgs e)
@@ -455,10 +457,11 @@ namespace Authorization
             }
         }
 
-        private void StartTest_Click(object sender, EventArgs e)
+        private void StartTest_Click(object sender, EventArgs e)            //запуск СКВОЗНОГО тестирования системы
         {
             if (CrossLabel.ForeColor == Color.IndianRed)
             {
+                versionField.Clear(); UserField.Clear(); ChangeLoginField.Clear(); CascadeUserField.Clear(); CascadeAdminField.Clear(); DeleteField.Clear();
                 StartTestButton.Enabled = false; ChangeTypeButton.Enabled = false;
 
                 if (OK_BD_Test.Visible || Failed_BD_test.Visible || OkUserTest.Visible || FailedUserTest.Visible || OkEditTest.Visible || FailedEditTest.Visible ||
@@ -480,22 +483,23 @@ namespace Authorization
             }
         }
 
-        private void ChangeTypeButton_Click(object sender, EventArgs e)
+        private void ChangeTypeButton_Click(object sender, EventArgs e)     //смена типа тестирования - сквозное/модульное
         {
             if (CrossLabel.ForeColor == Color.IndianRed)
-            { 
+            {
+                tm?.Stop(); test = 0;
                 CrossLabel.ForeColor = Color.Green; CrossLabel.Text = "Модульное"; GBModulTest.Visible = true; GB_TextSpelling.Visible = false; GB_HashTest.Visible = false; StartTestButton.Visible = false;
                 FindInfoButton.Enabled = false; infoID_label.ForeColor = Color.Gray; lastUID_label.ForeColor = Color.Gray; lastAID_label.ForeColor = Color.Gray;
                 IDUsrLabel.ForeColor = Color.Gray; NameUsrLabel.ForeColor = Color.Gray; SurnameUsrLabel.ForeColor = Color.Gray; StatusUsrLabel.ForeColor = Color.Gray;
             }
             else 
             { 
-                CrossLabel.ForeColor = Color.IndianRed; CrossLabel.Text = "Сквозное"; GBModulTest.Visible = false; StartTestButton.Visible = true; 
+                CrossLabel.ForeColor = Color.IndianRed; CrossLabel.Text = "Сквозное"; TestingForm_Load(this, EventArgs.Empty); StartTestButton.Visible = true;
                 Users.Items.Clear(); TB_lastUserID.Clear(); TB_lastAdmID.Clear(); TB_login.Clear(); IDField.Clear(); nameField.Clear(); surnameField.Clear(); statusField.Clear(); TB_insertID.Clear();
             }
         }
 
-        private void IDStartButton_Click(object sender, EventArgs e)                //ПЕРВЫЙ ТЕСТ - корректность модулей ID
+        private void IDStartButton_Click(object sender, EventArgs e)        //ПЕРВЫЙ МОДУЛЬНЫЙ ТЕСТ - корректность работы модулей ID
         {
             GB_IDtest.Visible = true; GB_TextSpelling.Visible = false; GB_HashTest.Visible = false; TB_Spelling.Clear();
             FindInfoButton.Enabled = true; infoID_label.ForeColor = Color.Black; lastUID_label.ForeColor = Color.Black; lastAID_label.ForeColor = Color.Black; FindInfoButton.ForeColor = Color.Black;
@@ -527,7 +531,7 @@ namespace Authorization
 
         private void TB_insertID_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar)) // Запрещаем ввод символов, отличных от цифр (0-9)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))  // Запрещаем ввод символов, отличных от цифр (0-9)
             {
                 e.Handled = true;
             }
@@ -538,13 +542,13 @@ namespace Authorization
             DataBase db = new DataBase();
             SqlCommand command = new SqlCommand("SELECT login from users", db.GetConnection());
 
-            db.OpenConnection(); //Открываем соединение
-            SqlDataReader read = command.ExecuteReader(); //Считываем и извлекаем данные
-            while (read.Read()) //Читаем пока есть данные
+            db.OpenConnection();                                //Открываем соединение
+            SqlDataReader read = command.ExecuteReader();       //Считываем и извлекаем данные
+            while (read.Read())                                 //Читаем пока есть данные
             {
-                Users.Items.Add(read.GetValue(0).ToString()); //Добавляем данные в лист аитем
+                Users.Items.Add(read.GetValue(0).ToString());   //Добавляем данные в лист аитем
             }
-            db.CloseConnection(); //Закрываем соединение             
+            db.CloseConnection();                               //Закрываем соединение             
         }
 
         private void Users_SelectedIndexChanged(object sender, EventArgs e)
@@ -581,7 +585,7 @@ namespace Authorization
             if (statusField.Text == "1") { statusField.Text = "superadmin"; statusField.ForeColor = Color.DarkOrchid; }
         }
 
-        private void SpellingStartButton_Click(object sender, EventArgs e)          //ВТОРОЙ ТЕСТ - корректность модулей ввода разрешенных символов
+        private void SpellingStartButton_Click(object sender, EventArgs e)          //ВТОРОЙ МОДУЛЬНЫЙ ТЕСТ - корректность работы модулей ввода разрешенных символов
         {
             GB_TextSpelling.Visible = true; GB_HashTest.Visible = false; TB_Spelling.Clear();
         }
@@ -665,7 +669,7 @@ namespace Authorization
             }
         }
 
-        private void HashStartButton_Click(object sender, EventArgs e)          //ТРЕТИЙ ТЕСТ - корректность работы модуля хэш-функции
+        private void HashStartButton_Click(object sender, EventArgs e)          //ТРЕТИЙ МОДУЛЬНЫЙ ТЕСТ - корректность работы модуля хэш-функции
         {
             GB_TextSpelling.Visible = true; GB_HashTest.Visible = true; TB_InsertPass.Clear(); TB_HashOutput.Clear();
         }
@@ -674,12 +678,13 @@ namespace Authorization
         {
             TB_InsertPass.Text = TB_InsertPass.Text.TrimEnd(new Char[] { ' ' });        // удаление пробела, если стоит после текста
             if (TB_InsertPass.Text != "")
-            TB_HashOutput.Text = PassHash.PWhash(TB_InsertPass.Text);
+                TB_HashOutput.Text = PassHash.PWhash(TB_InsertPass.Text);
+            else TB_HashOutput.Clear();
         }
 
         private void TB_InsertPass_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsSeparator(e.KeyChar))         // блок пробела, если введен первым символом
+            if (char.IsSeparator(e.KeyChar))                                  // блок пробела, если введен первым символом
             {
                 e.Handled = true;
                 return;

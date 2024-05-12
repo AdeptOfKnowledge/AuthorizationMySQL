@@ -78,25 +78,25 @@ namespace Authorization
                 }
             }
 
-            if (NewLogin.Text.Contains("__"))                                 // удаление двойных подчеркиваний
+            if (NewLogin.Text.Contains("__"))                               // удаление двойных подчеркиваний
             {
                 int a = 0;
                 for (int i = 0; i < NewLogin.TextLength; i++)
                 {
                     if (a == 0) a = NewLogin.Text.IndexOf("__", 0) + 1;
                     NewLogin.Text = NewLogin.Text.Replace("__", "_");       // заменяет два подчеркивания - одним
-                    NewLogin.SelectionStart = a;                              // установка курсора в конце замененных подчеркиваний
+                    NewLogin.SelectionStart = a;                            // установка курсора в конце замененных подчеркиваний
                 }
             }
 
-            if (NewLogin.Text.Contains("_ "))                                 // удаление подчеркивания с пробелом
+            if (NewLogin.Text.Contains("_ "))                                // удаление подчеркивания с пробелом
             {
                 int a = 0;
                 for (int i = 0; i < NewLogin.TextLength; i++)
                 {
                     if (a == 0) a = NewLogin.Text.IndexOf("_ ", 0) + 1;
                     NewLogin.Text = NewLogin.Text.Replace("_ ", "_");       // заменяет на подчеркивание
-                    NewLogin.SelectionStart = a;                              // установка курсора в конце замененных символов
+                    NewLogin.SelectionStart = a;                            // установка курсора в конце замененных символов
                 }
             }
 
