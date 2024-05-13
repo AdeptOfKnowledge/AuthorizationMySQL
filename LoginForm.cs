@@ -14,7 +14,7 @@ namespace Authorization
 {
     public partial class LoginForm : Form
     {
-        Point NP; bool Eye = false;
+        Point NP;
 
         public LoginForm()
         {
@@ -81,7 +81,7 @@ namespace Authorization
         {
             if (e.Button == MouseButtons.Left)
             {
-                if (Password.UseSystemPasswordChar == true) { Password.UseSystemPasswordChar = false; Eye = true; PassShow.Visible = false;}
+                if (Password.UseSystemPasswordChar == true) { Password.UseSystemPasswordChar = false; PassShow.Visible = false;}
             }
         }
 

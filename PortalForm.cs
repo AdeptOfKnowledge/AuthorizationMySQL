@@ -58,12 +58,12 @@ namespace Authorization
         }
 
         private void AdminPanel_Click(object sender, EventArgs e)
-        {
-            this.Hide();
+        {            
             AdminForm af = new AdminForm();
             af.admPanel = adminPanel;
             af.adminLogin = userLogin;
             af.Show();
+            this.Close();
         }
 
         private void AuthorizationText_MouseDown(object sender, MouseEventArgs e)

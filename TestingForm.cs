@@ -523,7 +523,8 @@ namespace Authorization
                 command.Parameters.Add("@ID", SqlDbType.NVarChar).Value = enterID;
                 adapter.SelectCommand = command;
                 adapter.Fill(table);
-                TB_login.ForeColor = Color.DarkOrchid;
+                
+                TB_login.ForeColor = Color.Blue;                
                 TB_login.Text = table.Rows[0]["login"].ToString();
             }
             else { TB_login.ForeColor = Color.Red; TB_login.Text = "Пользователя нет!"; }

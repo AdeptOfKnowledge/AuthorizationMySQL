@@ -12,12 +12,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Authorization
 {
     public partial class AdminForm : Form
     {
-        Point NP; bool but = false, sbut = false;
+        Point NP; 
+        bool but = false, sbut = false, rename = false;
         public bool admPanel = true;
         public string adminLogin, id, status;
         int lastID;
@@ -29,6 +31,7 @@ namespace Authorization
 
         private void AdminForm_Load(object sender, EventArgs e)
         {
+            if (!rename)
             adminName.Text = adminLogin;
 
             DataBase db = new DataBase();
@@ -51,12 +54,19 @@ namespace Authorization
                 AdminButton.BackColor = Color.LightGray; superAdminButton.BackColor = Color.LightGray;
                 superAdminButton.Enabled = false; superAdminBehindBox.Enabled = false;
                 AdminButton.Enabled = false; AdminBehindBox.Enabled = false;
+
                 if (statusField.Text == "superadmin")
-                { DelUsrButton.Enabled = false; RenameUsrButton.Enabled = false; DelUsrButton.BackColor = Color.FromArgb(255, 215, 228, 242); RenameUsrButton.BackColor = Color.FromArgb(255, 215, 228, 242); }
+                { DelUsrButton.Enabled = false; RenameUsrButton.Enabled = false; DelUsrButton.BackColor = Color.FromArgb(255, 215, 228, 242); 
+                    RenameUsrButton.BackColor = Color.FromArgb(255, 215, 228, 242); }
                 else 
-                { 
-                    DelUsrButton.Enabled = true;  DelUsrButton.BackColor = Color.FromArgb(255, 153, 180, 209);
-                    RenameUsrButton.Enabled = true; RenameUsrButton.BackColor = Color.FromArgb(255, 153, 180, 209); 
+                {
+                    DelUsrButton.Enabled = true; DelUsrButton.BackColor = Color.FromArgb(255, 153, 180, 209);
+                    RenameUsrButton.Enabled = true; RenameUsrButton.BackColor = Color.FromArgb(255, 153, 180, 209);
+
+                    if (loginField.Text == adminName.Text)
+                    {
+                        DelUsrButton.Enabled = false; DelUsrButton.BackColor = Color.FromArgb(255, 215, 228, 242);
+                    }
                 }            
             }
         }
@@ -64,7 +74,7 @@ namespace Authorization
         private void Exit_Click(object sender, EventArgs e)
         {
             PortalForm portal = new PortalForm();
-            portal.userLogin = adminLogin;
+            portal.userLogin = adminName.Text;
             portal.Show();
             this.Close();
         }
@@ -349,24 +359,30 @@ namespace Authorization
                 }
                 else { this.Show(); return; }    
 
-                DataBase db = new DataBase();
-                SqlCommand command = new SqlCommand();
-                
-                command = new SqlCommand("UPDATE users SET login = @NuL WHERE login = @UL", db.GetConnection());
-
-                command.Parameters.Add("@UL", SqlDbType.NVarChar).Value = loginField.Text;
-                command.Parameters.Add("@NuL", SqlDbType.NVarChar).Value = newLogin;                
-
-                db.OpenConnection();
-                command.ExecuteReader();
-                db.CloseConnection(); //Закрываем соединение                 
+                RenameUser(loginField.Text, newLogin);
+                if (adminName.Text == loginField.Text) { adminName.Text = newLogin; rename = true; }
 
                 loginField.Text = newLogin;
                 Users.Items.Clear();
                 AdminForm_Load(this, EventArgs.Empty);
+                rename = false;
                 Users.SelectedItem = newLogin;                                
-                StatusCheck();                
+                StatusCheck();
+                Permissions();                
             }
+        }
+
+        public void RenameUser(string oldLogin, string newLogin)
+        {
+            DataBase db = new DataBase();
+            SqlCommand command = new SqlCommand("UPDATE users SET login = @NuL WHERE login = @UL", db.GetConnection());
+
+            command.Parameters.Add("@UL", SqlDbType.NVarChar).Value = oldLogin;
+            command.Parameters.Add("@NuL", SqlDbType.NVarChar).Value = newLogin;
+
+            db.OpenConnection();
+            command.ExecuteReader();
+            db.CloseConnection();  
         }
 
         private void superAdminButton_GiveSuperAdmin()
@@ -412,7 +428,7 @@ namespace Authorization
 
                     db.OpenConnection();
                     command.ExecuteReader();
-                    db.CloseConnection(); //Закрываем соединение 
+                    db.CloseConnection(); 
 
                     AdminBehindBox.Enabled = true;
 
@@ -426,22 +442,28 @@ namespace Authorization
         {
             if (loginField.Text != "")
             {
-                DataBase db = new DataBase();
-                SqlCommand command = new SqlCommand("DELETE FROM users WHERE login = @UL", db.GetConnection());
-                command.Parameters.Add("@UL", SqlDbType.NVarChar).Value = loginField.Text;
-
-                db.OpenConnection();
-                command.ExecuteReader();
-                db.CloseConnection(); //Закрываем соединение 
-
-                Users.Items.Clear(); 
+                DeleteUser(loginField.Text);
+                Users.Items.Clear();
                 loginField.Text = ""; statusField.Text = "";
                 nameField.Text = ""; surnameField.Text = "";
                 AdminButton.CheckState = CheckState.Unchecked; superAdminButton.CheckState = CheckState.Unchecked;
-                AdminButton.BackColor = Color.FromArgb(255, 153, 180, 209);                
+                AdminButton.BackColor = Color.FromArgb(255, 153, 180, 209);
                 superAdminButton.BackColor = Color.FromArgb(255, 153, 180, 209);
                 AdminForm_Load(this, EventArgs.Empty);
             }            
+        }
+
+        public void DeleteUser(string userLogin)
+        {
+            DataBase db = new DataBase();
+            SqlCommand command = new SqlCommand("DELETE FROM users WHERE login = @UL", db.GetConnection());
+            command.Parameters.Add("@UL", SqlDbType.NVarChar).Value = userLogin;
+
+            db.OpenConnection();
+            //command.ExecuteReader();
+            if (command.ExecuteNonQuery() == 1) MessageBox.Show("Учетная запись успешно удалена");
+            else MessageBox.Show("Ошибка удаления учетной записи");
+            db.CloseConnection(); 
         }
     }
 }

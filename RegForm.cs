@@ -17,6 +17,8 @@ namespace Authorization
     {
         Point NP;
         int lastID;
+        public int lastIDforTests;
+        public string loginForTests, hashForTests;
 
         public RegForm()
         {
@@ -207,37 +209,6 @@ namespace Authorization
         {
             if (RetPassField.Text == "") { RetPassField.Text = "Повторите пароль"; RetPassField.ForeColor = Color.Gray; RetPassField.UseSystemPasswordChar = false; }
         }
-        
-        private void Registration_Click(object sender, EventArgs e)
-        {
-            LoginField.Text = LoginField.Text.TrimEnd(new Char[] { ' ' });        // удаление пробелов, если стоит после логина
-            if (NameField.Text == "Введите имя" || SurnameField.Text == "Введите фамилию" || LoginField.Text == "Введите ваш логин" || PasswordField.Text == "Введите пароль" || RetPassField.Text == "Повторите пароль")
-            { MessageBox.Show("Заполните все поля"); return; }
-
-            if (PasswordField.Text != RetPassField.Text)
-            { MessageBox.Show("Пароли не совпадают"); return; }
-
-            if (isUserExists()) return;
-            CheckLastUserID();
-
-            DataBase db = new DataBase();
-            SqlCommand command = new SqlCommand("INSERT INTO users (id, name, surname, login, pass) VALUES (@id, @name, @surname, @login, @pass)", db.GetConnection());
-            command.Parameters.Add("@id", SqlDbType.NVarChar).Value = lastID + 1;
-            command.Parameters.Add("@login", SqlDbType.NVarChar).Value = LoginField.Text;
-            command.Parameters.Add("@pass", SqlDbType.NVarChar).Value = PassHash.PWhash(PasswordField.Text);
-            command.Parameters.Add("@name", SqlDbType.NVarChar).Value = NameField.Text;
-            command.Parameters.Add("@surname", SqlDbType.NVarChar).Value = SurnameField.Text;
-
-            db.OpenConnection();
-
-            if (command.ExecuteNonQuery() == 1) MessageBox.Show("Учетная запись создана успешно");
-            else MessageBox.Show("Ошибка создания учетной записи");
-                        
-            db.CloseConnection();
-            this.Close();
-            RegForm form = new RegForm();
-            form.Show();
-        }
 
         public Boolean isUserExists()
         {
@@ -262,7 +233,7 @@ namespace Authorization
             else return false;            
         }
 
-        private int CheckLastUserID()
+        public int CheckLastUserID()
         {
             DataBase db = new DataBase();
             DataTable table = new DataTable();
@@ -274,6 +245,70 @@ namespace Authorization
             adapter.Fill(table);
             lastID = Convert.ToInt32(table.Rows[0]["id"].ToString());
             return lastID;
+        }
+
+        private void Registration_Click(object sender, EventArgs e)
+        {
+            LoginField.Text = LoginField.Text.TrimEnd(new Char[] { ' ' });        // удаление пробелов, если стоит после логина
+            if (NameField.Text == "Введите имя" || SurnameField.Text == "Введите фамилию" || LoginField.Text == "Введите ваш логин" || PasswordField.Text == "Введите пароль" || RetPassField.Text == "Повторите пароль")
+            { MessageBox.Show("Заполните все поля"); return; }
+
+            if (PasswordField.Text != RetPassField.Text)
+            { MessageBox.Show("Пароли не совпадают"); return; }
+
+            if (isUserExists()) return;            
+
+            RegNewUser(NameField.Text, SurnameField.Text, LoginField.Text, PasswordField.Text);
+
+            this.Close();
+            RegForm form = new RegForm();
+            form.Show();
+        }
+
+        public void RegNewUser(string firstName, string lastName, string login, string password)
+        {
+            CheckLastUserID(); lastIDforTests = lastID + 1;
+            DataBase db = new DataBase();
+            SqlCommand command = new SqlCommand("INSERT INTO users (id, name, surname, login, pass) VALUES (@id, @name, @surname, @login, @pass)", db.GetConnection());
+            command.Parameters.Add("@id", SqlDbType.NVarChar).Value = lastID + 1;
+            command.Parameters.Add("@name", SqlDbType.NVarChar).Value = firstName;
+            command.Parameters.Add("@surname", SqlDbType.NVarChar).Value = lastName;
+            command.Parameters.Add("@login", SqlDbType.NVarChar).Value = login;
+            command.Parameters.Add("@pass", SqlDbType.NVarChar).Value = PassHash.PWhash(password);
+
+            db.OpenConnection();
+
+            if (command.ExecuteNonQuery() == 1) MessageBox.Show("Учетная запись создана успешно");
+            else MessageBox.Show("Ошибка создания учетной записи");
+
+            db.CloseConnection();
+        }
+
+        public void CompareForTests()
+        {            
+            Comparison();
+        }
+
+        private void Comparison()
+        {
+            DataBase db = new DataBase();
+            DataTable table = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter();
+
+            SqlCommand command = new SqlCommand("SELECT id, login from users " +
+                                               "ORDER BY id DESC", db.GetConnection());
+
+            adapter.SelectCommand = command;
+            adapter.Fill(table);
+
+            lastIDforTests = (Int32)table.Rows[0]["id"];
+            loginForTests = table.Rows[0]["login"].ToString();
+        }
+
+        public string Hash(string pass)
+        {
+            hashForTests = PassHash.PWhash(pass);
+            return hashForTests.ToString();
         }
     }
 }

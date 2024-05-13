@@ -118,7 +118,7 @@
             this.groupBox1.Size = new System.Drawing.Size(208, 264);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Personal Settings";
+            this.groupBox1.Text = "Personal Information";
             // 
             // label3
             // 
