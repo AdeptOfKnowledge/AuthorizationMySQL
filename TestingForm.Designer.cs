@@ -197,7 +197,7 @@
             this.BD_label.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.BD_label.Location = new System.Drawing.Point(12, 128);
             this.BD_label.Name = "BD_label";
-            this.BD_label.Size = new System.Drawing.Size(159, 40);
+            this.BD_label.Size = new System.Drawing.Size(165, 40);
             this.BD_label.TabIndex = 23;
             this.BD_label.Text = "Проверка соединения с базой данных";
             this.BD_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -207,7 +207,7 @@
             this.UserCrLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.UserCrLabel.Location = new System.Drawing.Point(12, 182);
             this.UserCrLabel.Name = "UserCrLabel";
-            this.UserCrLabel.Size = new System.Drawing.Size(159, 40);
+            this.UserCrLabel.Size = new System.Drawing.Size(165, 40);
             this.UserCrLabel.TabIndex = 25;
             this.UserCrLabel.Text = "Тест создания учетных записей";
             this.UserCrLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -237,7 +237,7 @@
             this.DelUserLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.DelUserLabel.Location = new System.Drawing.Point(12, 350);
             this.DelUserLabel.Name = "DelUserLabel";
-            this.DelUserLabel.Size = new System.Drawing.Size(159, 40);
+            this.DelUserLabel.Size = new System.Drawing.Size(165, 40);
             this.DelUserLabel.TabIndex = 28;
             this.DelUserLabel.Text = "Тест удаления учетных записей";
             this.DelUserLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

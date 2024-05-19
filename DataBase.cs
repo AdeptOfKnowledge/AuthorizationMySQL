@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace Authorization
 {
     class DataBase
-    {        
+    {
         SqlConnection connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Programming\\C_sharp\\Authorization_MSSQL_VisualStudio\\alexsav.mdf;Integrated Security=True");
         //MySqlConnection connection = new MySqlConnection("server = localhost; port = 3306; username = root; password = root; database = savinan");
 

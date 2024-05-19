@@ -88,6 +88,16 @@ namespace Authorization
                         version = version.Remove(a, version.Length - a);
                     }
                 }
+
+                if (version.Contains("(X86)"))
+                {
+                    a = 0;
+                    for (int i = 0; i < version.Length; i++)
+                    {
+                        if (a == 0) a = version.IndexOf("(X86)", 0) + 5;
+                        version = version.Remove(a, version.Length - a);
+                    }
+                }
             }
         }
 
@@ -180,7 +190,7 @@ namespace Authorization
             for (int i = 0; i < 6; i++)
             {
                 int value = rand.Next(0, 9);
-                login = login + value;
+                login += value;
             }
 
             try
@@ -231,7 +241,7 @@ namespace Authorization
             for (int i = 0; i < 3; i++)
             {
                 int value = rand.Next(0, 9);
-                newLogin = newLogin + value;
+                newLogin += value;
             }
 
             try
@@ -295,7 +305,7 @@ namespace Authorization
             for (int i = 0; i < 3; i++)
             {
                 int value = rand.Next(0, 9);
-                cascadeLogin = cascadeLogin + value;
+                cascadeLogin += value;
             }
 
             try
