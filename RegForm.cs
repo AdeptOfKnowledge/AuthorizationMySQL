@@ -1,6 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI.Relational;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,14 +11,14 @@ using System.Windows.Forms;
 
 namespace Authorization
 {
-    public partial class RegForm : Form
+    public partial class RegForm : Form     //форма регистрации
     {
         Point NP;
         int lastID;
         public int lastIDforTests;
         public string loginForTests, hashForTests;
 
-        public RegForm()
+        public RegForm()                    //действия при загрузке формы
         {
             InitializeComponent();
             NameField.ForeColor = Color.Gray; NameField.Text = "Введите имя";
@@ -31,19 +29,19 @@ namespace Authorization
             label1.Select();
         }
 
-        private void Exit_Click(object sender, EventArgs e)
+        private void Exit_Click(object sender, EventArgs e)     //действия при нажатии на крестик(закрытие формы)
         {
             LoginForm f = new LoginForm();
             f.Show();
             this.Close();
         }
 
-        private void RegistrationText_MouseDown(object sender, MouseEventArgs e)
+        private void RegistrationText_MouseDown(object sender, MouseEventArgs e)    //захват координат
         {
             NP = new Point(e.X, e.Y);
         }
 
-        private void RegistrationText_MouseMove(object sender, MouseEventArgs e)
+        private void RegistrationText_MouseMove(object sender, MouseEventArgs e)    //перемещение окна формы
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -51,8 +49,8 @@ namespace Authorization
                 this.Top += e.Y - NP.Y;
             }
         }
-
-        private void NameField_Enter(object sender, EventArgs e)
+        //список действия при появлении и потере фокуса на соответствующих полях заполнения данных регистрации
+        private void NameField_Enter(object sender, EventArgs e)        
         {
             if (NameField.Text == "Введите имя") { NameField.Text = ""; NameField.ForeColor = Color.Black; }
         }
@@ -210,7 +208,7 @@ namespace Authorization
             if (RetPassField.Text == "") { RetPassField.Text = "Повторите пароль"; RetPassField.ForeColor = Color.Gray; RetPassField.UseSystemPasswordChar = false; }
         }
 
-        public Boolean isUserExists()
+        public Boolean isUserExists()       //проверка уже существующих пользователей на совпадение логинов
         {
             DataBase db = new DataBase();
             DataTable table = new DataTable();
@@ -233,7 +231,7 @@ namespace Authorization
             else return false;            
         }
 
-        public int CheckLastUserID()
+        public int CheckLastUserID()        //проверка последнего ID в таблице users
         {
             DataBase db = new DataBase();
             DataTable table = new DataTable();
@@ -247,9 +245,9 @@ namespace Authorization
             return lastID;
         }
 
-        private void Registration_Click(object sender, EventArgs e)
+        private void Registration_Click(object sender, EventArgs e)     //действия при нажатие на кнопку регистрации
         {
-            LoginField.Text = LoginField.Text.TrimEnd(new Char[] { ' ' });        // удаление пробелов, если стоит после логина
+            LoginField.Text = LoginField.Text.TrimEnd(new Char[] { ' ' });   // удаление пробелов, если стоит после логина
             if (NameField.Text == "Введите имя" || SurnameField.Text == "Введите фамилию" || LoginField.Text == "Введите ваш логин" || PasswordField.Text == "Введите пароль" || RetPassField.Text == "Повторите пароль")
             { MessageBox.Show("Заполните все поля"); return; }
 
@@ -265,7 +263,7 @@ namespace Authorization
             form.Show();
         }
 
-        public void RegNewUser(string firstName, string lastName, string login, string password)
+        public void RegNewUser(string firstName, string lastName, string login, string password)    //модуль регистрации пользователя в БД
         {
             CheckLastUserID(); lastIDforTests = lastID + 1;
             DataBase db = new DataBase();
@@ -284,12 +282,12 @@ namespace Authorization
             db.CloseConnection();
         }
 
-        public void CompareForTests()
+        public void CompareForTests()   //проверка специально для тестов xunit
         {            
             Comparison();
         }
 
-        private void Comparison()
+        private void Comparison()       //сравнение логинов
         {
             DataBase db = new DataBase();
             DataTable table = new DataTable();
@@ -305,7 +303,7 @@ namespace Authorization
             loginForTests = table.Rows[0]["login"].ToString();
         }
 
-        public string Hash(string pass)
+        public string Hash(string pass) //хэш-функция для тестов xunit
         {
             hashForTests = PassHash.PWhash(pass);
             return hashForTests.ToString();

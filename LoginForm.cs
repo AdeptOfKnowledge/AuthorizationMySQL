@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Authorization
 {
-    public partial class LoginForm : Form
+    public partial class LoginForm : Form   //форма авторизации
     {
         Point NP;
 
@@ -21,23 +20,23 @@ namespace Authorization
             InitializeComponent();
         }
 
-        private void LoginForm_Load(object sender, EventArgs e)
+        private void LoginForm_Load(object sender, EventArgs e) //действия при открытие формы
         {
             DataBase db = new DataBase();
             db.CheckConnection();
         }
 
-        private void Exit_Click(object sender, EventArgs e)
+        private void Exit_Click(object sender, EventArgs e)     //действие при нажатии на крестик(закрытие формы)
         {
             Application.Exit();
         }
 
-        private void AuthorizationText_MouseDown(object sender, MouseEventArgs e)
+        private void AuthorizationText_MouseDown(object sender, MouseEventArgs e)   //захват координат
         {
             NP = new Point(e.X, e.Y);
         }
 
-        private void AuthorizationText_MouseMove(object sender, MouseEventArgs e)
+        private void AuthorizationText_MouseMove(object sender, MouseEventArgs e)   //перемещение окна формы
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -46,7 +45,7 @@ namespace Authorization
             }
         }
 
-        private void SignIn_Click(object sender, EventArgs e)
+        private void SignIn_Click(object sender, EventArgs e)   //действие при нажатии на кнопку Sign in
         {
             DataBase db = new DataBase();
             DataTable table = new DataTable();
@@ -70,14 +69,14 @@ namespace Authorization
             else MessageBox.Show("Имя пользователя или пароль не совпадают");
         }
 
-        private void RegistrationButton_Click(object sender, EventArgs e)
+        private void RegistrationButton_Click(object sender, EventArgs e)  //действие при нажатие на кнопку Registration
         {
             RegForm f = new RegForm();
             f.Show();
             this.Hide();
         }
 
-        private void PassShow_MouseClick(object sender, MouseEventArgs e)
+        private void PassShow_MouseClick(object sender, MouseEventArgs e)   //действие при нажатие на показать пароль
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -85,7 +84,7 @@ namespace Authorization
             }
         }
 
-        private void PassHide_Click(object sender, EventArgs e)
+        private void PassHide_Click(object sender, EventArgs e)             //действие при нажатие на кнопку скрыть пароль
         {
             if (Password.UseSystemPasswordChar == false) { Password.UseSystemPasswordChar = true; PassShow.Visible = true; }
         }
@@ -164,7 +163,7 @@ namespace Authorization
             }
         }
 
-        private void Tests_button_Click(object sender, EventArgs e)
+        private void Tests_button_Click(object sender, EventArgs e)     //действие при нажатие на Tests
         {
             TestingForm tf = new TestingForm();
             tf.Show();
