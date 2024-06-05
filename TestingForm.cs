@@ -674,7 +674,7 @@ namespace Authorization
             GB_TextSpelling.Visible = true; GB_HashTest.Visible = true; TB_InsertPass.Clear(); TB_HashOutput.Clear();
         }
 
-        private void ConvertToHash_Click(object sender, EventArgs e)
+        private void ConvertToHash_Click(object sender, EventArgs e)            //кнопка преобразовать текст в хэш
         {
             TB_InsertPass.Text = TB_InsertPass.Text.TrimEnd(new Char[] { ' ' });  // удаление пробела, если стоит после текста
             if (TB_InsertPass.Text != "")
