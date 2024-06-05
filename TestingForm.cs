@@ -1,5 +1,4 @@
-﻿using MySqlX.XDevAPI.Relational;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,8 +13,8 @@ using System.Windows.Forms;
 
 namespace Authorization
 {
-    public partial class TestingForm : Form
-    {
+    public partial class TestingForm : Form     //форма графического отображения тестов и 
+    {                                           //ручного тестирования по принципу обратной связи
         Point NP; Timer tm;
         int lastID, lastAdmID, userID, enterID, test;
         string login, version;        
@@ -181,7 +180,7 @@ namespace Authorization
 
         private void testUserCreation()                 // создание тестового пользователя
         {
-            PB_UserCr.Step = 1; PB_UserCr.Value = 0;
+            PB_UserCr.Step = 1; PB_UserCr.Value = 0; test = 0;
             for (int i = 1; i < 25; i++) PB_UserCr.Value = i;   // запуск заполнения столбца с отображением прогресса прохождения теста создания пользователя
                         
             login = "TestAccount";
@@ -228,7 +227,7 @@ namespace Authorization
 
         private void editUser()     // тест изменения созданного тестового пользователя
         {
-            PBEditUser.Step = 1; PBEditUser.Value = 0;
+            PBEditUser.Step = 1; PBEditUser.Value = 0; test = 0;
             for (int i = 1; i < 25; i++) PBEditUser.Value = i;  // запуск отображения прогресса
                         
             string newLogin;
@@ -290,7 +289,7 @@ namespace Authorization
 
         private void Cascade()      // тест каскадных изменений при изменении имени пользователя
         {
-            PBCascade.Step = 1; PBCascade.Value = 0;
+            PBCascade.Step = 1; PBCascade.Value = 0; test = 0;
             for (int i = 1; i < 25; i++) PBCascade.Value = i;
                         
             string cascadeLogin;
@@ -367,10 +366,9 @@ namespace Authorization
 
         private void removeUser()       // тест удаления пользователя
         {
+            PBDelUser.Step = 1; PBDelUser.Value = 0; test = 0;
             for (int i = 1; i < 25; i++) PBDelUser.Value = i;
-
-            PBDelUser.Step = 1; PBDelUser.Value = 0;
-
+            
             try
             {
                 for (int i = 25; i < 50; i++) PBDelUser.Value = i;

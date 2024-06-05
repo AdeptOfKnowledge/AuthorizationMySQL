@@ -1,7 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using Mysqlx.Crud;
-using MySqlX.XDevAPI.Relational;
-using stdole;
+﻿using stdole;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +13,7 @@ using System.Xml.Linq;
 
 namespace Authorization
 {
-    public partial class AdminForm : Form
+    public partial class AdminForm : Form       //форма админской панели
     {
         Point NP; 
         bool but = false, sbut = false, rename = false;
@@ -29,7 +26,7 @@ namespace Authorization
             InitializeComponent();
         }
 
-        private void AdminForm_Load(object sender, EventArgs e)
+        private void AdminForm_Load(object sender, EventArgs e)     //запуск алгоритмов при загрузке формы
         {
             if (!rename)
             adminName.Text = adminLogin;
@@ -47,7 +44,7 @@ namespace Authorization
             Permissions();
         }
 
-        private void Permissions()
+        private void Permissions()                          //определение прав админа
         {
             if (!admPanel)
             {
@@ -71,7 +68,7 @@ namespace Authorization
             }
         }
 
-        private void Exit_Click(object sender, EventArgs e)
+        private void Exit_Click(object sender, EventArgs e)     //действие при нажатии на крестик(закрытие формы)
         {
             PortalForm portal = new PortalForm();
             portal.userLogin = adminName.Text;
@@ -79,21 +76,21 @@ namespace Authorization
             this.Close();
         }
 
-        private void AuthorizationText_MouseDown(object sender, MouseEventArgs e)
+        private void AuthorizationText_MouseDown(object sender, MouseEventArgs e)   //действие при нажатии мыши в области перемещения окна
         {
-            NP = new Point(e.X, e.Y);
+            NP = new Point(e.X, e.Y);                                               //захват координат мыши
         }
 
-        private void AuthorizationText_MouseMove(object sender, MouseEventArgs e)
+        private void AuthorizationText_MouseMove(object sender, MouseEventArgs e)   //действие при перемещении мыши 
         {
-            if (e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)                                      //если левая кнопка зажата
             {
-                this.Left += e.X - NP.X;
+                this.Left += e.X - NP.X;                                            //перемещение окна
                 this.Top += e.Y - NP.Y;
             }
         }
 
-        private void AdminButton_MouseClick(object sender, MouseEventArgs e)
+        private void AdminButton_MouseClick(object sender, MouseEventArgs e)        //действия при нажати на кнопку admin
         {
             if (loginField.Text != "")
             {
@@ -108,7 +105,7 @@ namespace Authorization
             else AdminButton.CheckState = CheckState.Unchecked;
         }
 
-        private void AdminBehindBox_MouseClick(object sender, MouseEventArgs e)
+        private void AdminBehindBox_MouseClick(object sender, MouseEventArgs e)     //действия при нажати на область ПОД кнопкой admin, когда кнопка admin не активна
         {
             if (loginField.Text != "")
             {
@@ -122,7 +119,7 @@ namespace Authorization
             }
         }
 
-        private void superAdminButton_MouseClick(object sender, MouseEventArgs e)
+        private void superAdminButton_MouseClick(object sender, MouseEventArgs e)   //действия при нажати на кнопку superadmin
         {
             if (loginField.Text != "")
             {
@@ -137,8 +134,8 @@ namespace Authorization
             else superAdminButton.CheckState = CheckState.Unchecked;
         }
 
-        private void superAdminBehindBox_MouseClick(object sender, MouseEventArgs e)
-        {
+        private void superAdminBehindBox_MouseClick(object sender, MouseEventArgs e) //действия при нажати на область ПОД кнопкой superadmin, 
+        {                                                                            //когда кнопка superadmin не активна
             if (loginField.Text != "")
             {
                 if (sbut == true && e.Button == MouseButtons.Left)
@@ -151,14 +148,14 @@ namespace Authorization
             }
         }
 
-        private void Logout_Click(object sender, EventArgs e)
+        private void Logout_Click(object sender, EventArgs e)                   //выход из текущей формы
         {
             LoginForm f = new LoginForm();
             f.Show();
             this.Close();
         }
 
-        private void Users_SelectedIndexChanged(object sender, EventArgs e)
+        private void Users_SelectedIndexChanged(object sender, EventArgs e)     //действия при выборе пользователя в списке пользователей ListBox
         {            
             if (Users.SelectedItem != null) 
             {
@@ -182,17 +179,17 @@ namespace Authorization
                 surnameField.Text = table.Rows[0]["surname"].ToString();
                 statusField.Text = table.Rows[0]["adm"].ToString();
 
-                StatusInfo();
-                Permissions();
+                StatusInfo();       
+                Permissions();      
             }
         }
 
-        private void Search_Button_Click(object sender, EventArgs e)
+        private void Search_Button_Click(object sender, EventArgs e)       //запуск поиска пользователей по введенным символам при нажатии на стрелку
         {
             Searching();
         }
 
-        private void UserSearching_KeyDown(object sender, KeyEventArgs e)
+        private void UserSearching_KeyDown(object sender, KeyEventArgs e)  //запуск поиска пользователей по введенным символам при нажатии на Enter
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -200,7 +197,7 @@ namespace Authorization
             }
         }
 
-        private void Searching()
+        private void Searching()        //поиск пользователей по введенным символам
         {
             Users.Items.Clear();
             AdminForm_Load(this, EventArgs.Empty);            
@@ -223,7 +220,7 @@ namespace Authorization
             if (loginField.Text != "") Users.SelectedItem = loginField.Text;
         }
 
-        private void CheckUserID()
+        private void CheckUserID()      //проверка ID пользователя
         {
             if (loginField.Text != "")
             {
@@ -239,7 +236,7 @@ namespace Authorization
             }
         }
 
-        private void StatusCheck()
+        private void StatusCheck()      //проверка статуса пользователя(user/admin/superadmin)
         {
             DataBase db = new DataBase();
             DataTable table = new DataTable();
@@ -256,7 +253,7 @@ namespace Authorization
             StatusInfo();
         }
 
-        private void StatusInfo()
+        private void StatusInfo()       //отображение информации о статусе пользователя
         {
             if (statusField.Text == "")
             {
@@ -289,7 +286,7 @@ namespace Authorization
             }
         }
 
-        private void AdminButton_GiveAdmin()
+        private void AdminButton_GiveAdmin()        //кнопка admin - назначения прав админа пользователю
         {
             if (loginField.Text != "" || loginField.Text == "user")
             {
@@ -311,7 +308,7 @@ namespace Authorization
             }
         }
 
-        private int CheckLastID()
+        private int CheckLastID()                   //проверка последнего ID в таблице users
         {
             DataBase db = new DataBase();
             DataTable table = new DataTable();
@@ -325,7 +322,7 @@ namespace Authorization
             return lastID;
         }
 
-        private void AdminButton_DropAdmin()
+        private void AdminButton_DropAdmin()        //кнопка ПОД кнопкой admin - лишение прав админа
         {
             if (superAdminButton.CheckState != CheckState.Indeterminate)
             {
@@ -344,7 +341,7 @@ namespace Authorization
             }
         }
 
-        private void RenameUsrButton_Click(object sender, EventArgs e)
+        private void RenameUsrButton_Click(object sender, EventArgs e)  //кнопка переименования пользователя
         {
             if (loginField.Text != "")
             {
@@ -372,7 +369,7 @@ namespace Authorization
             }
         }
 
-        public void RenameUser(string oldLogin, string newLogin)
+        public void RenameUser(string oldLogin, string newLogin)        //метод переименования пользователя
         {
             DataBase db = new DataBase();
             SqlCommand command = new SqlCommand("UPDATE users SET login = @NuL WHERE login = @UL", db.GetConnection());
@@ -385,7 +382,7 @@ namespace Authorization
             db.CloseConnection();  
         }
 
-        private void superAdminButton_GiveSuperAdmin()
+        private void superAdminButton_GiveSuperAdmin()                  //кнопка назначения прав суперадмина пользователю
         {
             if (loginField.Text != "" && statusField.Text != "superadmin")
             {
@@ -415,7 +412,7 @@ namespace Authorization
             }
         }
 
-        private void superAdminButton_DropAdmin()
+        private void superAdminButton_DropAdmin()                   //кнопка ПОД кнопкой superadmin - лишение прав суперадмина
         {
             if (statusField.Text == "superadmin")
             {
@@ -438,7 +435,7 @@ namespace Authorization
             else return;
         }
 
-        private void DelUsrButton_Click(object sender, EventArgs e)
+        private void DelUsrButton_Click(object sender, EventArgs e)     //кнопка удаления пользователя
         {
             if (loginField.Text != "")
             {
@@ -453,7 +450,7 @@ namespace Authorization
             }            
         }
 
-        public void DeleteUser(string userLogin)
+        public void DeleteUser(string userLogin)        //метод удаления пользователя
         {
             DataBase db = new DataBase();
             SqlCommand command = new SqlCommand("DELETE FROM users WHERE login = @UL", db.GetConnection());

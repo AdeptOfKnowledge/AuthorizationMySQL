@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Authorization
 {
-    public partial class RenameLogin : Form
+    public partial class RenameLogin : Form     //форма переименования пользователя
     {
         public string UN; 
         Point NP;
@@ -21,25 +21,25 @@ namespace Authorization
             InitializeComponent();
         }
 
-        private void RenameLogin_Load(object sender, EventArgs e)
+        private void RenameLogin_Load(object sender, EventArgs e)       //действия при загрузке формы
         {
             loginField.Text = UN;
             NewLogin.ForeColor = Color.Gray; NewLogin.Text = "Введите новый логин";            
         }
 
-        private void NewLogin_Enter(object sender, EventArgs e)
+        private void NewLogin_Enter(object sender, EventArgs e)         //действия при нажатии на Enter
         {
             if (NewLogin.Text == "Введите новый логин") { NewLogin.Text = ""; NewLogin.ForeColor = Color.Black; }
         }
 
-        private void NewLogin_Leave(object sender, EventArgs e)
+        private void NewLogin_Leave(object sender, EventArgs e)         //действия при потере фокуса окна ввода нового логина
         {
             if (NewLogin.Text == "") { NewLogin.Text = "Введите новый логин"; NewLogin.ForeColor = Color.Gray; }
         }
 
-        private void NewLogin_KeyPress(object sender, KeyPressEventArgs e)
+        private void NewLogin_KeyPress(object sender, KeyPressEventArgs e)      //ограничения на ввод определеных символов
         {
-            if (char.IsSeparator(e.KeyChar) && NewLogin.Text.Length == 0)         // блок пробела, если введен первым символом
+            if (char.IsSeparator(e.KeyChar) && NewLogin.Text.Length == 0)       //блок пробела, если введен первым символом
             {
                 e.Handled = true;
                 return;
@@ -50,7 +50,7 @@ namespace Authorization
                 e.Handled = true;                                                                                                     // управляющих символов, пробелов
             }
 
-            NewLogin.Text = NewLogin.Text.TrimStart(new Char[] { ' ' });        // удаление пробела, если стоит перед словом
+            NewLogin.Text = NewLogin.Text.TrimStart(new Char[] { ' ' });        //удаление пробела, если стоит перед словом
             NewLogin.Text.Replace("  ", " ");
         }
 
@@ -100,24 +100,24 @@ namespace Authorization
                 }
             }
 
-            if (NewLogin.Text.Contains(" _"))                                 // удаление пробела с подчеркиванием
+            if (NewLogin.Text.Contains(" _"))                               // удаление пробела с подчеркиванием
             {
                 int a = 0;
                 for (int i = 0; i < NewLogin.TextLength; i++)
                 {
                     if (a == 0) a = NewLogin.Text.IndexOf(" _", 0) + 1;
                     NewLogin.Text = NewLogin.Text.Replace(" _", "_");       // заменяет на подчеркивание
-                    NewLogin.SelectionStart = a;                              // установка курсора в конце замененных символов
+                    NewLogin.SelectionStart = a;                            // установка курсора в конце замененных символов
                 }
             }
         }
 
-        private void AuthorizationText_MouseDown(object sender, MouseEventArgs e)
+        private void AuthorizationText_MouseDown(object sender, MouseEventArgs e)   //захват координат
         {
             NP = new Point(e.X, e.Y);
         }
 
-        private void AuthorizationText_MouseMove(object sender, MouseEventArgs e)
+        private void AuthorizationText_MouseMove(object sender, MouseEventArgs e)   //перемещение окна
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -126,7 +126,7 @@ namespace Authorization
             }
         }
 
-        public Boolean isUserExists()
+        public Boolean isUserExists()                   //проверка на наличие аналогичного логина в БД
         {
             DataBase db = new DataBase();
             DataTable table = new DataTable();
@@ -149,7 +149,7 @@ namespace Authorization
             else return false;
         }
 
-        private void OK_button_Click(object sender, EventArgs e)
+        private void OK_button_Click(object sender, EventArgs e)              //действия при нажатие на кнопку ОК
         {
             NewLogin.Text = NewLogin.Text.TrimEnd(new Char[] { ' ' });        // удаление пробела, если стоит после логина
             if (isUserExists()) return;                                       // проверка уже существующих логинов
@@ -165,7 +165,7 @@ namespace Authorization
             }
         }
 
-        private void Cancel_button_Click(object sender, EventArgs e)
+        private void Cancel_button_Click(object sender, EventArgs e)           //действия при нажатие на кнопку Cancel
         {
             DialogResult = DialogResult.Cancel;
             this.Close();

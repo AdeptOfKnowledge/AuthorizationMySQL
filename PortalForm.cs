@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Authorization
 {
-    public partial class PortalForm : Form
+    public partial class PortalForm : Form  //форма портала - демонстрационная(просто визуальный ряд с переходом в админку)
     {
         public string userLogin;
         bool adminPanel;
@@ -23,7 +22,7 @@ namespace Authorization
             InitializeComponent();            
         }
 
-        private void PortalForm_Load(object sender, EventArgs e)
+        private void PortalForm_Load(object sender, EventArgs e)        //действия при загрузке формы
         {
             NickName.Text = userLogin;
 
@@ -45,19 +44,19 @@ namespace Authorization
             if (p == "1") { AdminPanel.Visible = true; adminPanel = true; }
         }
 
-        private void Exit_Click(object sender, EventArgs e)
+        private void Exit_Click(object sender, EventArgs e)     //действия при нажатие на крестик(закрытие формы)
         {
             Application.Exit();
         }
 
-        private void Logout_Click(object sender, EventArgs e)
+        private void Logout_Click(object sender, EventArgs e)    //действие при нажатие на кнопку Logout'a
         {
             LoginForm f = new LoginForm();
             f.Show();
             this.Close();
         }
 
-        private void AdminPanel_Click(object sender, EventArgs e)
+        private void AdminPanel_Click(object sender, EventArgs e)   //действие при нажатие на кнопку перехода в админскую консоль
         {            
             AdminForm af = new AdminForm();
             af.admPanel = adminPanel;
@@ -66,12 +65,12 @@ namespace Authorization
             this.Close();
         }
 
-        private void AuthorizationText_MouseDown(object sender, MouseEventArgs e)
+        private void AuthorizationText_MouseDown(object sender, MouseEventArgs e)   //захват координат
         {
             NP = new Point(e.X, e.Y);
         }
 
-        private void AuthorizationText_MouseMove(object sender, MouseEventArgs e)
+        private void AuthorizationText_MouseMove(object sender, MouseEventArgs e)   //перемещение окна формы
         {
             if (e.Button == MouseButtons.Left)
             {
