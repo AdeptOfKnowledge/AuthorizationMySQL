@@ -25,7 +25,7 @@ namespace Authorization
             InitializeComponent();            
         }
 
-        private void TestingForm_Load(object sender, EventArgs e)
+        private void TestingForm_Load(object sender, EventArgs e)       //параметры, загружаемые при вызове формы
         {
             OK_BD_Test.Visible = false; Failed_BD_test.Visible = false; TickBD.Visible = false; BDconnection.Value = 0;
             OkUserTest.Visible = false; FailedUserTest.Visible = false; TickUserCreation.Visible = false; PB_UserCr.Value = 0;
@@ -37,7 +37,7 @@ namespace Authorization
             versionField.Clear(); UserField.Clear(); ChangeLoginField.Clear(); CascadeUserField.Clear(); CascadeAdminField.Clear(); DeleteField.Clear();
         }
 
-        private void Exit_Click(object sender, EventArgs e)
+        private void Exit_Click(object sender, EventArgs e)             //действие при нажатие на крестик(закрытие формы)
         {
             BDconnection.Value = 0;
             LoginForm f = new LoginForm();
@@ -45,20 +45,20 @@ namespace Authorization
             this.Close();
         }
 
-        private void TestingText_MouseDown(object sender, MouseEventArgs e)
+        private void TestingText_MouseDown(object sender, MouseEventArgs e)     //действие при нажатии мыши в области перемещения окна
         {
-            NP = new Point(e.X, e.Y);
+            NP = new Point(e.X, e.Y);                                           //захват координат мыши
         }
 
-        private void TestingText_MouseMove(object sender, MouseEventArgs e)
+        private void TestingText_MouseMove(object sender, MouseEventArgs e)     //действие при перемещении мыши 
         {
-            if (e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)                                  //если левая кнопка зажата
             {
-                this.Left += e.X - NP.X;
+                this.Left += e.X - NP.X;                                        //перемещение окна
                 this.Top += e.Y - NP.Y;
             }
         }
-        private void DBversion()
+        private void DBversion()                               //захват строки с инфой о БД и обрезка с номером версии
         {            
             DataBase db = new DataBase();
             SqlCommand command = new SqlCommand("SELECT @@version", db.GetConnection());
@@ -67,25 +67,25 @@ namespace Authorization
             SqlDataReader read = command.ExecuteReader(); //Считываем и извлекаем данные
             while (read.Read()) //Читаем пока есть данные
             {
-                version = (read.GetString(0).ToString()); //Добавляем данные в лист аитем
+                version = (read.GetString(0).ToString()); //Добавляем данные в лист item
             }
 
-            if (version.Contains(") - "))                                 // удаление двойных пробелов
+            if (version.Contains(") - "))                                   //поиск заданных символов в строке
             {
                 int a = 0;
                 for (int i = 0; i < version.Length; i++)
-                {
-                    if (a == 0) a = version.IndexOf(") - ", 0) + 4;                    
+                {   
+                    if (a == 0) a = version.IndexOf(") - ", 0) + 4;         //перемещаем расположение курсора +4
                 }
-                version = version.Remove(0, a);
+                version = version.Remove(0, a);                             //обрезаем все, что до него
 
-                if (version.Contains("(X64)"))
+                if (version.Contains("(X64)"))                              //поиск заданных символов в строке
                 {
                     a = 0;
                     for (int i = 0; i < version.Length; i++)
                     {
-                        if (a == 0) a = version.IndexOf("(X64)", 0) + 5;
-                        version = version.Remove(a, version.Length - a);
+                        if (a == 0) a = version.IndexOf("(X64)", 0) + 5;    //перемещаем расположение курсора +5
+                        version = version.Remove(a, version.Length - a);    //удаляем все, что после
                     }
                 }
 
@@ -101,7 +101,7 @@ namespace Authorization
             }
         }
 
-        private void CheckUserID()
+        private void CheckUserID()                          // проверка ID пользователя
         {
                 DataBase db = new DataBase();
                 DataTable table = new DataTable();
@@ -114,7 +114,7 @@ namespace Authorization
                 userID = Convert.ToInt32(table.Rows[0]["id"].ToString());
         }
 
-        private int CheckLastUserID()
+        private int CheckLastUserID()                       // определение последнего ID в таблице users
         {
             DataBase db = new DataBase();
             DataTable table = new DataTable();
@@ -128,7 +128,7 @@ namespace Authorization
             return lastID;
         }
 
-        private int CheckLastAdminID()
+        private int CheckLastAdminID()                      // определение последнего ID в таблице admins
         {
             DataBase db = new DataBase();
             DataTable table = new DataTable();
@@ -142,7 +142,7 @@ namespace Authorization
             return lastAdmID;
         }
 
-        private void testBDconnection()
+        private void testBDconnection()                     // проверка наличия соединения с БД
         {
             if (!Failed_BD_test.Visible && !Failed_BD_test.Visible)
             {
@@ -168,25 +168,25 @@ namespace Authorization
                     if (BDconnection.Value == 100)
                     {
                         tm = new Timer();
+                        test = 1;
                         tm.Interval = 1500;
                         tm.Start();
                         tm.Tick += MainTimer_Tick;
                         DBversion();
                     }
-                    else { Failed_BD_test.Visible = true; test = 0; StartTestButton.Enabled = true; ChangeTypeButton.Enabled = true; }
+                    else { test = 0; Failed_BD_test.Visible = true; StartTestButton.Enabled = true; ChangeTypeButton.Enabled = true; }
                 }                
             }
         }
 
-        private void testUserCreation()
+        private void testUserCreation()                 // создание тестового пользователя
         {
-            PB_UserCr.Step = 1; PB_UserCr.Value = 0;            
-
-            for (int i = 1; i < 25; i++) PB_UserCr.Value = i;
+            PB_UserCr.Step = 1; PB_UserCr.Value = 0;
+            for (int i = 1; i < 25; i++) PB_UserCr.Value = i;   // запуск заполнения столбца с отображением прогресса прохождения теста создания пользователя
                         
             login = "TestAccount";
 
-            Random rand = new Random();
+            Random rand = new Random();                 // подключаем 6 рандомных цифр, для избежания создания одинаковых имен
             for (int i = 0; i < 6; i++)
             {
                 int value = rand.Next(0, 9);
@@ -198,7 +198,7 @@ namespace Authorization
                 CheckLastUserID();
                 
                 DataBase db = new DataBase();
-                for (int i = 25; i < 50; i++) PB_UserCr.Value = i;
+                for (int i = 25; i < 50; i++) PB_UserCr.Value = i;  // продолжение заполнения столбца по мере прохождения теста
 
                 SqlCommand command = new SqlCommand("INSERT INTO users (id, name, surname, login, pass) VALUES (@id, @name, @surname, @login, @pass)", db.GetConnection());
                 command.Parameters.Add("@id", SqlDbType.NVarChar).Value = lastID + 1;
@@ -215,29 +215,27 @@ namespace Authorization
                 db.CloseConnection();
                 for (int i = 75; i < 101; i++) PB_UserCr.Value = i;                
             }
-            catch
+            catch                   // если тест не пройден, то отрабатывает этот модуль
             {
                 PB_UserCr.Value = 0; tm?.Stop(); return;
             }
-            finally
+            finally                 // после окончания теста выполняет этот модуль
             {
-                if (PB_UserCr.Value != 100)
-                { 
-                    FailedUserTest.Visible = true; test = 0; StartTestButton.Enabled = true; ChangeTypeButton.Enabled = true;
-                }
+                if (PB_UserCr.Value == 100) { test = 3; }
+                else { test = 0; FailedUserTest.Visible = true; StartTestButton.Enabled = true; ChangeTypeButton.Enabled = true; }                
             }
         }
 
-        private void editUser()
+        private void editUser()     // тест изменения созданного тестового пользователя
         {
-            for (int i = 1; i < 25; i++) PBEditUser.Value = i;
-
             PBEditUser.Step = 1; PBEditUser.Value = 0;
+            for (int i = 1; i < 25; i++) PBEditUser.Value = i;  // запуск отображения прогресса
+                        
             string newLogin;
 
             newLogin = "ChangedLogin";
 
-            Random rand = new Random();
+            Random rand = new Random();         // добавляем 3 рандом цифры к переименованному пользователю
             for (int i = 0; i < 3; i++)
             {
                 int value = rand.Next(0, 9);
@@ -258,7 +256,7 @@ namespace Authorization
 
                 db.OpenConnection();
                 command.ExecuteReader();
-                db.CloseConnection(); //Закрываем соединение 
+                db.CloseConnection();          
 
                 for (int i = 50; i < 75; i++) PBEditUser.Value = i;
 
@@ -273,30 +271,28 @@ namespace Authorization
                 adapter.SelectCommand = command;
                 adapter.Fill(table);
 
-                if (table.Rows.Count > 0)
+                if (table.Rows.Count > 0)       // если успешно, то:
                 {
                     for (int i = 75; i < 101; i++) PBEditUser.Value = i;
                 }
                 else return;
             }
-            catch
+            catch                   // если не успешно, то:
             {
                 PBEditUser.Value = 0; tm?.Stop(); return;
             }
-            finally
+            finally                 // после завершения:
             {
-                if (PBEditUser.Value != 100)
-                {
-                    FailedEditTest.Visible = true; test = 0; StartTestButton.Enabled = true; ChangeTypeButton.Enabled = true;
-                }
+                if (PB_UserCr.Value == 100) { test = 5; }
+                else { test = 0; FailedEditTest.Visible = true; StartTestButton.Enabled = true; ChangeTypeButton.Enabled = true; }
             }
         }
 
-        private void Cascade()
+        private void Cascade()      // тест каскадных изменений при изменении имени пользователя
         {
-            for (int i = 1; i < 25; i++) PBCascade.Value = i;
-
             PBCascade.Step = 1; PBCascade.Value = 0;
+            for (int i = 1; i < 25; i++) PBCascade.Value = i;
+                        
             string cascadeLogin;
 
             cascadeLogin = "TestedCascade";
@@ -314,7 +310,7 @@ namespace Authorization
 
                 CheckUserID(); CheckLastAdminID();
                 
-                DataBase db = new DataBase();
+                DataBase db = new DataBase();               // добавление пользователя в таблицу admins
                 SqlCommand command = new SqlCommand("INSERT INTO admins (id, user_id, user_login, permissions)" +
                                                         "VALUES (@id, @uID, @UL, 0) ", db.GetConnection());
 
@@ -329,7 +325,7 @@ namespace Authorization
                 CascadeUserField.Text = cascadeLogin;
 
                 for (int i = 50; i < 75; i++) PBCascade.Value = i;
-
+                                                            // изменение данных пользователя в таблице users
                 command = new SqlCommand("UPDATE users SET login = @NuL WHERE login = @UL", db.GetConnection());
 
                 command.Parameters.Add("@UL", SqlDbType.NVarChar).Value = login;
@@ -343,35 +339,33 @@ namespace Authorization
 
                 DataTable table = new DataTable();
                 SqlDataAdapter adapter = new SqlDataAdapter();
-
+                                                            // проверка каскадных изменений в таблице admins
                 command = new SqlCommand("SELECT u.login as login from users u, admins a WHERE u.login = a.user_login and a.user_login = @UL", db.GetConnection());
                 command.Parameters.Add("@UL", SqlDbType.NVarChar).Value = login;
 
                 adapter.SelectCommand = command;
                 adapter.Fill(table);
 
-                if (login == table.Rows[0]["login"].ToString())
+                if (login == table.Rows[0]["login"].ToString())     // если успешно, то:
                 {                    
                     for (int i = 75; i < 101; i++) PBCascade.Value = i;
                 }
                 else return;
 
             }
-            catch
+            catch           // если неуспешно, то:
             {
                 PBCascade.Value = 0; tm?.Stop(); return;
             }
             finally
             {
-                if (PBCascade.Value != 100)
-                {
-                    FailedCascadeTest.Visible = true; test = 0; StartTestButton.Enabled = true; ChangeTypeButton.Enabled = true;
-                }
+                if (PB_UserCr.Value == 100) { test = 7; }
+                else { test = 0; FailedCascadeTest.Visible = true; StartTestButton.Enabled = true; ChangeTypeButton.Enabled = true; }
             }
         }
 
 
-        private void removeUser()
+        private void removeUser()       // тест удаления пользователя
         {
             for (int i = 1; i < 25; i++) PBDelUser.Value = i;
 
@@ -412,53 +406,50 @@ namespace Authorization
             }
             finally
             {
-                if (PBDelUser.Value != 100)
-                {
-                    FailedDelUserTest.Visible = true; test = 0; StartTestButton.Enabled = true; ChangeTypeButton.Enabled = true;
-                }
+                if (PB_UserCr.Value == 100) { test = 9; }
+                else { test = 0; FailedDelUserTest.Visible = true; StartTestButton.Enabled = true; ChangeTypeButton.Enabled = true; }
             }
         }
 
-        private void MainTimer_Tick(object sender, EventArgs e)
-        {
-            test++;
-            if (test == 1)
-            {
-                BD_label.BorderStyle = BorderStyle.Fixed3D; versionField.Text = version;
-                OK_BD_Test.Visible = true; TickBD.Visible = true;
-            }
-
-            if (test == 2) testUserCreation();
-
-            if (test == 3)
-            {
-                UserCrLabel.BorderStyle = BorderStyle.Fixed3D; UserField.Text = login;
-                OkUserTest.Visible = true; TickUserCreation.Visible = true;                
-            }
-
-            if (test == 4) editUser();
-
-            if (test == 5)
-            {
-                EditLabel.BorderStyle = BorderStyle.Fixed3D; ChangeLoginField.Text = login;
-                OkEditTest.Visible = true; TickEditUser.Visible = true;                
-            }
-
-            if (test == 6) Cascade();
-
-            if (test == 7)
-            {
-                CascadeLabel.BorderStyle = BorderStyle.Fixed3D; CascadeAdminField.Text = login;
-                OkCascadeTest.Visible = true; TickCascade.Visible = true;                
-            }
-
-            if (test == 8) removeUser();
-
+        private void MainTimer_Tick(object sender, EventArgs e)     // таймер-модуль запуска тестов в нужной последовательностями
+        {                                                           // следующий тест запускается ТОЛЬКО В СЛУЧАЕ УСПЕШНОГО ЗАВЕРШЕНИЯ предыдущего
             if (test == 9)
             {
                 DelUserLabel.BorderStyle = BorderStyle.Fixed3D; DeleteField.Text = "УЗ удалена!";
                 OkDelUserTest.Visible = true; TickDelUser.Visible = true;
-                StartTestButton.Enabled = true; ChangeTypeButton.Enabled = true;
+                StartTestButton.Enabled = true; ChangeTypeButton.Enabled = true; tm?.Stop();
+            }
+
+            if (test == 8) removeUser();
+
+            if (test == 7)
+            {
+                CascadeLabel.BorderStyle = BorderStyle.Fixed3D; CascadeAdminField.Text = login;
+                OkCascadeTest.Visible = true; TickCascade.Visible = true; test++;
+            }
+
+            if (test == 6) Cascade();
+
+            if (test == 5)
+            {
+                EditLabel.BorderStyle = BorderStyle.Fixed3D; ChangeLoginField.Text = login;
+                OkEditTest.Visible = true; TickEditUser.Visible = true; test++;
+            }
+
+            if (test == 4) editUser();
+
+            if (test == 3)
+            {
+                UserCrLabel.BorderStyle = BorderStyle.Fixed3D; UserField.Text = login;
+                OkUserTest.Visible = true; TickUserCreation.Visible = true; test++;
+            }
+
+            if (test == 2) testUserCreation();
+
+            if (test == 1)
+            {
+                BD_label.BorderStyle = BorderStyle.Fixed3D; versionField.Text = version;
+                OK_BD_Test.Visible = true; TickBD.Visible = true; test++;
             }
 
             if (Failed_BD_test.Visible || FailedUserTest.Visible)
@@ -467,7 +458,7 @@ namespace Authorization
             }
         }
 
-        private void StartTest_Click(object sender, EventArgs e)            //запуск СКВОЗНОГО тестирования системы
+        private void StartTest_Click(object sender, EventArgs e)            // запуск СКВОЗНОГО тестирования системы
         {
             if (CrossLabel.ForeColor == Color.IndianRed)
             {
@@ -493,7 +484,7 @@ namespace Authorization
             }
         }
 
-        private void ChangeTypeButton_Click(object sender, EventArgs e)     //смена типа тестирования - сквозное/модульное
+        private void ChangeTypeButton_Click(object sender, EventArgs e)     // смена типа тестирования - сквозное/модульное
         {
             if (CrossLabel.ForeColor == Color.IndianRed)
             {
@@ -509,7 +500,7 @@ namespace Authorization
             }
         }
 
-        private void IDStartButton_Click(object sender, EventArgs e)        //ПЕРВЫЙ МОДУЛЬНЫЙ ТЕСТ - корректность работы модулей ID
+        private void IDStartButton_Click(object sender, EventArgs e)        // ПЕРВЫЙ МОДУЛЬНЫЙ ТЕСТ - корректность работы модулей ID
         {
             GB_IDtest.Visible = true; GB_TextSpelling.Visible = false; GB_HashTest.Visible = false; TB_Spelling.Clear();
             FindInfoButton.Enabled = true; infoID_label.ForeColor = Color.Black; lastUID_label.ForeColor = Color.Black; lastAID_label.ForeColor = Color.Black; FindInfoButton.ForeColor = Color.Black;
@@ -520,7 +511,7 @@ namespace Authorization
             UsersList();
         }
 
-        private void FindInfoButton_Click(object sender, EventArgs e)
+        private void FindInfoButton_Click(object sender, EventArgs e)       // кнопка запуска поиска логина пользователя по введенному ID
         {            
             if (TB_insertID.Text != null && TB_insertID.Text != "" && TB_insertID.Text != "0" && Convert.ToInt32(TB_insertID.Text) <= lastID)
             {
@@ -540,7 +531,7 @@ namespace Authorization
             else { TB_login.ForeColor = Color.Red; TB_login.Text = "Пользователя нет!"; }
         }
 
-        private void TB_insertID_KeyPress(object sender, KeyPressEventArgs e)
+        private void TB_insertID_KeyPress(object sender, KeyPressEventArgs e) // запрет ввода некорректных значений в окно ID
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))  // Запрещаем ввод символов, отличных от цифр (0-9)
             {
@@ -548,21 +539,21 @@ namespace Authorization
             }
         }
 
-        private void UsersList()
+        private void UsersList()                    // окно списка существующих пользователей
         {
             DataBase db = new DataBase();
             SqlCommand command = new SqlCommand("SELECT login from users", db.GetConnection());
 
-            db.OpenConnection();                                //Открываем соединение
-            SqlDataReader read = command.ExecuteReader();       //Считываем и извлекаем данные
-            while (read.Read())                                 //Читаем пока есть данные
+            db.OpenConnection();                                // Открываем соединение
+            SqlDataReader read = command.ExecuteReader();       // Считываем и извлекаем данные
+            while (read.Read())                                 // Читаем пока есть данные
             {
-                Users.Items.Add(read.GetValue(0).ToString());   //Добавляем данные в лист аитем
+                Users.Items.Add(read.GetValue(0).ToString());   // Добавляем данные в лист item
             }
-            db.CloseConnection();                               //Закрываем соединение             
+            db.CloseConnection();                               // Закрываем соединение             
         }
 
-        private void Users_SelectedIndexChanged(object sender, EventArgs e)
+        private void Users_SelectedIndexChanged(object sender, EventArgs e) // действия при выборе пользователя в списке пользователей
         {
             if (Users.SelectedItem != null)
             {
@@ -589,26 +580,26 @@ namespace Authorization
             }
         }
 
-        private void StatusInfo()
+        private void StatusInfo()       // вывод статуса пользователя(user/admin/seperadmin)
         {
             if (statusField.Text == "") { statusField.Text = "user"; statusField.ForeColor = Color.Green; }
             if (statusField.Text == "0") { statusField.Text = "admin"; statusField.ForeColor = Color.Blue; }
             if (statusField.Text == "1") { statusField.Text = "superadmin"; statusField.ForeColor = Color.DarkOrchid; }
         }
 
-        private void SpellingStartButton_Click(object sender, EventArgs e)          //ВТОРОЙ МОДУЛЬНЫЙ ТЕСТ - корректность работы модулей ввода разрешенных символов
+        private void SpellingStartButton_Click(object sender, EventArgs e)          // ВТОРОЙ МОДУЛЬНЫЙ ТЕСТ - корректность работы модулей ввода разрешенных символов
         {
             GB_TextSpelling.Visible = true; GB_HashTest.Visible = false; TB_Spelling.Clear();
         }
 
-        private void ClearButton_Click(object sender, EventArgs e)
+        private void ClearButton_Click(object sender, EventArgs e)      // удаление введенного текста
         {
             TB_Spelling.Clear(); TB_Spelling.Select();
         }
 
-        private void TB_Spelling_KeyPress(object sender, KeyPressEventArgs e)
+        private void TB_Spelling_KeyPress(object sender, KeyPressEventArgs e)       // установка ограничений ввода символов
         {
-            if (char.IsSeparator(e.KeyChar) && TB_Spelling.Text.Length == 0)         // блок пробела, если введен первым символом
+            if (char.IsSeparator(e.KeyChar) && TB_Spelling.Text.Length == 0)        // блок пробела, если введен первым символом
             {
                 e.Handled = true;
                 return;
@@ -680,20 +671,20 @@ namespace Authorization
             }
         }
 
-        private void HashStartButton_Click(object sender, EventArgs e)          //ТРЕТИЙ МОДУЛЬНЫЙ ТЕСТ - корректность работы модуля хэш-функции
+        private void HashStartButton_Click(object sender, EventArgs e)          // ТРЕТИЙ МОДУЛЬНЫЙ ТЕСТ - корректность работы модуля хэш-функции
         {
             GB_TextSpelling.Visible = true; GB_HashTest.Visible = true; TB_InsertPass.Clear(); TB_HashOutput.Clear();
         }
 
         private void ConvertToHash_Click(object sender, EventArgs e)
         {
-            TB_InsertPass.Text = TB_InsertPass.Text.TrimEnd(new Char[] { ' ' });        // удаление пробела, если стоит после текста
+            TB_InsertPass.Text = TB_InsertPass.Text.TrimEnd(new Char[] { ' ' });  // удаление пробела, если стоит после текста
             if (TB_InsertPass.Text != "")
                 TB_HashOutput.Text = PassHash.PWhash(TB_InsertPass.Text);
             else TB_HashOutput.Clear();
         }
 
-        private void TB_InsertPass_KeyPress(object sender, KeyPressEventArgs e)
+        private void TB_InsertPass_KeyPress(object sender, KeyPressEventArgs e)  // блок пробела в окне ввода теста хэш-функции
         {
             if (char.IsSeparator(e.KeyChar))                                  // блок пробела, если введен первым символом
             {
