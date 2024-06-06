@@ -20,13 +20,13 @@ namespace Authorization
             InitializeComponent();
         }
 
-        private void LoginForm_Load(object sender, EventArgs e) //действия при открытие формы
+        private void LoginForm_Load(object sender, EventArgs e)     //действия при открытие формы
         {
             DataBase db = new DataBase();
             db.CheckConnection();
         }
 
-        private void Exit_Click(object sender, EventArgs e)     //действие при нажатии на крестик(закрытие формы)
+        private void Exit_Click(object sender, EventArgs e)         //действие при нажатии на крестик(закрытие формы)
         {
             Application.Exit();
         }
@@ -45,7 +45,7 @@ namespace Authorization
             }
         }
 
-        private void SignIn_Click(object sender, EventArgs e)   //действие при нажатии на кнопку Sign in
+        private void SignIn_Click(object sender, EventArgs e)   //действие при нажатии на кнопку "Sign in"
         {
             DataBase db = new DataBase();
             DataTable table = new DataTable();
@@ -69,7 +69,7 @@ namespace Authorization
             else MessageBox.Show("Имя пользователя или пароль не совпадают");
         }
 
-        private void RegistrationButton_Click(object sender, EventArgs e)  //действие при нажатие на кнопку Registration
+        private void RegistrationButton_Click(object sender, EventArgs e)  //действие при нажатие на кнопку "Registration"
         {
             RegForm f = new RegForm();
             f.Show();
@@ -117,53 +117,53 @@ namespace Authorization
                 }
             }
 
-            Login.Text = Login.Text.TrimStart(new Char[] { ' ' });    // удаление пробела, если стоит перед словом
-            if (Login.Text.Contains("  "))                                 // удаление двойных пробелов
+            Login.Text = Login.Text.TrimStart(new Char[] { ' ' });          // удаление пробела, если стоит перед словом
+            if (Login.Text.Contains("  "))                                  // удаление двойных пробелов
             {
                 int a = 0;
                 for (int i = 0; i < Login.TextLength; i++)
                 {
                     if (a == 0) a = Login.Text.IndexOf("  ", 0) + 1;
-                    Login.Text = Login.Text.Replace("  ", " ");       // заменяет два пробела - одним
-                    Login.SelectionStart = a;                              // установка курсора в конце замененных пробелов
+                    Login.Text = Login.Text.Replace("  ", " ");             // заменяет два пробела - одним
+                    Login.SelectionStart = a;                               // установка курсора в конце замененных пробелов
                 }
             }
 
-            if (Login.Text.Contains("__"))                                 // удаление двойных подчеркиваний
-            {
+            if (Login.Text.Contains("__"))                                  // удаление двойных подчеркиваний
+            { 
                 int a = 0;
                 for (int i = 0; i < Login.TextLength; i++)
                 {
                     if (a == 0) a = Login.Text.IndexOf("__", 0) + 1;
-                    Login.Text = Login.Text.Replace("__", "_");       // заменяет два подчеркивания - одним
-                    Login.SelectionStart = a;                              // установка курсора в конце замененных подчеркиваний
+                    Login.Text = Login.Text.Replace("__", "_");             // заменяет два подчеркивания - одним
+                    Login.SelectionStart = a;                               // установка курсора в конце замененных подчеркиваний
                 }
             }
 
-            if (Login.Text.Contains("_ "))                                 // удаление подчеркивания с пробелом
+            if (Login.Text.Contains("_ "))                                  // удаление подчеркивания с пробелом
             {
                 int a = 0;
                 for (int i = 0; i < Login.TextLength; i++)
                 {
                     if (a == 0) a = Login.Text.IndexOf("_ ", 0) + 1;
-                    Login.Text = Login.Text.Replace("_ ", "_");       // заменяет на подчеркивание
-                    Login.SelectionStart = a;                              // установка курсора в конце замененных символов
+                    Login.Text = Login.Text.Replace("_ ", "_");             // заменяет на подчеркивание
+                    Login.SelectionStart = a;                               // установка курсора в конце замененных символов
                 }
             }
 
-            if (Login.Text.Contains(" _"))                                 // удаление пробела с подчеркиванием
+            if (Login.Text.Contains(" _"))                                  // удаление пробела с подчеркиванием
             {
                 int a = 0;
                 for (int i = 0; i < Login.TextLength; i++)
                 {
                     if (a == 0) a = Login.Text.IndexOf(" _", 0) + 1;
-                    Login.Text = Login.Text.Replace(" _", "_");       // заменяет на подчеркивание
-                    Login.SelectionStart = a;                              // установка курсора в конце замененных символов
+                    Login.Text = Login.Text.Replace(" _", "_");             // заменяет на подчеркивание
+                    Login.SelectionStart = a;                               // установка курсора в конце замененных символов
                 }
             }
         }
 
-        private void Tests_button_Click(object sender, EventArgs e)     //действие при нажатие на Tests
+        private void Tests_button_Click(object sender, EventArgs e)     //действие при нажатие на кнопку "Tests"
         {
             TestingForm tf = new TestingForm();
             tf.Show();

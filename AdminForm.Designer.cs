@@ -31,7 +31,6 @@
             this.UserSearching = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.Search_Button = new System.Windows.Forms.PictureBox();
-            this.adminName = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.RenameUsrButton = new System.Windows.Forms.Button();
             this.superAdminButton = new System.Windows.Forms.CheckBox();
@@ -40,10 +39,6 @@
             this.DelUsrButton = new System.Windows.Forms.Button();
             this.AdminBehindBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.statusField = new System.Windows.Forms.TextBox();
-            this.loginField = new System.Windows.Forms.TextBox();
-            this.surnameField = new System.Windows.Forms.TextBox();
-            this.nameField = new System.Windows.Forms.TextBox();
             this.statusLabel = new System.Windows.Forms.Label();
             this.loginLabel = new System.Windows.Forms.Label();
             this.surnameLabel = new System.Windows.Forms.Label();
@@ -53,6 +48,11 @@
             this.AuthorizationText = new System.Windows.Forms.Label();
             this.Users = new System.Windows.Forms.ListBox();
             this.Logout = new System.Windows.Forms.PictureBox();
+            this.adminName = new System.Windows.Forms.Label();
+            this.nameField = new System.Windows.Forms.Label();
+            this.surnameField = new System.Windows.Forms.Label();
+            this.loginField = new System.Windows.Forms.Label();
+            this.statusField = new System.Windows.Forms.Label();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Search_Button)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -96,19 +96,6 @@
             this.Search_Button.TabIndex = 24;
             this.Search_Button.TabStop = false;
             this.Search_Button.Click += new System.EventHandler(this.Search_Button_Click);
-            // 
-            // adminName
-            // 
-            this.adminName.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.adminName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.adminName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.adminName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.adminName.ForeColor = System.Drawing.Color.Teal;
-            this.adminName.Location = new System.Drawing.Point(542, 118);
-            this.adminName.Name = "adminName";
-            this.adminName.Size = new System.Drawing.Size(178, 22);
-            this.adminName.TabIndex = 21;
-            this.adminName.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // groupBox2
             // 
@@ -248,58 +235,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "User information";
             // 
-            // statusField
-            // 
-            this.statusField.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.statusField.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.statusField.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.statusField.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.statusField.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.statusField.Location = new System.Drawing.Point(71, 199);
-            this.statusField.Name = "statusField";
-            this.statusField.Size = new System.Drawing.Size(131, 22);
-            this.statusField.TabIndex = 22;
-            this.statusField.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // loginField
-            // 
-            this.loginField.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.loginField.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.loginField.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.loginField.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.loginField.ForeColor = System.Drawing.Color.Teal;
-            this.loginField.Location = new System.Drawing.Point(71, 150);
-            this.loginField.Name = "loginField";
-            this.loginField.Size = new System.Drawing.Size(131, 22);
-            this.loginField.TabIndex = 22;
-            this.loginField.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // surnameField
-            // 
-            this.surnameField.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.surnameField.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.surnameField.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.surnameField.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.surnameField.ForeColor = System.Drawing.Color.Black;
-            this.surnameField.Location = new System.Drawing.Point(71, 100);
-            this.surnameField.Name = "surnameField";
-            this.surnameField.Size = new System.Drawing.Size(131, 22);
-            this.surnameField.TabIndex = 22;
-            this.surnameField.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // nameField
-            // 
-            this.nameField.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.nameField.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.nameField.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.nameField.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nameField.ForeColor = System.Drawing.Color.Black;
-            this.nameField.Location = new System.Drawing.Point(71, 52);
-            this.nameField.Name = "nameField";
-            this.nameField.Size = new System.Drawing.Size(131, 22);
-            this.nameField.TabIndex = 22;
-            this.nameField.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // statusLabel
             // 
             this.statusLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -416,16 +351,66 @@
             this.Logout.TabStop = false;
             this.Logout.Click += new System.EventHandler(this.Logout_Click);
             // 
+            // adminName
+            // 
+            this.adminName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.adminName.ForeColor = System.Drawing.Color.Teal;
+            this.adminName.Location = new System.Drawing.Point(542, 118);
+            this.adminName.Name = "adminName";
+            this.adminName.Size = new System.Drawing.Size(178, 22);
+            this.adminName.TabIndex = 23;
+            this.adminName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // nameField
+            // 
+            this.nameField.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nameField.ForeColor = System.Drawing.Color.Black;
+            this.nameField.Location = new System.Drawing.Point(71, 52);
+            this.nameField.Name = "nameField";
+            this.nameField.Size = new System.Drawing.Size(131, 22);
+            this.nameField.TabIndex = 24;
+            this.nameField.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // surnameField
+            // 
+            this.surnameField.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.surnameField.ForeColor = System.Drawing.Color.Black;
+            this.surnameField.Location = new System.Drawing.Point(71, 100);
+            this.surnameField.Name = "surnameField";
+            this.surnameField.Size = new System.Drawing.Size(131, 22);
+            this.surnameField.TabIndex = 25;
+            this.surnameField.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // loginField
+            // 
+            this.loginField.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.loginField.ForeColor = System.Drawing.Color.Teal;
+            this.loginField.Location = new System.Drawing.Point(71, 150);
+            this.loginField.Name = "loginField";
+            this.loginField.Size = new System.Drawing.Size(131, 22);
+            this.loginField.TabIndex = 26;
+            this.loginField.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // statusField
+            // 
+            this.statusField.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.statusField.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.statusField.Location = new System.Drawing.Point(71, 199);
+            this.statusField.Name = "statusField";
+            this.statusField.Size = new System.Drawing.Size(131, 22);
+            this.statusField.TabIndex = 27;
+            this.statusField.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.adminName);
             this.Controls.Add(this.Users);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.Logout);
-            this.Controls.Add(this.adminName);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
@@ -440,11 +425,9 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Logout)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -453,7 +436,6 @@
         private System.Windows.Forms.TextBox UserSearching;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.PictureBox Logout;
-        private System.Windows.Forms.TextBox adminName;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button Exit;
@@ -468,12 +450,13 @@
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Label statusLabel;
         private System.Windows.Forms.Label loginLabel;
-        private System.Windows.Forms.TextBox statusField;
-        private System.Windows.Forms.TextBox loginField;
-        private System.Windows.Forms.TextBox surnameField;
-        private System.Windows.Forms.TextBox nameField;
         private System.Windows.Forms.PictureBox Search_Button;
         private System.Windows.Forms.Button RenameUsrButton;
         private System.Windows.Forms.TextBox superAdminBehindBox;
+        private System.Windows.Forms.Label adminName;
+        private System.Windows.Forms.Label nameField;
+        private System.Windows.Forms.Label surnameField;
+        private System.Windows.Forms.Label loginField;
+        private System.Windows.Forms.Label statusField;
     }
 }

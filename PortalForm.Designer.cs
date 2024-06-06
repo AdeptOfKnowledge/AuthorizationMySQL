@@ -35,7 +35,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.NickName = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -48,6 +47,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.AdminPanel = new System.Windows.Forms.PictureBox();
             this.Logout = new System.Windows.Forms.PictureBox();
+            this.NickName = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -155,19 +155,6 @@
             this.label1.Size = new System.Drawing.Size(105, 31);
             this.label1.TabIndex = 12;
             this.label1.Text = "Settings";
-            // 
-            // NickName
-            // 
-            this.NickName.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.NickName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.NickName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.NickName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NickName.ForeColor = System.Drawing.Color.Teal;
-            this.NickName.Location = new System.Drawing.Point(542, 118);
-            this.NickName.Name = "NickName";
-            this.NickName.Size = new System.Drawing.Size(178, 22);
-            this.NickName.TabIndex = 14;
-            this.NickName.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // groupBox2
             // 
@@ -313,16 +300,26 @@
             this.Logout.TabStop = false;
             this.Logout.Click += new System.EventHandler(this.Logout_Click);
             // 
+            // NickName
+            // 
+            this.NickName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.NickName.ForeColor = System.Drawing.Color.Teal;
+            this.NickName.Location = new System.Drawing.Point(542, 118);
+            this.NickName.Name = "NickName";
+            this.NickName.Size = new System.Drawing.Size(178, 22);
+            this.NickName.TabIndex = 24;
+            this.NickName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // PortalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.NickName);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.AdminPanel);
             this.Controls.Add(this.Logout);
-            this.Controls.Add(this.NickName);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -344,7 +341,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.AdminPanel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Logout)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -357,7 +353,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox NickName;
         private System.Windows.Forms.PictureBox Logout;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label4;
@@ -370,5 +365,6 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.PictureBox AdminPanel;
+        private System.Windows.Forms.Label NickName;
     }
 }

@@ -59,14 +59,14 @@
             this.OkDelUserTest = new System.Windows.Forms.Label();
             this.FailedDelUserTest = new System.Windows.Forms.Label();
             this.GBCrossTests = new System.Windows.Forms.GroupBox();
-            this.DeleteField = new System.Windows.Forms.TextBox();
+            this.DeleteField = new System.Windows.Forms.Label();
+            this.CascadeAdminField = new System.Windows.Forms.Label();
+            this.CascadeUserField = new System.Windows.Forms.Label();
+            this.ChangeLoginField = new System.Windows.Forms.Label();
+            this.UserField = new System.Windows.Forms.Label();
+            this.versionField = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.CascadeAdminField = new System.Windows.Forms.TextBox();
-            this.CascadeUserField = new System.Windows.Forms.TextBox();
-            this.ChangeLoginField = new System.Windows.Forms.TextBox();
-            this.UserField = new System.Windows.Forms.TextBox();
-            this.versionField = new System.Windows.Forms.TextBox();
             this.statusLabel = new System.Windows.Forms.Label();
             this.loginLabel = new System.Windows.Forms.Label();
             this.surnameLabel = new System.Windows.Forms.Label();
@@ -84,37 +84,37 @@
             this.label7 = new System.Windows.Forms.Label();
             this.GBModulTest = new System.Windows.Forms.GroupBox();
             this.GB_HashTest = new System.Windows.Forms.GroupBox();
+            this.TB_HashOutput = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.ConvertToHash = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
-            this.TB_HashOutput = new System.Windows.Forms.TextBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.TB_InsertPass = new System.Windows.Forms.TextBox();
-            this.GB_IDtest = new System.Windows.Forms.GroupBox();
-            this.GB_TextSpelling = new System.Windows.Forms.GroupBox();
-            this.ClearButton = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.TB_Spelling = new System.Windows.Forms.TextBox();
-            this.statusField = new System.Windows.Forms.TextBox();
-            this.StatusUsrLabel = new System.Windows.Forms.Label();
-            this.surnameField = new System.Windows.Forms.TextBox();
-            this.nameField = new System.Windows.Forms.TextBox();
-            this.SurnameUsrLabel = new System.Windows.Forms.Label();
-            this.NameUsrLabel = new System.Windows.Forms.Label();
-            this.IDField = new System.Windows.Forms.TextBox();
-            this.IDUsrLabel = new System.Windows.Forms.Label();
-            this.Users = new System.Windows.Forms.ListBox();
-            this.TB_insertID = new System.Windows.Forms.TextBox();
-            this.TB_login = new System.Windows.Forms.TextBox();
-            this.lastAID_label = new System.Windows.Forms.Label();
-            this.TB_lastUserID = new System.Windows.Forms.TextBox();
-            this.FindInfoButton = new System.Windows.Forms.Button();
-            this.TB_lastAdmID = new System.Windows.Forms.TextBox();
-            this.infoID_label = new System.Windows.Forms.Label();
-            this.lastUID_label = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.HashStartButton = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.GB_IDtest = new System.Windows.Forms.GroupBox();
+            this.GB_TextSpelling = new System.Windows.Forms.GroupBox();
+            this.ClearButton = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.TB_Spelling = new System.Windows.Forms.TextBox();
+            this.TB_login = new System.Windows.Forms.Label();
+            this.statusField = new System.Windows.Forms.Label();
+            this.surnameField = new System.Windows.Forms.Label();
+            this.nameField = new System.Windows.Forms.Label();
+            this.IDField = new System.Windows.Forms.Label();
+            this.TB_lastUserID = new System.Windows.Forms.Label();
+            this.TB_lastAdmID = new System.Windows.Forms.Label();
+            this.StatusUsrLabel = new System.Windows.Forms.Label();
+            this.SurnameUsrLabel = new System.Windows.Forms.Label();
+            this.NameUsrLabel = new System.Windows.Forms.Label();
+            this.IDUsrLabel = new System.Windows.Forms.Label();
+            this.Users = new System.Windows.Forms.ListBox();
+            this.TB_insertID = new System.Windows.Forms.TextBox();
+            this.lastAID_label = new System.Windows.Forms.Label();
+            this.FindInfoButton = new System.Windows.Forms.Button();
+            this.infoID_label = new System.Windows.Forms.Label();
+            this.lastUID_label = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TickBD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TickUserCreation)).BeginInit();
@@ -456,13 +456,13 @@
             // 
             this.GBCrossTests.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.GBCrossTests.Controls.Add(this.DeleteField);
-            this.GBCrossTests.Controls.Add(this.label2);
-            this.GBCrossTests.Controls.Add(this.label1);
             this.GBCrossTests.Controls.Add(this.CascadeAdminField);
             this.GBCrossTests.Controls.Add(this.CascadeUserField);
             this.GBCrossTests.Controls.Add(this.ChangeLoginField);
             this.GBCrossTests.Controls.Add(this.UserField);
             this.GBCrossTests.Controls.Add(this.versionField);
+            this.GBCrossTests.Controls.Add(this.label2);
+            this.GBCrossTests.Controls.Add(this.label1);
             this.GBCrossTests.Controls.Add(this.statusLabel);
             this.GBCrossTests.Controls.Add(this.loginLabel);
             this.GBCrossTests.Controls.Add(this.surnameLabel);
@@ -478,16 +478,63 @@
             // 
             // DeleteField
             // 
-            this.DeleteField.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.DeleteField.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.DeleteField.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DeleteField.Font = new System.Drawing.Font("Times New Roman", 13.5F);
             this.DeleteField.ForeColor = System.Drawing.Color.Red;
             this.DeleteField.Location = new System.Drawing.Point(127, 256);
             this.DeleteField.Name = "DeleteField";
-            this.DeleteField.Size = new System.Drawing.Size(160, 21);
-            this.DeleteField.TabIndex = 25;
-            this.DeleteField.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.DeleteField.Size = new System.Drawing.Size(160, 20);
+            this.DeleteField.TabIndex = 31;
+            this.DeleteField.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // CascadeAdminField
+            // 
+            this.CascadeAdminField.Font = new System.Drawing.Font("Times New Roman", 13F);
+            this.CascadeAdminField.ForeColor = System.Drawing.Color.DarkOrchid;
+            this.CascadeAdminField.Location = new System.Drawing.Point(127, 219);
+            this.CascadeAdminField.Name = "CascadeAdminField";
+            this.CascadeAdminField.Size = new System.Drawing.Size(160, 20);
+            this.CascadeAdminField.TabIndex = 30;
+            this.CascadeAdminField.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // CascadeUserField
+            // 
+            this.CascadeUserField.Font = new System.Drawing.Font("Times New Roman", 13F);
+            this.CascadeUserField.ForeColor = System.Drawing.Color.Teal;
+            this.CascadeUserField.Location = new System.Drawing.Point(127, 190);
+            this.CascadeUserField.Name = "CascadeUserField";
+            this.CascadeUserField.Size = new System.Drawing.Size(160, 20);
+            this.CascadeUserField.TabIndex = 29;
+            this.CascadeUserField.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ChangeLoginField
+            // 
+            this.ChangeLoginField.Font = new System.Drawing.Font("Times New Roman", 12.5F);
+            this.ChangeLoginField.ForeColor = System.Drawing.Color.Blue;
+            this.ChangeLoginField.Location = new System.Drawing.Point(127, 143);
+            this.ChangeLoginField.Name = "ChangeLoginField";
+            this.ChangeLoginField.Size = new System.Drawing.Size(160, 20);
+            this.ChangeLoginField.TabIndex = 28;
+            this.ChangeLoginField.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // UserField
+            // 
+            this.UserField.Font = new System.Drawing.Font("Times New Roman", 13F);
+            this.UserField.ForeColor = System.Drawing.Color.Green;
+            this.UserField.Location = new System.Drawing.Point(127, 88);
+            this.UserField.Name = "UserField";
+            this.UserField.Size = new System.Drawing.Size(160, 20);
+            this.UserField.TabIndex = 27;
+            this.UserField.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // versionField
+            // 
+            this.versionField.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.versionField.ForeColor = System.Drawing.Color.Teal;
+            this.versionField.Location = new System.Drawing.Point(127, 34);
+            this.versionField.Name = "versionField";
+            this.versionField.Size = new System.Drawing.Size(160, 22);
+            this.versionField.TabIndex = 26;
+            this.versionField.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
@@ -510,71 +557,6 @@
             this.label1.TabIndex = 23;
             this.label1.Text = "Связь с admins:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // CascadeAdminField
-            // 
-            this.CascadeAdminField.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.CascadeAdminField.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.CascadeAdminField.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CascadeAdminField.Font = new System.Drawing.Font("Times New Roman", 13F);
-            this.CascadeAdminField.ForeColor = System.Drawing.Color.DarkOrchid;
-            this.CascadeAdminField.Location = new System.Drawing.Point(127, 219);
-            this.CascadeAdminField.Name = "CascadeAdminField";
-            this.CascadeAdminField.Size = new System.Drawing.Size(160, 20);
-            this.CascadeAdminField.TabIndex = 22;
-            this.CascadeAdminField.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // CascadeUserField
-            // 
-            this.CascadeUserField.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.CascadeUserField.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.CascadeUserField.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CascadeUserField.Font = new System.Drawing.Font("Times New Roman", 13F);
-            this.CascadeUserField.ForeColor = System.Drawing.Color.Teal;
-            this.CascadeUserField.Location = new System.Drawing.Point(127, 190);
-            this.CascadeUserField.Name = "CascadeUserField";
-            this.CascadeUserField.Size = new System.Drawing.Size(160, 20);
-            this.CascadeUserField.TabIndex = 22;
-            this.CascadeUserField.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // ChangeLoginField
-            // 
-            this.ChangeLoginField.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ChangeLoginField.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ChangeLoginField.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ChangeLoginField.Font = new System.Drawing.Font("Times New Roman", 12.5F);
-            this.ChangeLoginField.ForeColor = System.Drawing.Color.Blue;
-            this.ChangeLoginField.Location = new System.Drawing.Point(127, 143);
-            this.ChangeLoginField.Name = "ChangeLoginField";
-            this.ChangeLoginField.Size = new System.Drawing.Size(160, 20);
-            this.ChangeLoginField.TabIndex = 22;
-            this.ChangeLoginField.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // UserField
-            // 
-            this.UserField.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.UserField.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.UserField.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.UserField.Font = new System.Drawing.Font("Times New Roman", 13F);
-            this.UserField.ForeColor = System.Drawing.Color.Green;
-            this.UserField.Location = new System.Drawing.Point(127, 88);
-            this.UserField.Name = "UserField";
-            this.UserField.Size = new System.Drawing.Size(160, 20);
-            this.UserField.TabIndex = 22;
-            this.UserField.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // versionField
-            // 
-            this.versionField.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.versionField.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.versionField.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.versionField.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.versionField.ForeColor = System.Drawing.Color.Teal;
-            this.versionField.Location = new System.Drawing.Point(127, 34);
-            this.versionField.Name = "versionField";
-            this.versionField.Size = new System.Drawing.Size(160, 22);
-            this.versionField.TabIndex = 22;
-            this.versionField.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // statusLabel
             // 
@@ -751,7 +733,6 @@
             // GBModulTest
             // 
             this.GBModulTest.Controls.Add(this.GB_HashTest);
-            this.GBModulTest.Controls.Add(this.GB_IDtest);
             this.GBModulTest.Controls.Add(this.label7);
             this.GBModulTest.Controls.Add(this.SpellingStartButton);
             this.GBModulTest.Controls.Add(this.label5);
@@ -764,6 +745,7 @@
             this.GBModulTest.Controls.Add(this.label8);
             this.GBModulTest.Controls.Add(this.label4);
             this.GBModulTest.Controls.Add(this.label3);
+            this.GBModulTest.Controls.Add(this.GB_IDtest);
             this.GBModulTest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.GBModulTest.Location = new System.Drawing.Point(12, 106);
             this.GBModulTest.Name = "GBModulTest";
@@ -774,16 +756,40 @@
             // GB_HashTest
             // 
             this.GB_HashTest.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.GB_HashTest.Controls.Add(this.TB_HashOutput);
+            this.GB_HashTest.Controls.Add(this.label12);
             this.GB_HashTest.Controls.Add(this.ConvertToHash);
             this.GB_HashTest.Controls.Add(this.label11);
-            this.GB_HashTest.Controls.Add(this.TB_HashOutput);
-            this.GB_HashTest.Controls.Add(this.richTextBox2);
             this.GB_HashTest.Controls.Add(this.TB_InsertPass);
             this.GB_HashTest.Location = new System.Drawing.Point(285, 0);
             this.GB_HashTest.Name = "GB_HashTest";
             this.GB_HashTest.Size = new System.Drawing.Size(418, 284);
             this.GB_HashTest.TabIndex = 62;
             this.GB_HashTest.TabStop = false;
+            // 
+            // TB_HashOutput
+            // 
+            this.TB_HashOutput.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.TB_HashOutput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TB_HashOutput.Cursor = System.Windows.Forms.Cursors.Default;
+            this.TB_HashOutput.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TB_HashOutput.ForeColor = System.Drawing.Color.Teal;
+            this.TB_HashOutput.Location = new System.Drawing.Point(35, 200);
+            this.TB_HashOutput.Name = "TB_HashOutput";
+            this.TB_HashOutput.Size = new System.Drawing.Size(345, 27);
+            this.TB_HashOutput.TabIndex = 56;
+            this.TB_HashOutput.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label12
+            // 
+            this.label12.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label12.ForeColor = System.Drawing.Color.Black;
+            this.label12.Location = new System.Drawing.Point(43, 38);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(329, 47);
+            this.label12.TabIndex = 55;
+            this.label12.Text = "Введите строку символов, для проверки функции хэширования:";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ConvertToHash
             // 
@@ -812,30 +818,6 @@
             this.label11.Text = "Хэш-функция:";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // TB_HashOutput
-            // 
-            this.TB_HashOutput.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.TB_HashOutput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TB_HashOutput.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.TB_HashOutput.Font = new System.Drawing.Font("Times New Roman", 13F);
-            this.TB_HashOutput.ForeColor = System.Drawing.Color.Teal;
-            this.TB_HashOutput.Location = new System.Drawing.Point(35, 200);
-            this.TB_HashOutput.Name = "TB_HashOutput";
-            this.TB_HashOutput.Size = new System.Drawing.Size(345, 27);
-            this.TB_HashOutput.TabIndex = 52;
-            this.TB_HashOutput.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // richTextBox2
-            // 
-            this.richTextBox2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.richTextBox2.Location = new System.Drawing.Point(43, 38);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(329, 47);
-            this.richTextBox2.TabIndex = 51;
-            this.richTextBox2.Text = "Введите строку символов, для проверки функции хэширования:";
-            // 
             // TB_InsertPass
             // 
             this.TB_InsertPass.BackColor = System.Drawing.Color.White;
@@ -847,297 +829,6 @@
             this.TB_InsertPass.Size = new System.Drawing.Size(345, 27);
             this.TB_InsertPass.TabIndex = 50;
             this.TB_InsertPass.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TB_InsertPass_KeyPress);
-            // 
-            // GB_IDtest
-            // 
-            this.GB_IDtest.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.GB_IDtest.Controls.Add(this.GB_TextSpelling);
-            this.GB_IDtest.Controls.Add(this.statusField);
-            this.GB_IDtest.Controls.Add(this.StatusUsrLabel);
-            this.GB_IDtest.Controls.Add(this.surnameField);
-            this.GB_IDtest.Controls.Add(this.nameField);
-            this.GB_IDtest.Controls.Add(this.SurnameUsrLabel);
-            this.GB_IDtest.Controls.Add(this.NameUsrLabel);
-            this.GB_IDtest.Controls.Add(this.IDField);
-            this.GB_IDtest.Controls.Add(this.IDUsrLabel);
-            this.GB_IDtest.Controls.Add(this.Users);
-            this.GB_IDtest.Controls.Add(this.TB_insertID);
-            this.GB_IDtest.Controls.Add(this.TB_login);
-            this.GB_IDtest.Controls.Add(this.lastAID_label);
-            this.GB_IDtest.Controls.Add(this.TB_lastUserID);
-            this.GB_IDtest.Controls.Add(this.FindInfoButton);
-            this.GB_IDtest.Controls.Add(this.TB_lastAdmID);
-            this.GB_IDtest.Controls.Add(this.infoID_label);
-            this.GB_IDtest.Controls.Add(this.lastUID_label);
-            this.GB_IDtest.Location = new System.Drawing.Point(285, 0);
-            this.GB_IDtest.Name = "GB_IDtest";
-            this.GB_IDtest.Size = new System.Drawing.Size(418, 284);
-            this.GB_IDtest.TabIndex = 48;
-            this.GB_IDtest.TabStop = false;
-            // 
-            // GB_TextSpelling
-            // 
-            this.GB_TextSpelling.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.GB_TextSpelling.Controls.Add(this.ClearButton);
-            this.GB_TextSpelling.Controls.Add(this.richTextBox1);
-            this.GB_TextSpelling.Controls.Add(this.TB_Spelling);
-            this.GB_TextSpelling.Location = new System.Drawing.Point(0, 0);
-            this.GB_TextSpelling.Name = "GB_TextSpelling";
-            this.GB_TextSpelling.Size = new System.Drawing.Size(418, 284);
-            this.GB_TextSpelling.TabIndex = 61;
-            this.GB_TextSpelling.TabStop = false;
-            // 
-            // ClearButton
-            // 
-            this.ClearButton.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClearButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ClearButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClearButton.FlatAppearance.BorderSize = 0;
-            this.ClearButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.ClearButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ClearButton.Location = new System.Drawing.Point(274, 187);
-            this.ClearButton.Name = "ClearButton";
-            this.ClearButton.Size = new System.Drawing.Size(98, 28);
-            this.ClearButton.TabIndex = 63;
-            this.ClearButton.Text = "Очистить";
-            this.ClearButton.UseVisualStyleBackColor = false;
-            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.richTextBox1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.richTextBox1.Location = new System.Drawing.Point(4, 14);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(414, 180);
-            this.richTextBox1.TabIndex = 50;
-            this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
-            // 
-            // TB_Spelling
-            // 
-            this.TB_Spelling.BackColor = System.Drawing.Color.White;
-            this.TB_Spelling.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.TB_Spelling.Font = new System.Drawing.Font("Times New Roman", 14F);
-            this.TB_Spelling.ForeColor = System.Drawing.Color.Black;
-            this.TB_Spelling.Location = new System.Drawing.Point(45, 225);
-            this.TB_Spelling.Name = "TB_Spelling";
-            this.TB_Spelling.Size = new System.Drawing.Size(327, 29);
-            this.TB_Spelling.TabIndex = 49;
-            this.TB_Spelling.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TB_Spelling_KeyPress);
-            this.TB_Spelling.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TB_Spelling_KeyUp);
-            // 
-            // statusField
-            // 
-            this.statusField.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.statusField.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.statusField.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.statusField.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.statusField.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.statusField.Location = new System.Drawing.Point(274, 189);
-            this.statusField.Name = "statusField";
-            this.statusField.Size = new System.Drawing.Size(131, 22);
-            this.statusField.TabIndex = 60;
-            this.statusField.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // StatusUsrLabel
-            // 
-            this.StatusUsrLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.StatusUsrLabel.ForeColor = System.Drawing.Color.Gray;
-            this.StatusUsrLabel.Location = new System.Drawing.Point(204, 183);
-            this.StatusUsrLabel.Name = "StatusUsrLabel";
-            this.StatusUsrLabel.Size = new System.Drawing.Size(81, 32);
-            this.StatusUsrLabel.TabIndex = 59;
-            this.StatusUsrLabel.Text = "Статус:";
-            this.StatusUsrLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // surnameField
-            // 
-            this.surnameField.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.surnameField.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.surnameField.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.surnameField.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.surnameField.ForeColor = System.Drawing.Color.Black;
-            this.surnameField.Location = new System.Drawing.Point(274, 158);
-            this.surnameField.Name = "surnameField";
-            this.surnameField.Size = new System.Drawing.Size(131, 22);
-            this.surnameField.TabIndex = 57;
-            this.surnameField.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // nameField
-            // 
-            this.nameField.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.nameField.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.nameField.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.nameField.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nameField.ForeColor = System.Drawing.Color.Black;
-            this.nameField.Location = new System.Drawing.Point(274, 127);
-            this.nameField.Name = "nameField";
-            this.nameField.Size = new System.Drawing.Size(131, 22);
-            this.nameField.TabIndex = 58;
-            this.nameField.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // SurnameUsrLabel
-            // 
-            this.SurnameUsrLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SurnameUsrLabel.ForeColor = System.Drawing.Color.Gray;
-            this.SurnameUsrLabel.Location = new System.Drawing.Point(203, 152);
-            this.SurnameUsrLabel.Name = "SurnameUsrLabel";
-            this.SurnameUsrLabel.Size = new System.Drawing.Size(81, 32);
-            this.SurnameUsrLabel.TabIndex = 55;
-            this.SurnameUsrLabel.Text = "Фамилия:";
-            this.SurnameUsrLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // NameUsrLabel
-            // 
-            this.NameUsrLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NameUsrLabel.ForeColor = System.Drawing.Color.Gray;
-            this.NameUsrLabel.Location = new System.Drawing.Point(204, 121);
-            this.NameUsrLabel.Name = "NameUsrLabel";
-            this.NameUsrLabel.Size = new System.Drawing.Size(81, 32);
-            this.NameUsrLabel.TabIndex = 56;
-            this.NameUsrLabel.Text = "Имя:";
-            this.NameUsrLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // IDField
-            // 
-            this.IDField.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.IDField.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.IDField.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.IDField.Font = new System.Drawing.Font("Times New Roman", 14F);
-            this.IDField.ForeColor = System.Drawing.Color.Teal;
-            this.IDField.Location = new System.Drawing.Point(360, 95);
-            this.IDField.Name = "IDField";
-            this.IDField.Size = new System.Drawing.Size(47, 22);
-            this.IDField.TabIndex = 52;
-            this.IDField.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // IDUsrLabel
-            // 
-            this.IDUsrLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic);
-            this.IDUsrLabel.ForeColor = System.Drawing.Color.Gray;
-            this.IDUsrLabel.Location = new System.Drawing.Point(204, 92);
-            this.IDUsrLabel.Name = "IDUsrLabel";
-            this.IDUsrLabel.Size = new System.Drawing.Size(154, 24);
-            this.IDUsrLabel.TabIndex = 51;
-            this.IDUsrLabel.Text = "ID пользователя:";
-            this.IDUsrLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // Users
-            // 
-            this.Users.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Users.Font = new System.Drawing.Font("Times New Roman", 14.25F);
-            this.Users.FormattingEnabled = true;
-            this.Users.ItemHeight = 21;
-            this.Users.Location = new System.Drawing.Point(6, 49);
-            this.Users.Name = "Users";
-            this.Users.Size = new System.Drawing.Size(191, 233);
-            this.Users.TabIndex = 50;
-            this.Users.SelectedIndexChanged += new System.EventHandler(this.Users_SelectedIndexChanged);
-            // 
-            // TB_insertID
-            // 
-            this.TB_insertID.BackColor = System.Drawing.Color.White;
-            this.TB_insertID.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TB_insertID.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.TB_insertID.Font = new System.Drawing.Font("Times New Roman", 14F);
-            this.TB_insertID.ForeColor = System.Drawing.Color.Black;
-            this.TB_insertID.Location = new System.Drawing.Point(360, 18);
-            this.TB_insertID.Name = "TB_insertID";
-            this.TB_insertID.Size = new System.Drawing.Size(47, 22);
-            this.TB_insertID.TabIndex = 49;
-            this.TB_insertID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TB_insertID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TB_insertID_KeyPress);
-            // 
-            // TB_login
-            // 
-            this.TB_login.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.TB_login.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TB_login.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.TB_login.Font = new System.Drawing.Font("Times New Roman", 14F);
-            this.TB_login.ForeColor = System.Drawing.Color.DarkOrchid;
-            this.TB_login.Location = new System.Drawing.Point(208, 60);
-            this.TB_login.Name = "TB_login";
-            this.TB_login.Size = new System.Drawing.Size(199, 22);
-            this.TB_login.TabIndex = 48;
-            this.TB_login.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // lastAID_label
-            // 
-            this.lastAID_label.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic);
-            this.lastAID_label.ForeColor = System.Drawing.Color.Gray;
-            this.lastAID_label.Location = new System.Drawing.Point(203, 248);
-            this.lastAID_label.Name = "lastAID_label";
-            this.lastAID_label.Size = new System.Drawing.Size(155, 24);
-            this.lastAID_label.TabIndex = 45;
-            this.lastAID_label.Text = "Последний admin ID:";
-            this.lastAID_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // TB_lastUserID
-            // 
-            this.TB_lastUserID.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.TB_lastUserID.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TB_lastUserID.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.TB_lastUserID.Font = new System.Drawing.Font("Times New Roman", 14F);
-            this.TB_lastUserID.ForeColor = System.Drawing.Color.Teal;
-            this.TB_lastUserID.Location = new System.Drawing.Point(364, 225);
-            this.TB_lastUserID.Name = "TB_lastUserID";
-            this.TB_lastUserID.Size = new System.Drawing.Size(43, 22);
-            this.TB_lastUserID.TabIndex = 44;
-            this.TB_lastUserID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // FindInfoButton
-            // 
-            this.FindInfoButton.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.FindInfoButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.FindInfoButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
-            this.FindInfoButton.FlatAppearance.BorderSize = 0;
-            this.FindInfoButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.FindInfoButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.FindInfoButton.ForeColor = System.Drawing.Color.Black;
-            this.FindInfoButton.Location = new System.Drawing.Point(238, 15);
-            this.FindInfoButton.Name = "FindInfoButton";
-            this.FindInfoButton.Size = new System.Drawing.Size(103, 30);
-            this.FindInfoButton.TabIndex = 47;
-            this.FindInfoButton.Text = "Сравнить";
-            this.FindInfoButton.UseVisualStyleBackColor = false;
-            this.FindInfoButton.Click += new System.EventHandler(this.FindInfoButton_Click);
-            // 
-            // TB_lastAdmID
-            // 
-            this.TB_lastAdmID.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.TB_lastAdmID.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TB_lastAdmID.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.TB_lastAdmID.Font = new System.Drawing.Font("Times New Roman", 14F);
-            this.TB_lastAdmID.ForeColor = System.Drawing.Color.Blue;
-            this.TB_lastAdmID.Location = new System.Drawing.Point(364, 250);
-            this.TB_lastAdmID.Name = "TB_lastAdmID";
-            this.TB_lastAdmID.Size = new System.Drawing.Size(43, 22);
-            this.TB_lastAdmID.TabIndex = 43;
-            this.TB_lastAdmID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // infoID_label
-            // 
-            this.infoID_label.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic);
-            this.infoID_label.ForeColor = System.Drawing.Color.Gray;
-            this.infoID_label.Location = new System.Drawing.Point(2, 16);
-            this.infoID_label.Name = "infoID_label";
-            this.infoID_label.Size = new System.Drawing.Size(222, 24);
-            this.infoID_label.TabIndex = 46;
-            this.infoID_label.Text = "Поиск информации по user ID:";
-            this.infoID_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lastUID_label
-            // 
-            this.lastUID_label.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic);
-            this.lastUID_label.ForeColor = System.Drawing.Color.Gray;
-            this.lastUID_label.Location = new System.Drawing.Point(204, 222);
-            this.lastUID_label.Name = "lastUID_label";
-            this.lastUID_label.Size = new System.Drawing.Size(154, 24);
-            this.lastUID_label.TabIndex = 45;
-            this.lastUID_label.Text = "Последний user ID:";
-            this.lastUID_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label10
             // 
@@ -1183,6 +874,282 @@
             this.label8.Size = new System.Drawing.Size(106, 32);
             this.label8.TabIndex = 38;
             this.label8.Text = "label3";
+            // 
+            // GB_IDtest
+            // 
+            this.GB_IDtest.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.GB_IDtest.Controls.Add(this.GB_TextSpelling);
+            this.GB_IDtest.Controls.Add(this.TB_login);
+            this.GB_IDtest.Controls.Add(this.statusField);
+            this.GB_IDtest.Controls.Add(this.surnameField);
+            this.GB_IDtest.Controls.Add(this.nameField);
+            this.GB_IDtest.Controls.Add(this.IDField);
+            this.GB_IDtest.Controls.Add(this.TB_lastUserID);
+            this.GB_IDtest.Controls.Add(this.TB_lastAdmID);
+            this.GB_IDtest.Controls.Add(this.StatusUsrLabel);
+            this.GB_IDtest.Controls.Add(this.SurnameUsrLabel);
+            this.GB_IDtest.Controls.Add(this.NameUsrLabel);
+            this.GB_IDtest.Controls.Add(this.IDUsrLabel);
+            this.GB_IDtest.Controls.Add(this.Users);
+            this.GB_IDtest.Controls.Add(this.TB_insertID);
+            this.GB_IDtest.Controls.Add(this.lastAID_label);
+            this.GB_IDtest.Controls.Add(this.FindInfoButton);
+            this.GB_IDtest.Controls.Add(this.infoID_label);
+            this.GB_IDtest.Controls.Add(this.lastUID_label);
+            this.GB_IDtest.Location = new System.Drawing.Point(285, 0);
+            this.GB_IDtest.Name = "GB_IDtest";
+            this.GB_IDtest.Size = new System.Drawing.Size(418, 284);
+            this.GB_IDtest.TabIndex = 48;
+            this.GB_IDtest.TabStop = false;
+            // 
+            // GB_TextSpelling
+            // 
+            this.GB_TextSpelling.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.GB_TextSpelling.Controls.Add(this.ClearButton);
+            this.GB_TextSpelling.Controls.Add(this.label13);
+            this.GB_TextSpelling.Controls.Add(this.TB_Spelling);
+            this.GB_TextSpelling.Location = new System.Drawing.Point(0, 0);
+            this.GB_TextSpelling.Name = "GB_TextSpelling";
+            this.GB_TextSpelling.Size = new System.Drawing.Size(418, 284);
+            this.GB_TextSpelling.TabIndex = 61;
+            this.GB_TextSpelling.TabStop = false;
+            // 
+            // ClearButton
+            // 
+            this.ClearButton.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ClearButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ClearButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ClearButton.FlatAppearance.BorderSize = 0;
+            this.ClearButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ClearButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ClearButton.Location = new System.Drawing.Point(274, 187);
+            this.ClearButton.Name = "ClearButton";
+            this.ClearButton.Size = new System.Drawing.Size(98, 28);
+            this.ClearButton.TabIndex = 63;
+            this.ClearButton.Text = "Очистить";
+            this.ClearButton.UseVisualStyleBackColor = false;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
+            // 
+            // label13
+            // 
+            this.label13.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label13.ForeColor = System.Drawing.Color.Black;
+            this.label13.Location = new System.Drawing.Point(4, 14);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(414, 180);
+            this.label13.TabIndex = 64;
+            this.label13.Text = resources.GetString("label13.Text");
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // TB_Spelling
+            // 
+            this.TB_Spelling.BackColor = System.Drawing.Color.White;
+            this.TB_Spelling.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.TB_Spelling.Font = new System.Drawing.Font("Times New Roman", 14F);
+            this.TB_Spelling.ForeColor = System.Drawing.Color.Black;
+            this.TB_Spelling.Location = new System.Drawing.Point(45, 225);
+            this.TB_Spelling.Name = "TB_Spelling";
+            this.TB_Spelling.Size = new System.Drawing.Size(327, 29);
+            this.TB_Spelling.TabIndex = 49;
+            this.TB_Spelling.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TB_Spelling_KeyPress);
+            this.TB_Spelling.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TB_Spelling_KeyUp);
+            // 
+            // TB_login
+            // 
+            this.TB_login.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.TB_login.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TB_login.ForeColor = System.Drawing.Color.DarkOrchid;
+            this.TB_login.Location = new System.Drawing.Point(208, 60);
+            this.TB_login.Name = "TB_login";
+            this.TB_login.Size = new System.Drawing.Size(199, 22);
+            this.TB_login.TabIndex = 68;
+            this.TB_login.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // statusField
+            // 
+            this.statusField.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.statusField.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.statusField.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.statusField.Location = new System.Drawing.Point(274, 189);
+            this.statusField.Name = "statusField";
+            this.statusField.Size = new System.Drawing.Size(131, 22);
+            this.statusField.TabIndex = 67;
+            this.statusField.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // surnameField
+            // 
+            this.surnameField.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.surnameField.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.surnameField.ForeColor = System.Drawing.Color.Black;
+            this.surnameField.Location = new System.Drawing.Point(274, 158);
+            this.surnameField.Name = "surnameField";
+            this.surnameField.Size = new System.Drawing.Size(131, 22);
+            this.surnameField.TabIndex = 66;
+            this.surnameField.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // nameField
+            // 
+            this.nameField.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.nameField.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nameField.ForeColor = System.Drawing.Color.Black;
+            this.nameField.Location = new System.Drawing.Point(274, 127);
+            this.nameField.Name = "nameField";
+            this.nameField.Size = new System.Drawing.Size(131, 22);
+            this.nameField.TabIndex = 65;
+            this.nameField.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // IDField
+            // 
+            this.IDField.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.IDField.Font = new System.Drawing.Font("Times New Roman", 14F);
+            this.IDField.ForeColor = System.Drawing.Color.Teal;
+            this.IDField.Location = new System.Drawing.Point(360, 95);
+            this.IDField.Name = "IDField";
+            this.IDField.Size = new System.Drawing.Size(43, 22);
+            this.IDField.TabIndex = 64;
+            this.IDField.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // TB_lastUserID
+            // 
+            this.TB_lastUserID.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.TB_lastUserID.Font = new System.Drawing.Font("Times New Roman", 14F);
+            this.TB_lastUserID.ForeColor = System.Drawing.Color.Teal;
+            this.TB_lastUserID.Location = new System.Drawing.Point(364, 225);
+            this.TB_lastUserID.Name = "TB_lastUserID";
+            this.TB_lastUserID.Size = new System.Drawing.Size(43, 22);
+            this.TB_lastUserID.TabIndex = 63;
+            this.TB_lastUserID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // TB_lastAdmID
+            // 
+            this.TB_lastAdmID.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.TB_lastAdmID.Font = new System.Drawing.Font("Times New Roman", 14F);
+            this.TB_lastAdmID.ForeColor = System.Drawing.Color.Blue;
+            this.TB_lastAdmID.Location = new System.Drawing.Point(364, 250);
+            this.TB_lastAdmID.Name = "TB_lastAdmID";
+            this.TB_lastAdmID.Size = new System.Drawing.Size(43, 22);
+            this.TB_lastAdmID.TabIndex = 62;
+            this.TB_lastAdmID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // StatusUsrLabel
+            // 
+            this.StatusUsrLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.StatusUsrLabel.ForeColor = System.Drawing.Color.Gray;
+            this.StatusUsrLabel.Location = new System.Drawing.Point(204, 183);
+            this.StatusUsrLabel.Name = "StatusUsrLabel";
+            this.StatusUsrLabel.Size = new System.Drawing.Size(81, 32);
+            this.StatusUsrLabel.TabIndex = 59;
+            this.StatusUsrLabel.Text = "Статус:";
+            this.StatusUsrLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // SurnameUsrLabel
+            // 
+            this.SurnameUsrLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SurnameUsrLabel.ForeColor = System.Drawing.Color.Gray;
+            this.SurnameUsrLabel.Location = new System.Drawing.Point(203, 152);
+            this.SurnameUsrLabel.Name = "SurnameUsrLabel";
+            this.SurnameUsrLabel.Size = new System.Drawing.Size(81, 32);
+            this.SurnameUsrLabel.TabIndex = 55;
+            this.SurnameUsrLabel.Text = "Фамилия:";
+            this.SurnameUsrLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // NameUsrLabel
+            // 
+            this.NameUsrLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.NameUsrLabel.ForeColor = System.Drawing.Color.Gray;
+            this.NameUsrLabel.Location = new System.Drawing.Point(204, 121);
+            this.NameUsrLabel.Name = "NameUsrLabel";
+            this.NameUsrLabel.Size = new System.Drawing.Size(81, 32);
+            this.NameUsrLabel.TabIndex = 56;
+            this.NameUsrLabel.Text = "Имя:";
+            this.NameUsrLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // IDUsrLabel
+            // 
+            this.IDUsrLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic);
+            this.IDUsrLabel.ForeColor = System.Drawing.Color.Gray;
+            this.IDUsrLabel.Location = new System.Drawing.Point(204, 92);
+            this.IDUsrLabel.Name = "IDUsrLabel";
+            this.IDUsrLabel.Size = new System.Drawing.Size(154, 24);
+            this.IDUsrLabel.TabIndex = 51;
+            this.IDUsrLabel.Text = "ID пользователя:";
+            this.IDUsrLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // Users
+            // 
+            this.Users.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Users.Font = new System.Drawing.Font("Times New Roman", 14.25F);
+            this.Users.FormattingEnabled = true;
+            this.Users.ItemHeight = 21;
+            this.Users.Location = new System.Drawing.Point(6, 49);
+            this.Users.Name = "Users";
+            this.Users.Size = new System.Drawing.Size(191, 233);
+            this.Users.TabIndex = 50;
+            this.Users.SelectedIndexChanged += new System.EventHandler(this.Users_SelectedIndexChanged);
+            // 
+            // TB_insertID
+            // 
+            this.TB_insertID.BackColor = System.Drawing.Color.White;
+            this.TB_insertID.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TB_insertID.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.TB_insertID.Font = new System.Drawing.Font("Times New Roman", 14F);
+            this.TB_insertID.ForeColor = System.Drawing.Color.Black;
+            this.TB_insertID.Location = new System.Drawing.Point(360, 18);
+            this.TB_insertID.Name = "TB_insertID";
+            this.TB_insertID.Size = new System.Drawing.Size(47, 22);
+            this.TB_insertID.TabIndex = 49;
+            this.TB_insertID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TB_insertID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TB_insertID_KeyPress);
+            // 
+            // lastAID_label
+            // 
+            this.lastAID_label.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic);
+            this.lastAID_label.ForeColor = System.Drawing.Color.Gray;
+            this.lastAID_label.Location = new System.Drawing.Point(203, 248);
+            this.lastAID_label.Name = "lastAID_label";
+            this.lastAID_label.Size = new System.Drawing.Size(155, 24);
+            this.lastAID_label.TabIndex = 45;
+            this.lastAID_label.Text = "Последний admin ID:";
+            this.lastAID_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // FindInfoButton
+            // 
+            this.FindInfoButton.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.FindInfoButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.FindInfoButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.FindInfoButton.FlatAppearance.BorderSize = 0;
+            this.FindInfoButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.FindInfoButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.FindInfoButton.ForeColor = System.Drawing.Color.Black;
+            this.FindInfoButton.Location = new System.Drawing.Point(238, 15);
+            this.FindInfoButton.Name = "FindInfoButton";
+            this.FindInfoButton.Size = new System.Drawing.Size(103, 30);
+            this.FindInfoButton.TabIndex = 47;
+            this.FindInfoButton.Text = "Сравнить";
+            this.FindInfoButton.UseVisualStyleBackColor = false;
+            this.FindInfoButton.Click += new System.EventHandler(this.FindInfoButton_Click);
+            // 
+            // infoID_label
+            // 
+            this.infoID_label.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic);
+            this.infoID_label.ForeColor = System.Drawing.Color.Gray;
+            this.infoID_label.Location = new System.Drawing.Point(2, 16);
+            this.infoID_label.Name = "infoID_label";
+            this.infoID_label.Size = new System.Drawing.Size(222, 24);
+            this.infoID_label.TabIndex = 46;
+            this.infoID_label.Text = "Поиск информации по user ID:";
+            this.infoID_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lastUID_label
+            // 
+            this.lastUID_label.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic);
+            this.lastUID_label.ForeColor = System.Drawing.Color.Gray;
+            this.lastUID_label.Location = new System.Drawing.Point(204, 222);
+            this.lastUID_label.Name = "lastUID_label";
+            this.lastUID_label.Size = new System.Drawing.Size(154, 24);
+            this.lastUID_label.TabIndex = 45;
+            this.lastUID_label.Text = "Последний user ID:";
+            this.lastUID_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // TestingForm
             // 
@@ -1234,7 +1201,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.TickCascade)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TickDelUser)).EndInit();
             this.GBCrossTests.ResumeLayout(false);
-            this.GBCrossTests.PerformLayout();
             this.GBModulTest.ResumeLayout(false);
             this.GB_HashTest.ResumeLayout(false);
             this.GB_HashTest.PerformLayout();
@@ -1278,17 +1244,11 @@
         private System.Windows.Forms.Label OkDelUserTest;
         private System.Windows.Forms.Label FailedDelUserTest;
         private System.Windows.Forms.GroupBox GBCrossTests;
-        private System.Windows.Forms.TextBox CascadeUserField;
-        private System.Windows.Forms.TextBox ChangeLoginField;
-        private System.Windows.Forms.TextBox UserField;
-        private System.Windows.Forms.TextBox versionField;
         private System.Windows.Forms.Label statusLabel;
         private System.Windows.Forms.Label loginLabel;
         private System.Windows.Forms.Label surnameLabel;
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox CascadeAdminField;
-        private System.Windows.Forms.TextBox DeleteField;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label TypeLabel;
         private System.Windows.Forms.Label CrossLabel;
@@ -1304,35 +1264,41 @@
         private System.Windows.Forms.GroupBox GBModulTest;
         private System.Windows.Forms.GroupBox GB_IDtest;
         private System.Windows.Forms.TextBox TB_insertID;
-        private System.Windows.Forms.TextBox TB_login;
         private System.Windows.Forms.Label lastAID_label;
         private System.Windows.Forms.Button FindInfoButton;
-        private System.Windows.Forms.TextBox TB_lastAdmID;
         private System.Windows.Forms.Label infoID_label;
         private System.Windows.Forms.Label lastUID_label;
         private System.Windows.Forms.ListBox Users;
-        private System.Windows.Forms.TextBox IDField;
         private System.Windows.Forms.Label IDUsrLabel;
-        private System.Windows.Forms.TextBox surnameField;
-        private System.Windows.Forms.TextBox nameField;
         private System.Windows.Forms.Label SurnameUsrLabel;
         private System.Windows.Forms.Label NameUsrLabel;
-        private System.Windows.Forms.TextBox statusField;
         private System.Windows.Forms.Label StatusUsrLabel;
-        private System.Windows.Forms.TextBox TB_lastUserID;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button HashStartButton;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox GB_TextSpelling;
         private System.Windows.Forms.TextBox TB_Spelling;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.GroupBox GB_HashTest;
-        private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.TextBox TB_InsertPass;
         private System.Windows.Forms.Button ConvertToHash;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox TB_HashOutput;
         private System.Windows.Forms.Button ClearButton;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label TB_HashOutput;
+        private System.Windows.Forms.Label TB_lastAdmID;
+        private System.Windows.Forms.Label TB_lastUserID;
+        private System.Windows.Forms.Label IDField;
+        private System.Windows.Forms.Label nameField;
+        private System.Windows.Forms.Label surnameField;
+        private System.Windows.Forms.Label statusField;
+        private System.Windows.Forms.Label TB_login;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label versionField;
+        private System.Windows.Forms.Label UserField;
+        private System.Windows.Forms.Label ChangeLoginField;
+        private System.Windows.Forms.Label CascadeUserField;
+        private System.Windows.Forms.Label CascadeAdminField;
+        private System.Windows.Forms.Label DeleteField;
     }
 }

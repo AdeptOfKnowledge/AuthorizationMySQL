@@ -33,7 +33,7 @@ namespace Authorization
             OkDelUserTest.Visible = false; FailedDelUserTest.Visible = false; TickDelUser.Visible = false; PBDelUser.Value = 0; 
             GBModulTest.Visible = false; tm?.Stop(); test = 0; BD_label.BorderStyle = BorderStyle.None; UserCrLabel.BorderStyle = BorderStyle.None;
             EditLabel.BorderStyle = BorderStyle.None; CascadeLabel.BorderStyle = BorderStyle.None; DelUserLabel.BorderStyle = BorderStyle.None;
-            versionField.Clear(); UserField.Clear(); ChangeLoginField.Clear(); CascadeUserField.Clear(); CascadeAdminField.Clear(); DeleteField.Clear();
+            versionField.Text = ""; UserField.Text = ""; ChangeLoginField.Text = ""; CascadeUserField.Text = ""; CascadeAdminField.Text = ""; DeleteField.Text = "";            
         }
 
         private void Exit_Click(object sender, EventArgs e)             //действие при нажатие на крестик(закрытие формы)
@@ -287,7 +287,7 @@ namespace Authorization
             }
         }
 
-        private void Cascade()      // тест каскадных изменений при изменении имени пользователя
+        private void Cascade()      // тест каскадных связей при изменении имени пользователя
         {
             PBCascade.Step = 1; PBCascade.Value = 0; test = 0;
             for (int i = 1; i < 25; i++) PBCascade.Value = i;
@@ -321,9 +321,9 @@ namespace Authorization
                 command.ExecuteReader();
                 db.CloseConnection(); 
 
+                for (int i = 50; i < 75; i++) PBCascade.Value = i;
                 CascadeUserField.Text = cascadeLogin;
 
-                for (int i = 50; i < 75; i++) PBCascade.Value = i;
                                                             // изменение данных пользователя в таблице users
                 command = new SqlCommand("UPDATE users SET login = @NuL WHERE login = @UL", db.GetConnection());
 
@@ -409,7 +409,7 @@ namespace Authorization
             }
         }
 
-        private void MainTimer_Tick(object sender, EventArgs e)     // таймер-модуль запуска тестов в нужной последовательностями
+        private void MainTimer_Tick(object sender, EventArgs e)     // таймер-модуль запуска тестов в нужной последовательности
         {                                                           // следующий тест запускается ТОЛЬКО В СЛУЧАЕ УСПЕШНОГО ЗАВЕРШЕНИЯ предыдущего
             if (test == 9)
             {
@@ -460,7 +460,7 @@ namespace Authorization
         {
             if (CrossLabel.ForeColor == Color.IndianRed)
             {
-                versionField.Clear(); UserField.Clear(); ChangeLoginField.Clear(); CascadeUserField.Clear(); CascadeAdminField.Clear(); DeleteField.Clear();
+                versionField.Text = ""; UserField.Text = ""; ChangeLoginField.Text = ""; CascadeUserField.Text = ""; CascadeAdminField.Text = ""; DeleteField.Text = "";
                 StartTestButton.Enabled = false; ChangeTypeButton.Enabled = false;
 
                 if (OK_BD_Test.Visible || Failed_BD_test.Visible || OkUserTest.Visible || FailedUserTest.Visible || OkEditTest.Visible || FailedEditTest.Visible ||
@@ -494,7 +494,7 @@ namespace Authorization
             else 
             { 
                 CrossLabel.ForeColor = Color.IndianRed; CrossLabel.Text = "Сквозное"; TestingForm_Load(this, EventArgs.Empty); StartTestButton.Visible = true;
-                Users.Items.Clear(); TB_lastUserID.Clear(); TB_lastAdmID.Clear(); TB_login.Clear(); IDField.Clear(); nameField.Clear(); surnameField.Clear(); statusField.Clear(); TB_insertID.Clear();
+                Users.Items.Clear(); TB_lastUserID.Text = ""; TB_lastAdmID.Text = ""; TB_login.Text = ""; IDField.Text = ""; nameField.Text = ""; surnameField.Text = ""; statusField.Text = ""; TB_insertID.Clear();
             }
         }
 
@@ -503,7 +503,7 @@ namespace Authorization
             GB_IDtest.Visible = true; GB_TextSpelling.Visible = false; GB_HashTest.Visible = false; TB_Spelling.Clear();
             FindInfoButton.Enabled = true; infoID_label.ForeColor = Color.Black; lastUID_label.ForeColor = Color.Black; lastAID_label.ForeColor = Color.Black; FindInfoButton.ForeColor = Color.Black;
             IDUsrLabel.ForeColor = Color.Black; NameUsrLabel.ForeColor = Color.Black; SurnameUsrLabel.ForeColor = Color.Black; StatusUsrLabel.ForeColor = Color.Black;
-            Users.Items.Clear(); TB_lastUserID.Clear(); TB_lastAdmID.Clear(); TB_login.Clear(); IDField.Clear(); nameField.Clear(); surnameField.Clear(); statusField.Clear(); TB_insertID.Clear();
+            Users.Items.Clear(); TB_lastUserID.Text = ""; TB_lastAdmID.Text = ""; TB_login.Text = ""; IDField.Text = ""; nameField.Text = ""; surnameField.Text = ""; statusField.Text = ""; TB_insertID.Clear();
             CheckLastUserID(); TB_lastUserID.Text = lastID.ToString();
             CheckLastAdminID(); TB_lastAdmID.Text = lastAdmID.ToString();
             UsersList();
@@ -671,7 +671,7 @@ namespace Authorization
 
         private void HashStartButton_Click(object sender, EventArgs e)          // ТРЕТИЙ МОДУЛЬНЫЙ ТЕСТ - корректность работы модуля хэш-функции
         {
-            GB_TextSpelling.Visible = true; GB_HashTest.Visible = true; TB_InsertPass.Clear(); TB_HashOutput.Clear();
+            GB_TextSpelling.Visible = true; GB_HashTest.Visible = true; TB_InsertPass.Clear(); TB_HashOutput.Text = "";
         }
 
         private void ConvertToHash_Click(object sender, EventArgs e)            //кнопка преобразовать текст в хэш
@@ -679,7 +679,7 @@ namespace Authorization
             TB_InsertPass.Text = TB_InsertPass.Text.TrimEnd(new Char[] { ' ' });  // удаление пробела, если стоит после текста
             if (TB_InsertPass.Text != "")
                 TB_HashOutput.Text = PassHash.PWhash(TB_InsertPass.Text);
-            else TB_HashOutput.Clear();
+            else TB_HashOutput.Text = "";
         }
 
         private void TB_InsertPass_KeyPress(object sender, KeyPressEventArgs e)  // блок пробела в окне ввода теста хэш-функции
