@@ -46,6 +46,12 @@ namespace Authorization
 
         private void Permissions()                          //определение прав админа
         {
+            if (loginField.Text == adminName.Text)
+            {
+                DelUsrButton.Enabled = false; DelUsrButton.BackColor = Color.FromArgb(255, 215, 228, 242);
+            }
+            else { DelUsrButton.Enabled = true; DelUsrButton.BackColor = Color.FromArgb(255, 153, 180, 209); }
+
             if (!admPanel)
             {
                 AdminButton.BackColor = Color.LightGray; superAdminButton.BackColor = Color.LightGray;

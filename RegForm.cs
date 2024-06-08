@@ -49,7 +49,7 @@ namespace Authorization
                 this.Top += e.Y - NP.Y;
             }
         }
-        //список действия при появлении и потере фокуса на соответствующих полях заполнения данных регистрации
+        //список действий при появлении и потере фокуса на соответствующих полях заполнения данных регистрации
         private void NameField_Enter(object sender, EventArgs e)        
         {
             if (NameField.Text == "Введите имя") { NameField.Text = ""; NameField.ForeColor = Color.Black; }
